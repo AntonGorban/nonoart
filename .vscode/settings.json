@@ -1,0 +1,51 @@
+{
+  // Отключает проверку TypeScript встроенным инструментом (используем версию из node_modules)
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.tsserver.experimental.enableProjectDiagnostics": true,
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+
+  // Настройки ESLint для монорепозитория
+  "eslint.workingDirectories": [{ "mode": "auto" }],
+
+  // Форматирование при сохранении
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  // Настройки для отдельных языков
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  // Опционально: исключить папки из поиска
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/build": true,
+    "**/.turbo": true,
+    "**/.next": true,
+    "**/.vite": true,
+    "**/.yarn": true
+  },
+
+  // Скрыть файлы в Explorer
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/node_modules": false,
+    "**/dist": true,
+    "**/build": true,
+    "**/.turbo": true
+  }
+}
