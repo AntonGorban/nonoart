@@ -46,8 +46,8 @@
     "**/.git": true,
     "**/.DS_Store": true,
     "**/node_modules": false,
-    "**/dist": true,
-    "**/build": true,
+    "**/dist": false,
+    "**/build": false,
     "**/.turbo": true
   },
   "cSpell.words": [

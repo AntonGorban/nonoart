@@ -4,9 +4,13 @@ import nodePlugin from 'eslint-plugin-n';
 import securityPlugin from 'eslint-plugin-security';
 import { defineConfig } from 'eslint/config';
 import globals from 'globals';
+import { dirname } from 'path';
 import tseslint from 'typescript-eslint';
+import { fileURLToPath } from 'url';
 
 import js from '@eslint/js';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig([
   // Глобальные игноры
@@ -38,7 +42,7 @@ export default defineConfig([
       },
       parserOptions: {
         project: './tsconfig.json', // для правил, требующих типов
-        tsconfigRootDir: import.meta.dirname,
+        tsconfigRootDir: __dirname,
       },
     },
 
