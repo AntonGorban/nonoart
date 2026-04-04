@@ -506,6 +506,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@nono-art/utils@workspace:libs/utils":
+  version: 0.0.0-use.local
+  resolution: "@nono-art/utils@workspace:libs/utils"
+  dependencies:
+    tsup: "npm:^8.5.1"
+    typescript: "npm:^5.9.2"
+  languageName: unknown
+  linkType: soft
+
 "@npmcli/agent@npm:^4.0.0":
   version: 4.0.0
   resolution: "@npmcli/agent@npm:4.0.0"
