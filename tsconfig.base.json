@@ -22,7 +22,7 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "isolatedModules": true, // необходимо для Vite, Expo, SWC
-    "verbatimModuleSyntax": true, // современная альтернатива isolatedModules
+    // "verbatimModuleSyntax": true, // современная альтернатива isolatedModules
     "moduleDetection": "force",
 
     // === Декларации для библиотек ===

@@ -5,14 +5,7 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build", "typecheck"],
-      "outputs": [
-        "dist/**",
-        ".next/**",
-        "build/**",
-        "android/**",
-        "ios/**",
-        ".expo/**"
-      ],
+      "outputs": ["dist/**", ".next/**", "build/**", "android/**", "ios/**", ".expo/**"],
       "inputs": ["src/**", "app/**", "public/**", "*.json", "*.js", "*.ts"]
     },
     "dev": {
@@ -40,11 +33,6 @@
       "dependsOn": ["expo:prebuild", "^build"],
       "outputs": ["ios/build/**", "android/app/build/**"],
       "env": ["CI", "EXPO_USE_FAST_RESOLVER"]
-    }
-  },
-  "pipeline": {
-    "build": {
-      "dependsOn": ["^build", "typecheck"]
     }
   }
 }
