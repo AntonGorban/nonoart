@@ -506,7 +506,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nono-art/utils@workspace:libs/utils":
+"@nono-art/utils@workspace:^, @nono-art/utils@workspace:libs/utils":
   version: 0.0.0-use.local
   resolution: "@nono-art/utils@workspace:libs/utils"
   dependencies:
@@ -4340,6 +4340,7 @@ __metadata:
   resolution: "server@workspace:server"
   dependencies:
     "@eslint/js": "npm:^9.39.4"
+    "@nono-art/utils": "workspace:^"
     "@types/express": "npm:^5.0.6"
     "@types/node": "npm:^25.5.2"
     eslint: "npm:^9.39.4"

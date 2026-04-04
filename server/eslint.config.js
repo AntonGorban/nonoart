@@ -67,14 +67,14 @@ export default defineConfig([
 
       // ----- Import plugin -----
       'import/no-unresolved': 'off', // TypeScript проверяет лучше
-      'import/order': [
-        'error',
-        {
-          groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
-          'newlines-between': 'always',
-          alphabetize: { order: 'asc', caseInsensitive: true },
-        },
-      ],
+      // 'import/order': [
+      //   'error',
+      //   {
+      //     groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+      //     'newlines-between': 'always',
+      //     alphabetize: { order: 'asc', caseInsensitive: true },
+      //   },
+      // ],
       'import/no-duplicates': 'error',
       'import/no-extraneous-dependencies': ['error', { devDependencies: ['**/*.test.ts', '**/*.spec.ts', 'test/**'] }],
 
