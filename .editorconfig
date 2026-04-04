@@ -1,8 +1,92 @@
+# EditorConfig: общие настройки для всего монорепозитория
 root = true
 
 [*]
 charset = utf-8
 end_of_line = lf
-indent_size = 2
-indent_style = space
 insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 2
+max_line_length = 120
+
+# -------------------------------------
+#  Файлы разметки и документации
+# -------------------------------------
+[*.md]
+trim_trailing_whitespace = false
+max_line_length = 0
+
+[*.{yml,yaml}]
+indent_size = 2
+
+[*.json]
+indent_size = 2
+
+[*.{ts,tsx,js,jsx}]
+indent_size = 2
+
+[*.{css,scss,sass}]
+indent_size = 2
+
+[*.{html,htm}]
+indent_size = 2
+
+[Makefile]
+indent_style = tab
+
+# -------------------------------------
+#  Файлы окружения и конфигурации
+# -------------------------------------
+[.*rc]
+indent_size = 2
+
+[.*rc.{yml,yaml,json}]
+indent_size = 2
+
+[*.{env,env.*,example}]
+indent_size = 0
+trim_trailing_whitespace = false
+insert_final_newline = false
+
+# -------------------------------------
+#  Лок-файлы (Yarn, npm, Pip, ...)
+# -------------------------------------
+[*.lock]
+indent_size = ignore
+insert_final_newline = false
+trim_trailing_whitespace = false
+max_line_length = 0
+
+[yarn.lock]
+indent_size = ignore
+end_of_line = lf
+insert_final_newline = false
+trim_trailing_whitespace = false
+
+# -------------------------------------
+#  Git и системы контроля версий
+# -------------------------------------
+[{.gitignore,.gitattributes,.dockerignore,.eslintignore,.prettierignore}]
+indent_size = ignore
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# -------------------------------------
+#  Нативные файлы (iOS, Android)
+# -------------------------------------
+[*.{swift,kt,kts}]
+indent_size = 4
+
+[*.{java,gradle}]
+indent_size = 4
+
+[*.{xml,plist}]
+indent_size = 2
+
+# -------------------------------------
+#  Shell скрипты
+# -------------------------------------
+[*.sh]
+indent_style = tab
+indent_size = 2
