@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon",
     "build": "tsup",
-    "start": "node dist/main.js",
+    "start": "node dist/main.mjs",
     "clean": "rm -rf dist",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
