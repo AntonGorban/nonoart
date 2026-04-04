@@ -1,3 +1,5 @@
+# ========== Yarn 4 (Berry) ==========
+# https://yarnpkg.com/features/caching
 .yarn/*
 !.yarn/patches
 !.yarn/plugins
@@ -5,13 +7,134 @@
 !.yarn/sdks
 !.yarn/versions
 
-# Whether you use PnP or not, the node_modules folder is often used to store
-# build artifacts that should be gitignored
+# Если вы НЕ используете zero-installs, раскомментируйте следующую строку:
+.yarn/cache
+
+# Если вы ИСПОЛЬЗУЕТЕ zero-installs, то закомментируйте строку выше
+# и раскомментируйте:
+# !.yarn/cache
+
+.pnp.*
+.pnp.js
+.pnp.cjs
+
+# ========== Turborepo ==========
+.turbo
+
+# ========== Зависимости ==========
 node_modules
 
-# Swap the comments on the following lines if you wish to use zero-installs
-# In that case, don't forget to run `yarn config set enableGlobalCache false`!
-# Documentation here: https://yarnpkg.com/features/caching#zero-installs
+# ========== Артефакты сборки ==========
+dist
+build
+.out
+.next
+.vite
+.cache
+.parcel-cache
+**/.next
+**/.vite
+**/.cache
 
-#!.yarn/cache
-.pnp.*
+# TypeScript incremental build
+*.tsbuildinfo
+**/tsconfig.tsbuildinfo
+
+# ========== Логи ==========
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+expo.log
+expo-error.log
+
+# ========== Файлы окружения ==========
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+!.env.example
+
+# ========== IDE и редакторы ==========
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+*.code-workspace
+
+# ========== Отчёты о покрытии ==========
+coverage
+.nyc_output
+
+# ========== Прочее ==========
+*.tmp
+*.temp
+tmp/
+temp/
+.vercel
+storybook-static
+**/storybook-static
+*.tsbuildinfo
+**/.turbo
+**/out-tsc
+**/dist
+**/build
+**/node_modules
+
+# ========== Файлы, которые могут содержать секреты ==========
+*.pem
+*.key
+*.crt
+
+# ========== Базы данных (PostgreSQL и др.) ==========
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+
+# ========== Expo / React Native ==========
+# Экспо-специфичные папки
+.expo/
+.expo-shared/
+.expo-env.d.ts   # может генерироваться автоматически
+
+# Нативные папки (если вы НЕ храните их в репозитории)
+# Если вы используете expo prebuild и не коммитите ios/android, раскомментируйте:
+# ios/
+# android/
+
+# React Native / Metro
+metro-error.log
+.haste-map-*
+.haste-cache-*
+
+# CocoaPods (если используется)
+ios/Pods/
+Podfile.lock
+Podfile.lock.json
+
+# ========== Vite (дополнительно) ==========
+**/vite.config.ts.timestamp-*
+**/vite.config.js.timestamp-*
+
+# ========== Storybook (если будет) ==========
+storybook-static/
+**/storybook-static/
+
+# ========== Прочее (уже покрыто, но оставим для ясности) ==========
+.vercel
+.parcel-cache
+*.log
+*.tmp
+**/out-tsc
