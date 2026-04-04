@@ -3,6 +3,8 @@
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.tsserver.experimental.enableProjectDiagnostics": true,
   "typescript.enablePromptUseWorkspaceTsdk": true,
+  "typescript.preferences.includePackageJsonAutoImports": "on",
+  "typescript.suggest.autoImports": true,
 
   // Настройки ESLint для монорепозитория
   "eslint.workingDirectories": [{ "mode": "auto" }],
@@ -49,6 +51,14 @@
     "**/.turbo": true
   },
   "cSpell.words": [
-    "nono"
+    "глобалы",
+    "игноры",
+    "jsbundle",
+    "nono",
+    "pbxproj",
+    "vercel",
+    "vite",
+    "xcodeproj",
+    "xcworkspace"
   ]
 }

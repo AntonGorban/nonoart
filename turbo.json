@@ -20,6 +20,10 @@
       "dependsOn": [],
       "outputs": []
     },
+    "lint:fix": {
+      "dependsOn": [],
+      "outputs": []
+    },
     "typecheck": {
       "dependsOn": ["^typecheck"],
       "outputs": []
