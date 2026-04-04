@@ -1,4 +1,23 @@
 {
   "name": "nono-art",
-  "packageManager": "yarn@4.13.0"
+  "private": true,
+  "packageManager": "yarn@4.13.0",
+  "workspaces": [
+    "server",
+    "mobile",
+    "site",
+    "libs/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "clean": "turbo run clean",
+    "lint": "turbo run lint",
+    "format:check": "prettier -c .",
+    "format": "prettier -w .",
+    "typecheck": "turbo run typecheck"
+  },
+  "devDependencies": {
+    "turbo": "^2.9.3"
+  }
 }

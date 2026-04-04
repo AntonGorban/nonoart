@@ -1,0 +1,50 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": ["tsconfig.base.json", ".env", "yarn.lock"],
+  "globalEnv": ["NODE_ENV", "EXPO_PUBLIC_*"],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build", "typecheck"],
+      "outputs": [
+        "dist/**",
+        ".next/**",
+        "build/**",
+        "android/**",
+        "ios/**",
+        ".expo/**"
+      ],
+      "inputs": ["src/**", "app/**", "public/**", "*.json", "*.js", "*.ts"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "clean": {
+      "cache": false,
+      "dependsOn": ["^clean"]
+    },
+    "lint": {
+      "dependsOn": [],
+      "outputs": []
+    },
+    "typecheck": {
+      "dependsOn": ["^typecheck"],
+      "outputs": []
+    },
+    "expo:prebuild": {
+      "dependsOn": ["^build"],
+      "outputs": ["ios/**", "android/**", ".expo/**"],
+      "inputs": ["app.config.js", "app.json", "src/**"]
+    },
+    "native:build": {
+      "dependsOn": ["expo:prebuild", "^build"],
+      "outputs": ["ios/build/**", "android/app/build/**"],
+      "env": ["CI", "EXPO_USE_FAST_RESOLVER"]
+    }
+  },
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build", "typecheck"]
+    }
+  }
+}
