@@ -1,0 +1,83 @@
+# ========== Зависимости и артефакты сборки ==========
+node_modules
+**/node_modules
+dist
+**/dist
+build
+**/build
+.out
+**/.out
+out-tsc
+**/out-tsc
+.next
+**/.next
+.turbo
+**/.turbo
+.vite
+**/.vite
+.cache
+**/.cache
+.parcel-cache
+**/.parcel-cache
+
+# ========== Покрытие тестами ==========
+coverage
+**/coverage
+
+# ========== Файлы окружения ==========
+.env
+.env.*
+!.env.example
+
+# ========== Лок-файлы ==========
+yarn.lock
+package-lock.json
+pnpm-lock.yaml
+
+# ========== TypeScript incremental ==========
+tsconfig.tsbuildinfo
+**/tsconfig.tsbuildinfo
+
+# ========== Экспо / React Native ==========
+.expo/
+.expo-shared/
+.expo-env.d.ts
+ios/
+android/
+*.xcodeproj
+*.xcworkspace
+*.pbxproj
+
+# ========== Yarn 4 ==========
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.yarn/cache
+
+# ========== Прочие инструменты ==========
+.nx
+**/.nx
+.vercel
+**/.vercel
+storybook-static
+**/storybook-static
+.idea
+**/.idea
+.vscode
+**/.vscode
+*.log
+**/*.log
+
+# Temp files
+tmp
+**/tmp
+temp
+**/temp
+
+# ========== Нативные бинарники ==========
+*.dSYM
+*.map
+*.jsbundle
