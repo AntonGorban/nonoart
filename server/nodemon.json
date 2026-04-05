@@ -1,5 +1,14 @@
 {
-  "watch": ["src", "../libs/utils/dist", "../.env"],
-  "ext": "ts",
-  "exec": "ts-node src/main.ts"
+  "watch": [
+    "src",
+    "../.env",
+    "../libs/api-types/dist",
+    "../libs/domain/dist",
+    "../libs/types/dist",
+    "../libs/utils/dist"
+  ],
+  "ext": "ts,js,cjs,mjs,json",
+  "exec": "ts-node src/main.ts",
+  "ignore": ["*.test.ts", "*.spec.ts", "*.d.ts", "*.d.mts", "*.d.cts", "*.map"],
+  "delay": 1000
 }
