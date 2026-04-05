@@ -17,9 +17,11 @@
     "@nono-art/domain": "workspace:^",
     "@nono-art/types": "workspace:^",
     "@nono-art/utils": "workspace:^",
+    "envalid": "^8.1.1",
     "express": "^5.2.1"
   },
   "devDependencies": {
+    "@dotenvx/dotenvx": "^1.59.1",
     "@eslint/js": "^9.39.4",
     "@types/express": "^5.0.6",
     "@types/node": "^24.0.0",
