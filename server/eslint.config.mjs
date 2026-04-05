@@ -1,12 +1,13 @@
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+
 import prettierConfig from 'eslint-config-prettier';
 import importPlugin from 'eslint-plugin-import';
 import nodePlugin from 'eslint-plugin-n';
 import securityPlugin from 'eslint-plugin-security';
 import { defineConfig } from 'eslint/config';
 import globals from 'globals';
-import { dirname } from 'path';
 import tseslint from 'typescript-eslint';
-import { fileURLToPath } from 'url';
 
 import js from '@eslint/js';
 

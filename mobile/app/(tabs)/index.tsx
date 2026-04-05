@@ -2,12 +2,12 @@ import { Image } from 'expo-image';
 import { Link } from 'expo-router';
 import { Platform, StyleSheet } from 'react-native';
 
+import { utils } from '@nono-art/utils';
+
 import { HelloWave } from '@/components/hello-wave';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
-
-import { utils } from '@nono-art/utils';
 
 export default function HomeScreen() {
   return (
