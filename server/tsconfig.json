@@ -9,7 +9,7 @@
     "lib": ["ES2022"],
     "tsBuildInfoFile": "./dist/tsconfig.tsbuildinfo",
     "paths": {
-      "@nono-art/*": ["../libs/*/src"],
+      "@nono-art/*": ["../libs/*"],
       "@/*": ["./src"]
     }
   },
