@@ -2112,7 +2112,7 @@ __metadata:
     eslint-plugin-import: "npm:^2.32.0"
     globals: "npm:^17.4.0"
     tsup: "npm:^8.5.1"
-    typescript: "npm:^5.9.2"
+    typescript: "npm:^5.9.3"
     typescript-eslint: "npm:^8.58.0"
   languageName: unknown
   linkType: soft
@@ -2129,7 +2129,7 @@ __metadata:
     eslint-plugin-import: "npm:^2.32.0"
     globals: "npm:^17.4.0"
     tsup: "npm:^8.5.1"
-    typescript: "npm:^5.9.2"
+    typescript: "npm:^5.9.3"
     typescript-eslint: "npm:^8.58.0"
   languageName: unknown
   linkType: soft
@@ -2145,7 +2145,7 @@ __metadata:
     eslint-plugin-import: "npm:^2.32.0"
     globals: "npm:^17.4.0"
     tsup: "npm:^8.5.1"
-    typescript: "npm:^5.9.2"
+    typescript: "npm:^5.9.3"
     typescript-eslint: "npm:^8.58.0"
   languageName: unknown
   linkType: soft
@@ -2161,7 +2161,7 @@ __metadata:
     eslint-plugin-import: "npm:^2.32.0"
     globals: "npm:^17.4.0"
     tsup: "npm:^8.5.1"
-    typescript: "npm:^5.9.2"
+    typescript: "npm:^5.9.3"
     typescript-eslint: "npm:^8.58.0"
   languageName: unknown
   linkType: soft
@@ -2177,7 +2177,7 @@ __metadata:
     eslint-plugin-import: "npm:^2.32.0"
     globals: "npm:^17.4.0"
     tsup: "npm:^8.5.1"
-    typescript: "npm:^5.9.2"
+    typescript: "npm:^5.9.3"
     typescript-eslint: "npm:^8.58.0"
   languageName: unknown
   linkType: soft
@@ -8946,7 +8946,7 @@ __metadata:
     react-native-screens: "npm:~4.16.0"
     react-native-web: "npm:~0.21.0"
     react-native-worklets: "npm:0.5.1"
-    typescript: "npm:~5.9.2"
+    typescript: "npm:^5.9.3"
   languageName: unknown
   linkType: soft
 
@@ -9122,7 +9122,7 @@ __metadata:
     "@trivago/prettier-plugin-sort-imports": "npm:^6.0.2"
     prettier: "npm:^3.8.1"
     turbo: "npm:^2.9.3"
-    typescript: "npm:^5.9.2"
+    typescript: "npm:^5.9.3"
   languageName: unknown
   linkType: soft
 
@@ -10759,7 +10759,7 @@ __metadata:
     nodemon: "npm:^3.1.14"
     ts-node: "npm:^10.9.2"
     tsup: "npm:^8.5.1"
-    typescript: "npm:^5.9.2"
+    typescript: "npm:^5.9.3"
     typescript-eslint: "npm:^8.58.0"
   languageName: unknown
   linkType: soft
@@ -10963,7 +10963,7 @@ __metadata:
     globals: "npm:^17.4.0"
     react: "npm:^19.2.4"
     react-dom: "npm:^19.2.4"
-    typescript: "npm:~5.9.3"
+    typescript: "npm:^5.9.3"
     typescript-eslint: "npm:^8.57.0"
     vite: "npm:^8.0.1"
   languageName: unknown
@@ -11764,7 +11764,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^5.9.2, typescript@npm:~5.9.2, typescript@npm:~5.9.3":
+"typescript@npm:^5.9.3":
   version: 5.9.3
   resolution: "typescript@npm:5.9.3"
   bin:
@@ -11774,7 +11774,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A^5.9.2#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A~5.9.2#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A~5.9.3#optional!builtin<compat/typescript>":
+"typescript@patch:typescript@npm%3A^5.9.3#optional!builtin<compat/typescript>":
   version: 5.9.3
   resolution: "typescript@patch:typescript@npm%3A5.9.3#optional!builtin<compat/typescript>::version=5.9.3&hash=5786d5"
   bin:
