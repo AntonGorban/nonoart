@@ -23,14 +23,16 @@
     },
     "lint": {
       "dependsOn": [],
-      "outputs": []
+      "outputs": [],
+      "cache": true
     },
     "lint:fix": {
       "dependsOn": [],
-      "outputs": []
+      "outputs": [],
+      "cache": false
     },
     "typecheck": {
-      "dependsOn": ["^build", "^typecheck"],
+      "dependsOn": ["^build"],
       "outputs": []
     },
     "expo:prebuild": {
