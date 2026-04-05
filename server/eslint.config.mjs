@@ -106,6 +106,7 @@ export default defineConfig([
       /* -------------------------------------------------------------------------- */
 
       'import/no-extraneous-dependencies': 'off',
+      'no-extra-boolean-cast': 'off',
 
       /* -------------------------------------------------------------------------- */
       /*                                / MY SETTINGS                               */
