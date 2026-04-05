@@ -1,4 +1,1 @@
-export const utils = () => {
-  console.log('utils');
-  return 'utils';
-};
+export const utils = () => 'utils';

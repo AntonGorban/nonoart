@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
   },
+  // eslint-disable-next-line react-native/no-color-literals
   link: {
     lineHeight: 30,
     fontSize: 16,

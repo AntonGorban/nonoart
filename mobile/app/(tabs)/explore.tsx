@@ -98,6 +98,7 @@ export default function TabTwoScreen() {
 }
 
 const styles = StyleSheet.create({
+  // eslint-disable-next-line react-native/no-color-literals
   headerImage: {
     color: '#808080',
     bottom: -90,

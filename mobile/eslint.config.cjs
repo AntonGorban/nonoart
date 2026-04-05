@@ -7,8 +7,6 @@ const reactNative = require('eslint-plugin-react-native');
 const jsxA11y = require('eslint-plugin-jsx-a11y');
 const reactCompiler = require('eslint-plugin-react-compiler');
 
-console.log(__dirname);
-
 module.exports = defineConfig([
   // Базовый конфиг от Expo (уже включает React, RN, TypeScript)
   expoConfig,
@@ -100,6 +98,17 @@ module.exports = defineConfig([
       'no-console': ['warn', { allow: ['warn', 'error', 'info'] }],
       'no-debugger': 'warn',
       'no-unused-expressions': 'error',
+
+      /* -------------------------------------------------------------------------- */
+      /*                                  MY RULES                                  */
+      /* -------------------------------------------------------------------------- */
+
+      'react-native/no-inline-styles': 'off',
+      'jsx-a11y/accessible-emoji': 'off',
+
+      /* -------------------------------------------------------------------------- */
+      /*                                 / MY RULES                                 */
+      /* -------------------------------------------------------------------------- */
     },
   },
 

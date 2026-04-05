@@ -15,5 +15,6 @@ server.get('/', async (req, res) => {
 });
 
 server.listen(7000, () => {
+  // eslint-disable-next-line no-console
   console.log('Server started on port 7000');
 });
