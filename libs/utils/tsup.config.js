@@ -7,4 +7,8 @@ export default defineConfig({
   clean: true,
   sourcemap: true,
   bundle: true,
+  treeshake: true,
+  splitting: false,
+  minify: process.env.NODE_ENV === 'production',
+  tsconfig: './tsconfig.json',
 });
