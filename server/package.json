@@ -13,6 +13,9 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@nono-art/api-types": "workspace:^",
+    "@nono-art/domain": "workspace:^",
+    "@nono-art/types": "workspace:^",
     "@nono-art/utils": "workspace:^",
     "express": "^5.2.1"
   },

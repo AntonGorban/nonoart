@@ -14,6 +14,10 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@nono-art/api": "workspace:^",
+    "@nono-art/api-types": "workspace:^",
+    "@nono-art/domain": "workspace:^",
+    "@nono-art/types": "workspace:^",
     "@nono-art/utils": "workspace:^",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"

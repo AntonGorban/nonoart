@@ -13,6 +13,10 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.3",
+    "@nono-art/api": "workspace:^",
+    "@nono-art/api-types": "workspace:^",
+    "@nono-art/domain": "workspace:^",
+    "@nono-art/types": "workspace:^",
     "@nono-art/utils": "workspace:^",
     "@react-navigation/bottom-tabs": "^7.4.0",
     "@react-navigation/elements": "^2.6.3",
