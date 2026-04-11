@@ -16,7 +16,12 @@
     "lint": "turbo run lint",
     "format:check": "prettier -c .",
     "format": "prettier -w .",
-    "typecheck": "turbo run typecheck"
+    "typecheck": "turbo run typecheck",
+    "docker:dev": "yarn docker:dev:down && yarn docker:dev:up -d && yarn docker:dev:logs",
+    "docker:dev:up": "docker compose -f compose.dev.yml up",
+    "docker:dev:logs": "docker compose -f compose.dev.yml logs -f",
+    "docker:dev:down": "docker compose -f compose.dev.yml down",
+    "docker:dev:clear": "docker compose -f compose.dev.yml down -v"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",
