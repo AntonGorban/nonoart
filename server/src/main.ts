@@ -2,6 +2,7 @@ import express from 'express';
 
 import { utils } from '@nono-art/utils';
 
+import { db } from './db';
 import { environment } from './environment';
 import { setupGracefulShutdown } from './utils';
 
@@ -24,6 +25,11 @@ const createApp = () => {
 const start = async (port: number, host: string) => {
   console.info(`=============== Welcome on ${environment.URL} ===============`);
   const app = createApp();
+
+  console.info('Connecting to database');
+  await db.authenticate();
+  await db.sync({ alter: { drop: false } });
+  console.info('Connecting to database successfully');
 
   const server = app.listen(port, host, (err?: Error) => {
     if (err) throw err;
