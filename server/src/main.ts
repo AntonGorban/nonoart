@@ -1,4 +1,6 @@
+import cors from 'cors';
 import express from 'express';
+import helmet from 'helmet';
 
 import { db, models } from './db';
 import { environment } from './environment';
@@ -7,6 +9,19 @@ import { setupGracefulShutdown } from './utils';
 const createApp = () => {
   const app = express();
 
+  // Безопасность и production-настройки
+  if (environment.isProd) {
+    app.use(helmet());
+  }
+
+  app.use(
+    cors({
+      origin: '*',
+      methods: ['OPTIONS', 'GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+      credentials: true,
+    }),
+  );
+
   app.use(express.json({ limit: '10mb' }));
 
   app.get('/', async (req, res) => {
@@ -14,6 +29,11 @@ const createApp = () => {
       status: 200,
       message: 'hello world',
     });
+  });
+
+  // 404 handler
+  app.use((req, res) => {
+    res.status(404).json({ status: 404, message: 'Not Found' });
   });
 
   return app;
