@@ -1,8 +1,6 @@
 import express from 'express';
 
-import { utils } from '@nono-art/utils';
-
-import { db } from './db';
+import { db, models } from './db';
 import { environment } from './environment';
 import { setupGracefulShutdown } from './utils';
 
@@ -15,7 +13,6 @@ const createApp = () => {
     res.status(200).json({
       status: 200,
       message: 'hello world',
-      utils: utils(),
     });
   });
 
@@ -28,7 +25,7 @@ const start = async (port: number, host: string) => {
 
   console.info('Connecting to database');
   await db.authenticate();
-  await db.sync({ alter: { drop: false } });
+  await Promise.all([models.Level.sync({ alter: true })]);
   console.info('Connecting to database successfully');
 
   const server = app.listen(port, host, (err?: Error) => {

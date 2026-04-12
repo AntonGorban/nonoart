@@ -107,6 +107,7 @@ export default defineConfig([
 
       'import/no-extraneous-dependencies': 'off',
       'no-extra-boolean-cast': 'off',
+      '@typescript-eslint/no-empty-object-type': 'off',
 
       /* -------------------------------------------------------------------------- */
       /*                                / MY SETTINGS                               */
