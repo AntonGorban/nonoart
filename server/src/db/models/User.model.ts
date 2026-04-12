@@ -5,6 +5,7 @@ import {
   DataType,
   Default,
   DeletedAt,
+  HasMany,
   Model,
   PrimaryKey,
   Table,
@@ -14,6 +15,8 @@ import {
 
 import type { D } from '@nono-art/domain';
 import { uuidV4 } from '@nono-art/utils';
+
+import { Level } from './Level.model';
 
 interface Attributes extends D.UserDB {}
 
@@ -27,6 +30,18 @@ interface CreationAttributes extends Optional<Attributes, 'id' | 'createdAt' | '
   paranoid: true,
 })
 export class User extends Model<Attributes, CreationAttributes> implements D.UserDB {
+  /* -------------------------------------------------------------------------- */
+  /*                                   STATIC                                   */
+  /* -------------------------------------------------------------------------- */
+
+  public static association = {
+    levelList: 'levelList' as const,
+  };
+
+  /* -------------------------------------------------------------------------- */
+  /*                                  / STATIC                                  */
+  /* -------------------------------------------------------------------------- */
+
   /* -------------------------------------------------------------------------- */
   /*                                 ATTRIBUTES                                 */
   /* -------------------------------------------------------------------------- */
@@ -73,6 +88,22 @@ export class User extends Model<Attributes, CreationAttributes> implements D.Use
 
   /* -------------------------------------------------------------------------- */
   /*                                / ATTRIBUTES                                */
+  /* -------------------------------------------------------------------------- */
+
+  /* -------------------------------------------------------------------------- */
+  /*                                ASSOCIATIONS                                */
+  /* -------------------------------------------------------------------------- */
+
+  @HasMany(() => Level, {
+    as: User.association.levelList,
+    foreignKey: 'authorId',
+    onDelete: 'SET NULL',
+    onUpdate: 'CASCADE',
+  })
+  readonly levelList?: ReadonlyArray<Level>;
+
+  /* -------------------------------------------------------------------------- */
+  /*                               / ASSOCIATIONS                               */
   /* -------------------------------------------------------------------------- */
 
   /* -------------------------------------------------------------------------- */

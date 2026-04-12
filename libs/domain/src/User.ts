@@ -1,4 +1,5 @@
 import type { UUID } from './common';
+import type { Level } from './Level';
 
 export namespace User {
   export type Id = UUID;
@@ -6,6 +7,8 @@ export namespace User {
   export type Login = string;
 
   export type Password = string;
+
+  export type LevelList = ReadonlyArray<Level>;
 
   export type CreatedAt = Date;
   export type UpdatedAt = Date;

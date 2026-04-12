@@ -1,10 +1,12 @@
 import { Optional } from 'sequelize';
 import {
+  BelongsTo,
   Column,
   CreatedAt,
   DataType,
   Default,
   DeletedAt,
+  ForeignKey,
   Model,
   PrimaryKey,
   Table,
@@ -15,6 +17,8 @@ import type { D } from '@nono-art/domain';
 import { uuidV4 } from '@nono-art/utils';
 
 import { environment } from '../../environment';
+
+import { User } from './User.model';
 
 interface Attributes extends D.LevelDB {}
 
@@ -28,6 +32,18 @@ interface CreationAttributes extends Optional<Attributes, 'id' | 'createdAt' | '
   paranoid: true,
 })
 export class Level extends Model<Attributes, CreationAttributes> implements D.LevelDB {
+  /* -------------------------------------------------------------------------- */
+  /*                                   STATIC                                   */
+  /* -------------------------------------------------------------------------- */
+
+  public static association = {
+    author: 'author' as const,
+  };
+
+  /* -------------------------------------------------------------------------- */
+  /*                                  / STATIC                                  */
+  /* -------------------------------------------------------------------------- */
+
   /* -------------------------------------------------------------------------- */
   /*                                 ATTRIBUTES                                 */
   /* -------------------------------------------------------------------------- */
@@ -193,6 +209,21 @@ export class Level extends Model<Attributes, CreationAttributes> implements D.Le
 
   /* -------------------------------------------------------------------------- */
   /*                                / ATTRIBUTES                                */
+  /* -------------------------------------------------------------------------- */
+
+  /* -------------------------------------------------------------------------- */
+  /*                                ASSOCIATIONS                                */
+  /* -------------------------------------------------------------------------- */
+
+  @ForeignKey(() => User)
+  @Column({ type: DataType.UUID, allowNull: true })
+  authorId!: D.Level.AuthorID | null;
+
+  @BelongsTo(() => User, { as: Level.association.author, onDelete: 'SET NULL', onUpdate: 'CASCADE' })
+  author?: User | null;
+
+  /* -------------------------------------------------------------------------- */
+  /*                               / ASSOCIATIONS                               */
   /* -------------------------------------------------------------------------- */
 
   /* -------------------------------------------------------------------------- */
