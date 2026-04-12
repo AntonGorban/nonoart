@@ -97,6 +97,7 @@ export default defineConfig([
       'no-debugger': 'warn',
 
       '@typescript-eslint/no-namespace': 'off',
+      '@typescript-eslint/no-empty-object-type': 'off',
     },
 
     settings: {

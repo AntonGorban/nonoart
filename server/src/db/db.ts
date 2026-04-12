@@ -2,7 +2,7 @@ import { Sequelize } from 'sequelize-typescript';
 
 import { environment } from '../environment';
 
-import { Level } from './models';
+import { Level, User } from './models';
 
 export const db = new Sequelize({
   dialect: 'postgres',
@@ -12,5 +12,5 @@ export const db = new Sequelize({
   password: environment.PG_PASSWORD,
   database: environment.PG_DB,
   timezone: '+03:00',
-  models: [Level],
+  models: [User, Level],
 });

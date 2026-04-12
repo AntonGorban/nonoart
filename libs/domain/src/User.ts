@@ -9,6 +9,7 @@ export namespace User {
 
   export type CreatedAt = Date;
   export type UpdatedAt = Date;
+  export type DeletedAt = Date | null;
 }
 
 export interface User {
@@ -17,4 +18,7 @@ export interface User {
   readonly password: User.Password;
   readonly createdAt: User.CreatedAt;
   readonly updatedAt: User.UpdatedAt;
+  readonly deletedAt: User.DeletedAt;
 }
+
+export interface UserDB extends User {}

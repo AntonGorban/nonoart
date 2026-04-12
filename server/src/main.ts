@@ -25,7 +25,7 @@ const start = async (port: number, host: string) => {
 
   console.info('Connecting to database');
   await db.authenticate();
-  await Promise.all([models.Level.sync({ alter: true })]);
+  await Promise.all([models.User.sync({ alter: true }), models.Level.sync({ alter: true })]);
   console.info('Connecting to database successfully');
 
   const server = app.listen(port, host, (err?: Error) => {
