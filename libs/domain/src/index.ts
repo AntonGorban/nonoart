@@ -1,1 +1,1 @@
-export type Domain = string;
+export * as D from './reexport';
