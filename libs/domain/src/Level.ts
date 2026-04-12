@@ -1,4 +1,5 @@
 import type { UUID } from './common';
+import type { User } from './User';
 
 export namespace Level {
   export type Id = UUID;
@@ -15,6 +16,8 @@ export namespace Level {
 
   export type Grid = ReadonlyArray<ReadonlyArray<Cell>>;
 
+  export type AuthorID = User.Id;
+
   export type CreatedAt = Date;
   export type UpdatedAt = Date;
   export type DeletedAt = Date | null;
@@ -28,6 +31,7 @@ export interface Level {
   readonly description: Level.Description;
   readonly colors: Level.Colors;
   readonly grid: Level.Grid;
+  readonly authorId: Level.AuthorID;
   readonly createdAt: Level.CreatedAt;
   readonly updatedAt: Level.UpdatedAt;
   readonly deletedAt: Level.DeletedAt;
@@ -35,7 +39,7 @@ export interface Level {
 
 /* -------------------------------------------------------------------------- */
 
-export interface LevelDB extends Omit<Level, 'colors'> {
+export interface LevelDB extends Omit<Level, 'colors' | 'authorId'> {
   readonly color0: Level.Color;
   readonly color1: Level.Color;
   readonly color2: Level.Color;
