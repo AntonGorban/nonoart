@@ -76,7 +76,7 @@ export default defineConfig([
       'import/no-duplicates': 'error',
       'import/no-extraneous-dependencies': [
         'error',
-        { devDependencies: ['**/*.test.ts', '**/*.spec.ts', 'test/**', '**/*.config.mjs'] },
+        { devDependencies: ['**/*.test.ts', '**/*.spec.ts', 'test/**', '**/*.config.mjs'], peerDependencies: true },
       ],
 
       // Запрещаем импорт из src (только из dist или корня)
@@ -95,6 +95,8 @@ export default defineConfig([
       // Отключаем ненужные правила
       'no-console': 'warn',
       'no-debugger': 'warn',
+
+      '@typescript-eslint/no-empty-object-type': 'off',
     },
 
     settings: {
