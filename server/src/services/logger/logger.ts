@@ -34,7 +34,7 @@ const jsonFormat = winston.format.json();
 // Базовый массив форматов (общие для всех сред)
 const baseFormats = [
   withRequestId,
-  winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
+  winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss.SSS' }),
   winston.format.errors({ stack: true }),
   winston.format.splat(),
 ];
