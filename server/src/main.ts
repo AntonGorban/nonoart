@@ -4,8 +4,8 @@ import helmet from 'helmet';
 
 import { db, models } from './db';
 import { environment } from './environment';
-import { BaseError } from './errors';
-import { morganLoggerMiddleware, requestContextMiddleware } from './middlewares';
+import { BaseError, ForbiddenHTTPError, NotFoundHTTPError } from './errors';
+import { errorHandlerMiddleware, morganLoggerMiddleware, requestContextMiddleware } from './middlewares';
 import { logger } from './services';
 import { setupGracefulShutdown } from './utils';
 
@@ -41,6 +41,8 @@ const createApp = () => {
     logger.debug('debug');
     logger.trace('trace');
 
+    throw new ForbiddenHTTPError('Привет');
+
     res.status(200).json({
       status: 200,
       message: 'hello world',
@@ -48,10 +50,11 @@ const createApp = () => {
   });
 
   // 404 handler
-  app.use((req, res) => {
-    logger.warn(`endpoint not found: ${req.path}`);
-    res.status(404).json({ status: 404, message: 'Not Found' });
+  app.use((req, _res) => {
+    throw new NotFoundHTTPError('путь не найден', { meta: { path: req.path } });
   });
+
+  app.use(errorHandlerMiddleware);
 
   return app;
 };
