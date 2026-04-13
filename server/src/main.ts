@@ -2,6 +2,7 @@ import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
 
+import { enableMiddlewareTracing } from './core';
 import { db, models } from './db';
 import { environment } from './environment';
 import { BaseError } from './errors';
@@ -38,6 +39,8 @@ const createApp = () => {
   app.use(morganLoggerMiddleware);
 
   app.use(traceEndpointMiddleware);
+
+  enableMiddlewareTracing(app);
 
   app.get('/', async (req, res) => {
     logger.fatal(`[0] fatal`);
