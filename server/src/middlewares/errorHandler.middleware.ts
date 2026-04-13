@@ -7,6 +7,7 @@ import {
   ValidationError as SequelizeValidationError,
   UniqueConstraintError,
 } from 'sequelize';
+import { ZodError } from 'zod';
 
 import {
   BadRequestHTTPError,
@@ -54,17 +55,17 @@ export const errorHandlerMiddleware: express.ErrorRequestHandler = (
     /*                                     ZOD                                    */
     /* -------------------------------------------------------------------------- */
 
-    // if (error instanceof ZodError) {
-    //   throw new BadRequestHTTPError(
-    //     error.errors
-    //       .map((e) => ({
-    //         path: e.path.join('.'),
-    //         message: e.message,
-    //       }))
-    //       .join(';'),
-    //     error,
-    //   );
-    // }
+    if (error instanceof ZodError) {
+      throw new BadRequestHTTPError(
+        error.issues
+          .map(
+            (e) =>
+              `${e.path.map((item) => (typeof item === 'string' ? FIELD_TRANSLATIONS[item] || item : item)).join('.')}: ${e.message}`,
+          )
+          .join(';'),
+        error,
+      );
+    }
 
     /* -------------------------------------------------------------------------- */
     /*                                    / ZOD                                   */
@@ -184,4 +185,11 @@ export const errorHandlerMiddleware: express.ErrorRequestHandler = (
       });
     }
   }
+};
+
+const FIELD_TRANSLATIONS: Record<string, string> = {
+  name: 'наименование',
+  description: 'описание',
+  colors: 'цвета',
+  grid: 'сетка',
 };
