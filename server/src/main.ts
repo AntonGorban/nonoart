@@ -10,6 +10,7 @@ import {
   morganLoggerMiddleware,
   pathNotFoundMiddleware,
   requestContextMiddleware,
+  traceEndpointMiddleware,
 } from './middlewares';
 import { logger } from './services';
 import { setupGracefulShutdown } from './utils';
@@ -35,6 +36,8 @@ const createApp = () => {
   app.use(requestContextMiddleware);
 
   app.use(morganLoggerMiddleware);
+
+  app.use(traceEndpointMiddleware);
 
   app.get('/', async (req, res) => {
     logger.fatal(`[0] fatal`);
