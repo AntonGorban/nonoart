@@ -101,14 +101,23 @@ export const errorHandlerMiddleware: express.ErrorRequestHandler = (
     /* -------------------------------------------------------------------------- */
 
     if (error instanceof SequelizeValidationError) {
+      const details = error.errors.map((e) => ({ field: e.path, message: e.message }));
+
       const err = new BaseError('[DB.VALIDATION_ERROR] Database validation failed', {
         cause: error,
-        meta: { details: error.errors.map((e) => ({ field: e.path, message: e.message })) },
+        meta: { details },
       });
 
       logger.unhandled(err.toString());
 
-      throw new BadRequestHTTPError('ошибка валидации', err);
+      throw new BadRequestHTTPError(
+        `ошибка валидации: ${details
+          .reduce<
+            ReadonlyArray<string>
+          >((acc, { field, message }) => [...acc, (!!field ? field + ': ' : '') + message], [])
+          .join(';')}`,
+        err,
+      );
     }
 
     /* -------------------------------------------------------------------------- */
@@ -157,6 +166,8 @@ export const errorHandlerMiddleware: express.ErrorRequestHandler = (
     /* -------------------------------------------------------------------------- */
     /*                                  / EXPRESS                                 */
     /* -------------------------------------------------------------------------- */
+
+    throw error;
   } catch (error: unknown) {
     if (error instanceof HTTPError) {
       logger.notice(error.toString());
