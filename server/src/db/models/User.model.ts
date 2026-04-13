@@ -61,7 +61,7 @@ export class User extends Model<Attributes, CreationAttributes> implements D.Use
     type: DataType.STRING,
     allowNull: false,
   })
-  readonly login!: D.User.Login;
+  declare readonly login: D.User.Login;
 
   /* -------------------------------------------------------------------------- */
 
@@ -69,7 +69,7 @@ export class User extends Model<Attributes, CreationAttributes> implements D.Use
     type: DataType.TEXT,
     allowNull: false,
   })
-  readonly password!: D.User.Password;
+  declare readonly password: D.User.Password;
 
   /* -------------------------------------------------------------------------- */
 

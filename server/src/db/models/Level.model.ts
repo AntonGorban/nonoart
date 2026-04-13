@@ -62,7 +62,7 @@ export class Level extends Model<Attributes, CreationAttributes> implements D.Le
     type: DataType.STRING,
     allowNull: false,
   })
-  readonly name!: D.Level.Name;
+  declare readonly name: D.Level.Name;
 
   /* -------------------------------------------------------------------------- */
 
@@ -70,7 +70,7 @@ export class Level extends Model<Attributes, CreationAttributes> implements D.Le
     type: DataType.TEXT,
     allowNull: false,
   })
-  readonly description!: D.Level.Description;
+  declare readonly description: D.Level.Description;
 
   /* -------------------------------------------------------------------------- */
 
@@ -85,7 +85,7 @@ export class Level extends Model<Attributes, CreationAttributes> implements D.Le
       },
     },
   })
-  readonly color0!: D.Level.Color;
+  declare readonly color0: D.Level.Color;
 
   /* -------------------------------------------------------------------------- */
 
@@ -100,7 +100,7 @@ export class Level extends Model<Attributes, CreationAttributes> implements D.Le
       },
     },
   })
-  readonly color1!: D.Level.Color;
+  declare readonly color1: D.Level.Color;
 
   /* -------------------------------------------------------------------------- */
 
@@ -115,7 +115,7 @@ export class Level extends Model<Attributes, CreationAttributes> implements D.Le
       },
     },
   })
-  readonly color2!: D.Level.Color;
+  declare readonly color2: D.Level.Color;
 
   /* -------------------------------------------------------------------------- */
 
@@ -190,7 +190,7 @@ export class Level extends Model<Attributes, CreationAttributes> implements D.Le
       },
     },
   })
-  readonly grid!: D.Level.Grid;
+  declare readonly grid: D.Level.Grid;
 
   /* -------------------------------------------------------------------------- */
 
@@ -217,7 +217,7 @@ export class Level extends Model<Attributes, CreationAttributes> implements D.Le
 
   @ForeignKey(() => User)
   @Column({ type: DataType.UUID, allowNull: true })
-  authorId!: D.Level.AuthorID | null;
+  declare readonly authorId: D.Level.AuthorID | null;
 
   @BelongsTo(() => User, { as: Level.association.author, onDelete: 'SET NULL', onUpdate: 'CASCADE' })
   author?: User | null;
