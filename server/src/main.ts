@@ -4,7 +4,7 @@ import helmet from 'helmet';
 
 import { db, models } from './db';
 import { environment } from './environment';
-import { BaseError, ForbiddenHTTPError } from './errors';
+import { BaseError } from './errors';
 import {
   errorHandlerMiddleware,
   morganLoggerMiddleware,
@@ -37,16 +37,17 @@ const createApp = () => {
   app.use(morganLoggerMiddleware);
 
   app.get('/', async (req, res) => {
-    logger.fatal('fatal');
-    logger.error('error');
-    logger.warn('warn');
-    logger.info('info');
-    logger.http('http');
-    logger.sql('sql');
-    logger.debug('debug');
-    logger.trace('trace');
-
-    throw new ForbiddenHTTPError('Привет');
+    logger.fatal(`[0] fatal`);
+    logger.error(`[1] error`);
+    logger.unhandled(`[2] unhandled`);
+    logger.suspicious(`[3] suspicious`);
+    logger.warn(`[4] warn`);
+    logger.notice(`[5] notice`);
+    logger.info(`[6] info`);
+    logger.http(`[7] http`);
+    logger.sql(`[8] sql`);
+    logger.debug(`[9] debug`);
+    logger.trace(`[10] trace`);
 
     res.status(200).json({
       status: 200,

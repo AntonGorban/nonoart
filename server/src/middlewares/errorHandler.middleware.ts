@@ -41,7 +41,7 @@ export const errorHandlerMiddleware: express.ErrorRequestHandler = (
     /* -------------------------------------------------------------------------- */
 
     if (error instanceof BaseError) {
-      logger.warn(error.toString());
+      logger.unhandled(error.toString());
 
       throw new InternalServerErrorHTTPError('что-то пошло не так', error);
     }
@@ -80,7 +80,7 @@ export const errorHandlerMiddleware: express.ErrorRequestHandler = (
         meta: { details: error.errors.map((e) => ({ field: e.path, message: e.message })) },
       });
 
-      logger.error(err.toString());
+      logger.unhandled(err.toString());
 
       throw new ConflictHTTPError('ресурс уже существует', err);
     }
@@ -93,7 +93,7 @@ export const errorHandlerMiddleware: express.ErrorRequestHandler = (
         meta: { fields: error.fields },
       });
 
-      logger.error(err.toString());
+      logger.unhandled(err.toString());
 
       throw new BadRequestHTTPError('ресурс не существует', err);
     }
@@ -106,7 +106,7 @@ export const errorHandlerMiddleware: express.ErrorRequestHandler = (
         meta: { details: error.errors.map((e) => ({ field: e.path, message: e.message })) },
       });
 
-      logger.error(err.toString());
+      logger.unhandled(err.toString());
 
       throw new BadRequestHTTPError('ошибка валидации', err);
     }
@@ -149,7 +149,7 @@ export const errorHandlerMiddleware: express.ErrorRequestHandler = (
         cause: error,
       });
 
-      logger.warn(err.toString());
+      logger.suspicious(err.toString());
 
       throw new BadRequestHTTPError('некорректный формат данных', err);
     }
@@ -159,14 +159,14 @@ export const errorHandlerMiddleware: express.ErrorRequestHandler = (
     /* -------------------------------------------------------------------------- */
   } catch (error: unknown) {
     if (error instanceof HTTPError) {
-      logger.warn(error.toString());
+      logger.notice(error.toString());
 
       res.status(error.status).json({
         status: error.status,
         message: error.message,
       });
     } else {
-      logger.fatal(new BaseError('Uncaught error on error handler middleware', { cause: error }).toString());
+      logger.unhandled(new BaseError('Uncaught error on error handler middleware', { cause: error }).toString());
       res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
         status: HttpStatus.INTERNAL_SERVER_ERROR,
         message: 'что-то пошло не так',

@@ -54,6 +54,9 @@ export const logger = winston.createLogger({
 declare module 'winston' {
   interface Logger {
     fatal: winston.LeveledLogMethod;
+    unhandled: winston.LeveledLogMethod;
+    suspicious: winston.LeveledLogMethod;
+    notice: winston.LeveledLogMethod;
     sql: winston.LeveledLogMethod;
     trace: winston.LeveledLogMethod;
   }
