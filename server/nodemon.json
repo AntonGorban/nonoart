@@ -5,10 +5,10 @@
     "../libs/api-types/dist",
     "../libs/domain/dist",
     "../libs/types/dist",
-    "../libs/utils/dist"
+    "../libs/utils/dist",
+    "../libs/validation/dist"
   ],
   "ext": "ts,js,cjs,mjs,json",
   "exec": "dotenvx run -f ../.env --quiet -- ts-node -P dev.tsconfig.json src/main.ts",
-  "ignore": ["*.test.ts", "*.spec.ts", "*.d.ts", "*.d.mts", "*.d.cts", "*.map"],
-  "delay": 1000
+  "ignore": ["*.test.ts", "*.spec.ts", "*.d.ts", "*.d.mts", "*.d.cts", "*.map"]
 }
