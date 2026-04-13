@@ -17,6 +17,7 @@
     "@nono-art/domain": "workspace:^",
     "@nono-art/types": "workspace:^",
     "@nono-art/utils": "workspace:^",
+    "@nono-art/validation": "workspace:^",
     "cors": "^2.8.6",
     "envalid": "^8.1.1",
     "express": "^5.2.1",

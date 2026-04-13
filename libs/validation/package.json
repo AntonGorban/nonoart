@@ -23,5 +23,10 @@
     "globals": "^17.4.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.58.0"
+  },
+  "dependencies": {
+    "@nono-art/domain": "workspace:^",
+    "@nono-art/types": "workspace:^",
+    "@nono-art/utils": "workspace:^"
   }
 }

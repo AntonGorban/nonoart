@@ -2065,11 +2065,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nono-art/validation@workspace:libs/validation":
+"@nono-art/validation@workspace:^, @nono-art/validation@workspace:libs/validation":
   version: 0.0.0-use.local
   resolution: "@nono-art/validation@workspace:libs/validation"
   dependencies:
     "@eslint/js": "npm:^9.39.4"
+    "@nono-art/domain": "workspace:^"
+    "@nono-art/types": "workspace:^"
+    "@nono-art/utils": "workspace:^"
     eslint: "npm:^9.39.4"
     eslint-config-prettier: "npm:^10.1.8"
     eslint-import-resolver-typescript: "npm:^4.4.4"
@@ -10848,6 +10851,7 @@ __metadata:
     "@nono-art/domain": "workspace:^"
     "@nono-art/types": "workspace:^"
     "@nono-art/utils": "workspace:^"
+    "@nono-art/validation": "workspace:^"
     "@types/cors": "npm:^2"
     "@types/express": "npm:^5.0.6"
     "@types/morgan": "npm:^1"
