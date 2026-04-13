@@ -1,5 +1,6 @@
 import express from 'express';
 
+import { createLevelController } from './create';
 import { getLevelController } from './get';
 
 export const levelRouter = express();
@@ -17,6 +18,8 @@ levelRouter.get('/', getLevelController);
 /* -------------------------------------------------------------------------- */
 /*                                    POST                                    */
 /* -------------------------------------------------------------------------- */
+
+levelRouter.post('/', createLevelController);
 
 /* -------------------------------------------------------------------------- */
 /*                                   / POST                                   */
