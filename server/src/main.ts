@@ -34,6 +34,11 @@ const createApp = () => {
 
   app.use(express.json({ limit: '10mb' }));
 
+  app.use((req, res, next) => {
+    req.body = req.body ?? {};
+    next();
+  });
+
   app.use(requestContextMiddleware);
 
   app.use(morganLoggerMiddleware);
