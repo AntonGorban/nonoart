@@ -1,12 +1,14 @@
+import type z from 'zod';
+
+import { v } from '@nono-art/validation';
+
 import type { B, P, Q } from './types.get.level.controller';
 
 /* -------------------------------------------------------------------------- */
 /*                                   PARAMS                                   */
 /* -------------------------------------------------------------------------- */
 
-export const paramsValidator = (_params: unknown): P => {
-  return {};
-};
+export const paramsValidator: z.ZodType<P> = v.common.strictEmptyObject;
 
 /* -------------------------------------------------------------------------- */
 /*                                  / PARAMS                                  */
@@ -16,9 +18,7 @@ export const paramsValidator = (_params: unknown): P => {
 /*                                    QUERY                                   */
 /* -------------------------------------------------------------------------- */
 
-export const queryValidator = (_query: unknown): Q => {
-  return {};
-};
+export const queryValidator: z.ZodType<Q> = v.common.emptyObject;
 
 /* -------------------------------------------------------------------------- */
 /*                                   / QUERY                                  */
@@ -28,9 +28,7 @@ export const queryValidator = (_query: unknown): Q => {
 /*                                    BODY                                    */
 /* -------------------------------------------------------------------------- */
 
-export const bodyValidator = (_body: unknown): B => {
-  return {};
-};
+export const bodyValidator: z.ZodType<B> = v.common.strictEmptyObject;
 
 /* -------------------------------------------------------------------------- */
 /*                                   / BODY                                   */

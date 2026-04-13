@@ -1,26 +1,25 @@
 import type express from 'express';
 import type { Transaction } from 'sequelize';
+import type z from 'zod';
 
 import { db } from '../../db';
 
 import type { ControllerCTX, ControllerFn } from './types';
 
 export const wrapController =
-  <P, Q, B, R>(
-    paramsValidator: (params: unknown) => P,
-    queryValidator: (query: unknown) => Q,
-    bodyValidator: (body: unknown) => B,
-  ) =>
+  <P, Q, B, R>(paramsValidator: z.ZodType<P>, queryValidator: z.ZodType<Q>, bodyValidator: z.ZodType<B>) =>
   (fn: ControllerFn<P, Q, B, R>) =>
   async (req: express.Request, res: express.Response, next: express.NextFunction) => {
     let transaction: Transaction | null = null;
 
     try {
-      transaction = await db.transaction();
+      const [params, query, body] = await Promise.all([
+        paramsValidator.parseAsync(req.params),
+        queryValidator.parseAsync(req.query),
+        bodyValidator.parseAsync(req.body),
+      ]);
 
-      const params = paramsValidator(req.params) satisfies P;
-      const query = queryValidator(req.query) satisfies Q;
-      const body = bodyValidator(req.body) satisfies B;
+      transaction = await db.transaction();
 
       const ctx: ControllerCTX<P, Q, B> = {
         params,
