@@ -10,7 +10,7 @@ export namespace Level {
 
   export type Color = string;
 
-  export type Colors = [Color, Color, Color];
+  export type Colors = readonly [Color, Color, Color];
 
   export type Cell = 0 | 1 | 2 | null;
 
