@@ -9,7 +9,6 @@ import { BaseError } from './errors';
 import {
   errorHandlerMiddleware,
   morganLoggerMiddleware,
-  pathNotFoundMiddleware,
   requestContextMiddleware,
   traceEndpointMiddleware,
 } from './middlewares';
@@ -61,7 +60,7 @@ const createApp = () => {
     });
   });
 
-  app.use(pathNotFoundMiddleware);
+  // app.use(pathNotFoundMiddleware);
 
   app.use(errorHandlerMiddleware);
 
