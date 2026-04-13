@@ -4,6 +4,7 @@ import helmet from 'helmet';
 
 import { db, models } from './db';
 import { environment } from './environment';
+import { BaseError } from './errors';
 import { morganLoggerMiddleware, requestContextMiddleware } from './middlewares';
 import { logger } from './services';
 import { setupGracefulShutdown } from './utils';
@@ -65,14 +66,15 @@ const start = async (port: number, host: string) => {
   logger.info('Connecting to database successfully');
 
   const server = app.listen(port, host, (err?: Error) => {
-    if (err) throw err;
+    if (err) throw new BaseError('Server error', { cause: err, meta: { app, server, db } });
 
     logger.info(`Server started on ${host}:${port} (${environment.NODE_ENV} mode)`);
   });
 
   server.on('error', (err) => {
-    logger.fatal('Server error:', err);
-    process.emit('uncaughtException', err);
+    const error = new BaseError('Server error', { cause: err, meta: { app, server, db } });
+    logger.fatal(error.toString());
+    process.emit('uncaughtException', error);
   });
 
   setupGracefulShutdown(server);
@@ -80,7 +82,8 @@ const start = async (port: number, host: string) => {
 };
 
 start(environment.PORT, environment.HOST).catch((err) => {
-  logger.fatal('Failed to start server:', err);
+  const error = new BaseError('Failed to start server', err);
+  logger.fatal(error.toString());
   // eslint-disable-next-line n/no-process-exit
   process.exit(1);
 });

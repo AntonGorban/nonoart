@@ -1,5 +1,6 @@
 import * as http from 'http';
 
+import { BaseError } from '../../errors';
 import { logger } from '../../services';
 
 let isShuttingDown = false;
@@ -12,7 +13,9 @@ export const gracefulShutdown = (signal: string, server: http.Server, timeoutMs:
   isShuttingDown = true;
 
   if (!!error) {
-    logger.fatal(`[${signal}] Shutdown due to error:`, error);
+    logger.fatal(
+      new BaseError(`[${signal}] Shutdown due to error:`, { cause: error, meta: { signal, server } }).toString(),
+    );
   } else {
     logger.info(`[${signal}] Received shutdown signal`);
   }

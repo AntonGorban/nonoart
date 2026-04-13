@@ -1,4 +1,4 @@
-import { HttpStatus } from '../core/server/types';
+import { HttpStatus } from '../types';
 
 import { BaseError, type ErrorOptionsWithMeta } from './base.error';
 
