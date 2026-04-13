@@ -1,10 +1,14 @@
 import express from 'express';
 
+import { getLevelController } from './get';
+
 export const levelRouter = express();
 
 /* -------------------------------------------------------------------------- */
 /*                                     GET                                    */
 /* -------------------------------------------------------------------------- */
+
+levelRouter.get('/', getLevelController);
 
 /* -------------------------------------------------------------------------- */
 /*                                    / GET                                   */
