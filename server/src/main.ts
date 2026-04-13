@@ -4,8 +4,13 @@ import helmet from 'helmet';
 
 import { db, models } from './db';
 import { environment } from './environment';
-import { BaseError, ForbiddenHTTPError, NotFoundHTTPError } from './errors';
-import { errorHandlerMiddleware, morganLoggerMiddleware, requestContextMiddleware } from './middlewares';
+import { BaseError, ForbiddenHTTPError } from './errors';
+import {
+  errorHandlerMiddleware,
+  morganLoggerMiddleware,
+  pathNotFoundMiddleware,
+  requestContextMiddleware,
+} from './middlewares';
 import { logger } from './services';
 import { setupGracefulShutdown } from './utils';
 
@@ -49,10 +54,7 @@ const createApp = () => {
     });
   });
 
-  // 404 handler
-  app.use((req, _res) => {
-    throw new NotFoundHTTPError('путь не найден', { meta: { path: req.path } });
-  });
+  app.use(pathNotFoundMiddleware);
 
   app.use(errorHandlerMiddleware);
 
