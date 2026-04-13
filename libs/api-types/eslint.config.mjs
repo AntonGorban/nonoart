@@ -95,6 +95,8 @@ export default defineConfig([
       // Отключаем ненужные правила
       'no-console': 'warn',
       'no-debugger': 'warn',
+
+      '@typescript-eslint/no-empty-object-type': 'off',
     },
 
     settings: {

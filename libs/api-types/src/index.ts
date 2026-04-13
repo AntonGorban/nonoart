@@ -1,1 +1,1 @@
-export type ApiType = () => string;
+export type * as REST from './rest';
