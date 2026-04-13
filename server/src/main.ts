@@ -48,6 +48,7 @@ const createApp = () => {
 
   // 404 handler
   app.use((req, res) => {
+    logger.warn(`endpoint not found: ${req.path}`);
     res.status(404).json({ status: 404, message: 'Not Found' });
   });
 
@@ -55,22 +56,22 @@ const createApp = () => {
 };
 
 const start = async (port: number, host: string) => {
-  console.info(`=============== Welcome on ${environment.URL} ===============`);
+  logger.info(`=============== Welcome on ${environment.URL} ===============`);
   const app = createApp();
 
-  console.info('Connecting to database');
+  logger.info('Connecting to database');
   await db.authenticate();
   await Promise.all([models.User.sync({ alter: true }), models.Level.sync({ alter: true })]);
-  console.info('Connecting to database successfully');
+  logger.info('Connecting to database successfully');
 
   const server = app.listen(port, host, (err?: Error) => {
     if (err) throw err;
 
-    console.info(`Server started on ${host}:${port} (${environment.NODE_ENV} mode)`);
+    logger.info(`Server started on ${host}:${port} (${environment.NODE_ENV} mode)`);
   });
 
   server.on('error', (err) => {
-    console.error('Server error:', err);
+    logger.fatal('Server error:', err);
     process.emit('uncaughtException', err);
   });
 
@@ -79,7 +80,7 @@ const start = async (port: number, host: string) => {
 };
 
 start(environment.PORT, environment.HOST).catch((err) => {
-  console.error('Failed to start server:', err);
+  logger.fatal('Failed to start server:', err);
   // eslint-disable-next-line n/no-process-exit
   process.exit(1);
 });
