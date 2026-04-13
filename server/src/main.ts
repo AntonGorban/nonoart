@@ -4,6 +4,8 @@ import helmet from 'helmet';
 
 import { db, models } from './db';
 import { environment } from './environment';
+import { morganLoggerMiddleware, requestContextMiddleware } from './middlewares';
+import { logger } from './services';
 import { setupGracefulShutdown } from './utils';
 
 const createApp = () => {
@@ -24,7 +26,20 @@ const createApp = () => {
 
   app.use(express.json({ limit: '10mb' }));
 
+  app.use(requestContextMiddleware);
+
+  app.use(morganLoggerMiddleware);
+
   app.get('/', async (req, res) => {
+    logger.fatal('fatal');
+    logger.error('error');
+    logger.warn('warn');
+    logger.info('info');
+    logger.http('http');
+    logger.sql('sql');
+    logger.debug('debug');
+    logger.trace('trace');
+
     res.status(200).json({
       status: 200,
       message: 'hello world',

@@ -11,7 +11,7 @@
   "scripts": {
     "/* ----------------------------------- dev ---------------------------------- */": "",
     "dev": "turbo run dev",
-    "dev:server": "turbo run dev --filter=server",
+    "dev:server": "yarn workspace server run dev",
     "dev:server:libs": "turbo run dev --filter=server^...",
     "dev:server:with-libs": "turbo run dev --filter=server...",
     "dev:site": "turbo run dev --filter=site",
