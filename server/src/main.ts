@@ -12,6 +12,7 @@ import {
   requestContextMiddleware,
   traceEndpointMiddleware,
 } from './middlewares';
+import { rootRouter } from './routes';
 import { logger } from './services';
 import { setupGracefulShutdown } from './utils';
 
@@ -59,6 +60,8 @@ const createApp = () => {
       message: 'hello world',
     });
   });
+
+  app.use('/api', rootRouter);
 
   // app.use(pathNotFoundMiddleware);
 
