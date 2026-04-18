@@ -1,0 +1,24 @@
+info:
+  name: create.level
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{baseURL}}/api/level"
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Привет мир",
+        "description": "просто тестовое описание",
+        "colors": ["#ff0000", "#00ff00", "#0000ff"],
+        "grid": [[0,1,2], [null, null,null], [2,1,0]]
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
