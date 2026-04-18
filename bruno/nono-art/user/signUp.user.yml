@@ -1,0 +1,22 @@
+info:
+  name: signUp.user
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: '{{baseURL}}/api/user/sign-up'
+  body:
+    type: json
+    data: |-
+      {
+        "login": "qwe",
+        "password": "123456"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
