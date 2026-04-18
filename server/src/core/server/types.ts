@@ -16,4 +16,6 @@ export type ControllerFn<P, Q, B, R> = (ctx: ControllerCTX<P, Q, B>) => Promise<
 export interface ControllerCTXUtils {
   readonly setAccessTokenCookie: (token: string) => void;
   readonly setRefreshTokenCookie: (token: string) => void;
+  readonly clearAccessTokenCookie: () => void;
+  readonly clearRefreshTokenCookie: () => void;
 }
