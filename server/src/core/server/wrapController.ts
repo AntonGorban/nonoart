@@ -26,6 +26,8 @@ export const wrapController =
         query,
         body,
         transaction,
+        req,
+        res,
       };
 
       const response = await fn(ctx);
