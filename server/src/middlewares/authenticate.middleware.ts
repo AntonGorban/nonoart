@@ -30,11 +30,6 @@ export const authenticateMiddleware = async (
     user = await models.User.findOne({ where: { id: userId } });
   }
 
-  logger.debug({
-    userId,
-    user: user?.toJSON() ?? null,
-  });
-
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   req.user = user;

@@ -7,5 +7,6 @@ export { helmetMiddleware as helmet } from './helmet.middleware';
 export { jsonMiddleware as json } from './json.middleware';
 export { morganLoggerMiddleware as morganLogger } from './morganLogger.middleware';
 export { pathNotFoundMiddleware as pathNotFound } from './pathNotFound.middleware';
+export { refreshTokensMiddleware as refreshTokens } from './refreshTokens.middleware';
 export { requestContextMiddleware as requestContext } from './requestContext.middleware';
 export { traceEndpointMiddleware as traceEndpoint } from './traceEndpoint.middleware';

@@ -28,6 +28,7 @@ const createApp = () => {
   app.use(middleware.traceEndpoint);
   enableMiddlewareTracing(app);
   app.use(middleware.authenticate);
+  app.use(middleware.refreshTokens);
 
   /* -------------------------- / before middlewares -------------------------- */
 
