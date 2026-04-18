@@ -3,8 +3,10 @@ import type { Transaction } from 'sequelize';
 import type z from 'zod';
 
 import { db } from '../../db';
+import { logger } from '../../services';
 
 import type { ControllerCTX, ControllerFn } from './types';
+import { validateWithLog } from './utils';
 
 export const wrapController =
   <P, Q, B, R>(paramsValidator: z.ZodType<P>, queryValidator: z.ZodType<Q>, bodyValidator: z.ZodType<B>) =>
@@ -13,11 +15,15 @@ export const wrapController =
     let transaction: Transaction | null = null;
 
     try {
+      const startValidationTime = new Date().getTime();
+      logger.trace(`[VALIDATOR] started`);
       const [params, query, body] = await Promise.all([
-        paramsValidator.parseAsync(req.params),
-        queryValidator.parseAsync(req.query),
-        bodyValidator.parseAsync(req.body),
+        validateWithLog<P>('params')(paramsValidator)(req.params),
+        validateWithLog<Q>('query')(queryValidator)(req.query),
+        validateWithLog<B>('body')(bodyValidator)(req.body),
       ]);
+      const finishValidationTime = new Date().getTime();
+      logger.trace(`[VALIDATOR] finished | ${finishValidationTime - startValidationTime}ms`);
 
       transaction = await db.transaction();
 
