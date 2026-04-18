@@ -26,6 +26,7 @@
     "typescript-eslint": "^8.58.0"
   },
   "dependencies": {
-    "@nono-art/api-types": "workspace:^"
+    "@nono-art/api-types": "workspace:^",
+    "axios": "^1.15.0"
   }
 }
