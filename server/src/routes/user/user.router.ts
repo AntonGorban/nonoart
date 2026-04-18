@@ -1,6 +1,7 @@
 import express from 'express';
 
 import { getUserController } from './get';
+import { signUpUserController } from './signUp';
 
 export const userRouter = express();
 
@@ -17,6 +18,9 @@ userRouter.get('/', getUserController);
 /* -------------------------------------------------------------------------- */
 /*                                    POST                                    */
 /* -------------------------------------------------------------------------- */
+
+userRouter.post('/sign-up', signUpUserController);
+
 
 /* -------------------------------------------------------------------------- */
 /*                                   / POST                                   */
