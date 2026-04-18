@@ -6,7 +6,7 @@ import { db } from '../../db';
 import { logger } from '../../services';
 
 import type { ControllerCTX, ControllerFn } from './types';
-import { validateWithLog } from './utils';
+import { generateControllerCTXUtils, validateWithLog } from './utils';
 
 export const wrapController =
   <P, Q, B, R>(paramsValidator: z.ZodType<P>, queryValidator: z.ZodType<Q>, bodyValidator: z.ZodType<B>) =>
@@ -31,6 +31,7 @@ export const wrapController =
         params,
         query,
         body,
+        utils: generateControllerCTXUtils(res),
         transaction,
         req,
         res,
