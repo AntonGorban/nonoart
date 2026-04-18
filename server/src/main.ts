@@ -9,6 +9,7 @@ import { BaseError } from './errors';
 import {
   errorHandlerMiddleware,
   fixBodyParserMiddleware,
+  jsonMiddleware,
   morganLoggerMiddleware,
   requestContextMiddleware,
   traceEndpointMiddleware,
@@ -33,7 +34,7 @@ const createApp = () => {
     }),
   );
 
-  app.use(express.json({ limit: '10mb' }));
+  app.use(jsonMiddleware);
 
   app.use(fixBodyParserMiddleware);
 
