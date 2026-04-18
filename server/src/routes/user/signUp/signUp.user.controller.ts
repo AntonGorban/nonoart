@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 
 import { environment } from '../../../environment';
-import { ForbiddenHTTPError } from '../../../errors';
+import { ConflictHTTPError } from '../../../errors';
 import { tokenService } from '../../../services';
 
 import { createUser, getUser } from './queries.signUp.user.controller';
@@ -10,8 +10,7 @@ import type { Fn } from './types.signUp.user.controller';
 
 export const fn: Fn = async ({ body, transaction, utils }) => {
   const existingUser = await getUser({ login: body.login }, transaction);
-  if (!!existingUser)
-    throw new ForbiddenHTTPError('пользователь с таким логином уже существует', { meta: { login: body.login } });
+  if (!!existingUser) throw new ConflictHTTPError('регистрация не удалась', { meta: { login: body.login } });
 
   const date = new Date();
 

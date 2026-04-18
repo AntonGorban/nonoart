@@ -34,6 +34,7 @@ export const fn: Fn = async ({ body, transaction, utils, req }) => {
     const error = new ForbiddenHTTPError('невалидный или просроченный токен', { meta: { refreshToken, payload } });
     logger.suspicious(
       new BaseError('нет токена', {
+        cause: error,
         meta: {
           signedCookies: req.signedCookies['refreshToken'],
           cookies: req.cookies['refreshToken'],
@@ -48,6 +49,7 @@ export const fn: Fn = async ({ body, transaction, utils, req }) => {
     const error = new ForbiddenHTTPError('невалидный или просроченный токен', { meta: { refreshToken, payload } });
     logger.suspicious(
       new BaseError('токен это строка', {
+        cause: error,
         meta: {
           signedCookies: req.signedCookies['refreshToken'],
           cookies: req.cookies['refreshToken'],
@@ -66,6 +68,7 @@ export const fn: Fn = async ({ body, transaction, utils, req }) => {
     });
     logger.suspicious(
       new BaseError('токен не имеет userId', {
+        cause: error,
         meta: {
           signedCookies: req.signedCookies['refreshToken'],
           cookies: req.cookies['refreshToken'],
@@ -83,6 +86,7 @@ export const fn: Fn = async ({ body, transaction, utils, req }) => {
     });
     logger.suspicious(
       new BaseError('пользователь по токену не найден', {
+        cause: error,
         meta: {
           signedCookies: req.signedCookies['refreshToken'],
           cookies: req.cookies['refreshToken'],

@@ -1,6 +1,6 @@
 import type { Transaction } from 'sequelize';
 
-import type { D } from '@nono-art/domain/dist';
+import type { D } from '@nono-art/domain';
 
 import { models } from '../../../db';
 
