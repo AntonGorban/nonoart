@@ -1,5 +1,4 @@
 import express from 'express';
-import helmet from 'helmet';
 
 import { enableMiddlewareTracing } from './core';
 import { db, models } from './db';
@@ -9,6 +8,7 @@ import {
   corsMiddleware,
   errorHandlerMiddleware,
   fixBodyParserMiddleware,
+  helmetMiddleware,
   jsonMiddleware,
   morganLoggerMiddleware,
   requestContextMiddleware,
@@ -23,7 +23,7 @@ const createApp = () => {
 
   // Безопасность и production-настройки
   if (environment.isProd) {
-    app.use(helmet());
+    app.use(helmetMiddleware);
   }
 
   app.use(corsMiddleware);
