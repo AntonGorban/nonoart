@@ -1,6 +1,6 @@
 import type express from 'express';
 
-import { context, logger } from '../../services';
+import { logger } from '../../services';
 
 /**
  * Оборачивает один обработчик (middleware/контроллер) в функцию,
@@ -14,14 +14,13 @@ function wrapHandler(handler: express.RequestHandler, name: string): express.Req
   }
 
   return (req, res, next) => {
-    const requestId = context.getStore()?.requestId;
     const start = Date.now();
 
-    logger.trace(`--> ${name} started | reqId:${requestId}`);
+    logger.trace(`--> ${name} started`);
 
     const wrappedNext: express.NextFunction = (err?: any) => {
       const duration = Date.now() - start;
-      logger.trace(`<-- ${name} finished in ${duration}ms | reqId:${requestId}`);
+      logger.trace(`<-- ${name} finished in ${duration}ms`);
 
       next(err);
     };
@@ -34,7 +33,7 @@ function wrapHandler(handler: express.RequestHandler, name: string): express.Req
       if (result && typeof result.catch === 'function') {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        result.catch((error: any) => {
+        result.catch((error: unknown) => {
           wrappedNext(error);
         });
       }

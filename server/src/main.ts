@@ -19,14 +19,14 @@ const createApp = () => {
     app.use(middleware.helmet);
   }
 
+  app.use(middleware.requestContext);
+  app.use(middleware.traceEndpoint);
+  enableMiddlewareTracing(app);
   app.use(middleware.cors);
   app.use(middleware.json);
   app.use(middleware.fixBodyParser);
   app.use(middleware.cookieParser);
-  app.use(middleware.requestContext);
   app.use(middleware.morganLogger);
-  app.use(middleware.traceEndpoint);
-  enableMiddlewareTracing(app);
   app.use(middleware.authenticate);
   app.use(middleware.refreshTokens);
 
