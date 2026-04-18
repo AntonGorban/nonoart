@@ -1,0 +1,21 @@
+info:
+  name: refreshToken.user
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{baseURL}}/api/user/refresh-token"
+  body:
+    type: json
+    data: |-
+      {
+        "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3YzMwN2VkMi1iMzBjLTQxNDctYmFmNC0wMGJkODIzZjUyOGYiLCJpYXQiOjE3NzY1MzExNzksImV4cCI6MTc3OTEyMzE3OX0.YO0hg445LOLQ_K3ZodNJzPTbibzyRMMJzryzOkqerdo"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
