@@ -1,6 +1,7 @@
 import express from 'express';
 
 import { getUserController } from './get';
+import { refreshTokenUserController } from './refreshToken';
 import { signInUserController } from './signIn';
 import { signUpUserController } from './signUp';
 
@@ -26,6 +27,9 @@ userRouter.post('/sign-in', signInUserController);
 
 userRouter.post('/sign-up', signUpUserController);
 
+/* -------------------------------------------------------------------------- */
+
+userRouter.post('/refresh-token', refreshTokenUserController);
 
 /* -------------------------------------------------------------------------- */
 /*                                   / POST                                   */
