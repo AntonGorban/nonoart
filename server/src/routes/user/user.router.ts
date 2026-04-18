@@ -3,6 +3,7 @@ import express from 'express';
 import { getUserController } from './get';
 import { refreshTokenUserController } from './refreshToken';
 import { signInUserController } from './signIn';
+import { signOutUserController } from './signOut';
 import { signUpUserController } from './signUp';
 
 export const userRouter = express();
@@ -54,6 +55,8 @@ userRouter.post('/refresh-token', refreshTokenUserController);
 /* -------------------------------------------------------------------------- */
 /*                                   DELETE                                   */
 /* -------------------------------------------------------------------------- */
+
+userRouter.delete('/sign-out', signOutUserController);
 
 /* -------------------------------------------------------------------------- */
 /*                                  / DELETE                                  */
