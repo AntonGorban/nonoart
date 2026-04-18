@@ -35,6 +35,10 @@
       "dependsOn": ["^build"],
       "outputs": []
     },
+    "typecheck:watch": {
+      "dependsOn": ["^build"],
+      "outputs": []
+    },
     "expo:prebuild": {
       "dependsOn": ["^build"],
       "outputs": ["ios/**", "android/**", ".expo/**"],

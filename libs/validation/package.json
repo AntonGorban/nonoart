@@ -12,7 +12,8 @@
     "clean": "rm -rf dist",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit --preserveWatchOutput",
+    "typecheck:watch": "yarn typecheck --watch"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",
