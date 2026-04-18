@@ -1,3 +1,4 @@
+export { authenticateMiddleware as authenticate } from './authenticate.middleware';
 export { cookieParserMiddleware as cookieParser } from './cookieParser.middleware';
 export { corsMiddleware as cors } from './cors.middleware';
 export { errorHandlerMiddleware as errorHandler } from './errorHandler.middleware';

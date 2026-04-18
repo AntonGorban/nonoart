@@ -26,8 +26,8 @@ const createApp = () => {
   app.use(middleware.requestContext);
   app.use(middleware.morganLogger);
   app.use(middleware.traceEndpoint);
-
   enableMiddlewareTracing(app);
+  app.use(middleware.authenticate);
 
   /* -------------------------- / before middlewares -------------------------- */
 
