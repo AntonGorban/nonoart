@@ -1,4 +1,3 @@
-import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
 
@@ -7,6 +6,7 @@ import { db, models } from './db';
 import { environment } from './environment';
 import { BaseError } from './errors';
 import {
+  corsMiddleware,
   errorHandlerMiddleware,
   fixBodyParserMiddleware,
   jsonMiddleware,
@@ -26,13 +26,7 @@ const createApp = () => {
     app.use(helmet());
   }
 
-  app.use(
-    cors({
-      origin: '*',
-      methods: ['OPTIONS', 'GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-      credentials: true,
-    }),
-  );
+  app.use(corsMiddleware);
 
   app.use(jsonMiddleware);
 
