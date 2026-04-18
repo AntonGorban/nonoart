@@ -1,9 +1,1 @@
-export * from './cors.middleware';
-export * from './errorHandler.middleware';
-export * from './fixBodyParser.middleware';
-export * from './helmet.middleware';
-export * from './json.middleware';
-export * from './morganLogger.middleware';
-export * from './pathNotFound.middleware';
-export * from './requestContext.middleware';
-export * from './traceEndpoint.middleware';
+export * as middleware from './middleware';

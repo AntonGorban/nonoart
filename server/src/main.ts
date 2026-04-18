@@ -4,16 +4,7 @@ import { enableMiddlewareTracing } from './core';
 import { db, models } from './db';
 import { environment } from './environment';
 import { BaseError } from './errors';
-import {
-  corsMiddleware,
-  errorHandlerMiddleware,
-  fixBodyParserMiddleware,
-  helmetMiddleware,
-  jsonMiddleware,
-  morganLoggerMiddleware,
-  requestContextMiddleware,
-  traceEndpointMiddleware,
-} from './middlewares';
+import { middleware } from './middlewares';
 import { rootRouter } from './routes';
 import { logger } from './services';
 import { setupGracefulShutdown } from './utils';
@@ -21,24 +12,25 @@ import { setupGracefulShutdown } from './utils';
 const createApp = () => {
   const app = express();
 
+  /* --------------------------- before middlewares --------------------------- */
+
   // Безопасность и production-настройки
   if (environment.isProd) {
-    app.use(helmetMiddleware);
+    app.use(middleware.helmet);
   }
 
-  app.use(corsMiddleware);
-
-  app.use(jsonMiddleware);
-
-  app.use(fixBodyParserMiddleware);
-
-  app.use(requestContextMiddleware);
-
-  app.use(morganLoggerMiddleware);
-
-  app.use(traceEndpointMiddleware);
+  app.use(middleware.cors);
+  app.use(middleware.json);
+  app.use(middleware.fixBodyParser);
+  app.use(middleware.requestContext);
+  app.use(middleware.morganLogger);
+  app.use(middleware.traceEndpoint);
 
   enableMiddlewareTracing(app);
+
+  /* -------------------------- / before middlewares -------------------------- */
+
+  /* --------------------------------- routes --------------------------------- */
 
   app.get('/', async (req, res) => {
     logger.fatal(`[0] fatal`);
@@ -61,9 +53,15 @@ const createApp = () => {
 
   app.use('/api', rootRouter);
 
-  // app.use(pathNotFoundMiddleware);
+  /* -------------------------------- / routes -------------------------------- */
 
-  app.use(errorHandlerMiddleware);
+  /* ---------------------------- after middlewares --------------------------- */
+
+  // app.use(middleware.pathNotFound);
+
+  app.use(middleware.errorHandler);
+
+  /* --------------------------- / after middlewares -------------------------- */
 
   return app;
 };
