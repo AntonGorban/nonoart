@@ -22,6 +22,7 @@ const createApp = () => {
   app.use(middleware.cors);
   app.use(middleware.json);
   app.use(middleware.fixBodyParser);
+  app.use(middleware.cookieParser);
   app.use(middleware.requestContext);
   app.use(middleware.morganLogger);
   app.use(middleware.traceEndpoint);
