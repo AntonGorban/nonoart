@@ -1,6 +1,7 @@
 import express from 'express';
 
 import { getUserController } from './get';
+import { signInUserController } from './signIn';
 import { signUpUserController } from './signUp';
 
 export const userRouter = express();
@@ -17,6 +18,10 @@ userRouter.get('/', getUserController);
 
 /* -------------------------------------------------------------------------- */
 /*                                    POST                                    */
+/* -------------------------------------------------------------------------- */
+
+userRouter.post('/sign-in', signInUserController);
+
 /* -------------------------------------------------------------------------- */
 
 userRouter.post('/sign-up', signUpUserController);
