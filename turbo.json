@@ -33,7 +33,8 @@
     },
     "typecheck": {
       "dependsOn": ["^build"],
-      "outputs": []
+      "outputs": [],
+      "cache": true
     },
     "typecheck:watch": {
       "dependsOn": ["^build"],
