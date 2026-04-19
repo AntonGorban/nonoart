@@ -1,5 +1,5 @@
-import type { UUID } from './common';
-import type { Level } from './Level';
+import type { UUID } from './common.domain.js';
+import type { Level } from './Level.domain.js';
 
 export namespace User {
   export type Id = UUID;
@@ -7,6 +7,12 @@ export namespace User {
   export type Login = string;
 
   export type Password = string;
+
+  export enum Role {
+    user = 'USER',
+    moderator = 'MODERATOR',
+    admin = 'ADMIN',
+  }
 
   export type LevelList = ReadonlyArray<Level>;
 
@@ -18,6 +24,7 @@ export namespace User {
 export interface User {
   readonly id: User.Id;
   readonly login: User.Login;
+  readonly role: User.Role;
   readonly password: User.Password;
   readonly createdAt: User.CreatedAt;
   readonly updatedAt: User.UpdatedAt;

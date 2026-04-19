@@ -1,1 +1,1 @@
-export * as D from './reexport';
+export * as D from './domain.js';
