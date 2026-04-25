@@ -19,6 +19,14 @@ export default defineConfig([
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
+      parserOptions: {
+        // project: true, // Или укажите путь к вашему корневому tsconfig.json, например: './tsconfig.json'
+        projectService: true,
+        tsconfigRootDir: import.meta.dirname, // <-- Самое важное!
+      },
+    },
+    rules: {
+      '@typescript-eslint/no-unused-vars': 'warn',
     },
   },
 ]);
