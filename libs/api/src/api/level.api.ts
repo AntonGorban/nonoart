@@ -49,3 +49,5 @@ export const createLevelApiDictionary = (client: AxiosInstance) => ({
   /*                                  / DELETE                                  */
   /* -------------------------------------------------------------------------- */
 });
+
+export type Level = Readonly<ReturnType<typeof createLevelApiDictionary>>;

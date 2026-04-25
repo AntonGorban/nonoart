@@ -62,3 +62,5 @@ export const createUserApiDictionary = (client: AxiosInstance) => ({
   /*                                  / DELETE                                  */
   /* -------------------------------------------------------------------------- */
 });
+
+export type User = Readonly<ReturnType<typeof createUserApiDictionary>>;
