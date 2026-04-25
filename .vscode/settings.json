@@ -50,9 +50,11 @@
     "**/build": true,
     "**/.turbo": true
   },
+
   "cSpell.words": [
     "глобалы",
     "игноры",
+    "маппинги",
     "токеном",
     "токену",
     "antogor",
@@ -67,5 +69,6 @@
     "vite",
     "xcodeproj",
     "xcworkspace"
-  ]
+  ],
+  "js/ts.tsdk.path": "node_modules/typescript/lib"
 }
