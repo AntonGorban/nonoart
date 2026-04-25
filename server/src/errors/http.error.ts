@@ -1,8 +1,8 @@
-import { HttpStatus } from '../types';
+import { type ApiErrorResponse, HttpStatus } from '@nono-art/api-types';
 
 import { BaseError, type ErrorOptionsWithMeta } from './base.error';
 
-export class HTTPError extends BaseError {
+export class HTTPError extends BaseError implements ApiErrorResponse {
   constructor(
     public readonly status: HttpStatus,
     message: string,

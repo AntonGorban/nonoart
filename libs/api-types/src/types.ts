@@ -1,3 +1,10 @@
+export interface ApiErrorResponse {
+  readonly status: HttpStatus;
+  readonly message: string;
+}
+
+/* -------------------------------------------------------------------------- */
+
 export enum HttpStatus {
   // 1xx Informational
   CONTINUE = 100,

@@ -9,6 +9,8 @@ import {
 } from 'sequelize';
 import { ZodError } from 'zod';
 
+import { HttpStatus } from '@nono-art/api-types';
+
 import {
   BadRequestHTTPError,
   BaseError,
@@ -18,7 +20,6 @@ import {
   ServiceUnavailableHTTPError,
 } from '../errors';
 import { logger } from '../services';
-import { HttpStatus } from '../types';
 
 export const errorHandlerMiddleware: express.ErrorRequestHandler = (
   error: unknown,
