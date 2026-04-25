@@ -66,8 +66,8 @@ storybook-static
 **/storybook-static
 .idea
 **/.idea
-.vscode
-**/.vscode
+# .vscode
+# **/.vscode
 *.log
 **/*.log
 
