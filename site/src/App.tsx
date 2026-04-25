@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { type ApiError, getApiError } from '@nono-art/api';
 import type { REST } from '@nono-art/api-types';
+import { UI } from '@nono-art/ui-web';
 import { uuidV4 } from '@nono-art/utils';
 
 import './App.css';
@@ -35,6 +36,10 @@ function App() {
   return (
     <>
       <h1>App</h1>
+
+      <hr />
+
+      <UI.Button onClick={fetchUsers}>refresh users</UI.Button>
 
       <hr />
 
