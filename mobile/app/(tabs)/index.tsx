@@ -2,7 +2,8 @@ import { Image } from 'expo-image';
 import { Link } from 'expo-router';
 import { Platform, StyleSheet } from 'react-native';
 
-import { utils } from '@nono-art/utils';
+import { UI } from '@nono-art/ui-mobile';
+import { formatDate } from '@nono-art/utils';
 
 import { HelloWave } from '@/components/hello-wave';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
@@ -19,8 +20,13 @@ export default function HomeScreen() {
         <ThemedText type="title">Welcome!</ThemedText>
         <HelloWave />
       </ThemedView>
+
+      <UI.Hello>qwe</UI.Hello>
+
+      <UI.Hello />
+
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">{utils()}</ThemedText>
+        <ThemedText type="title">{formatDate(new Date())}</ThemedText>
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
         <ThemedText type="subtitle">Step 1: Try it</ThemedText>
