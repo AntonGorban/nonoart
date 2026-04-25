@@ -17,6 +17,7 @@
   "dependencies": {
     "@nono-art/api": "workspace:^",
     "@nono-art/api-types": "workspace:^",
+    "@nono-art/dal": "workspace:^",
     "@nono-art/domain": "workspace:^",
     "@nono-art/types": "workspace:^",
     "@nono-art/ui-web": "workspace:^",

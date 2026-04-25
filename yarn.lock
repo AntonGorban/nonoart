@@ -2184,20 +2184,25 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nono-art/dal@workspace:libs/dal":
+"@nono-art/dal@workspace:^, @nono-art/dal@workspace:libs/dal":
   version: 0.0.0-use.local
   resolution: "@nono-art/dal@workspace:libs/dal"
   dependencies:
     "@eslint/js": "npm:^9.39.4"
     "@nono-art/api": "workspace:^"
     "@nono-art/api-types": "workspace:^"
+    "@types/react": "npm:^19.0.0"
     eslint: "npm:^9.39.4"
     eslint-config-prettier: "npm:^10.1.8"
     eslint-import-resolver-typescript: "npm:^4.4.4"
     eslint-plugin-import: "npm:^2.32.0"
+    eslint-plugin-react: "npm:^7.37.5"
+    eslint-plugin-react-hooks: "npm:^5.2.0"
     globals: "npm:^17.4.0"
     typescript: "npm:^5.9.3"
     typescript-eslint: "npm:^8.58.0"
+  peerDependencies:
+    react: ^19.0.0
   languageName: unknown
   linkType: soft
 
@@ -9722,6 +9727,7 @@ __metadata:
     "@expo/vector-icons": "npm:^15.0.3"
     "@nono-art/api": "workspace:^"
     "@nono-art/api-types": "workspace:^"
+    "@nono-art/dal": "workspace:^"
     "@nono-art/domain": "workspace:^"
     "@nono-art/types": "workspace:^"
     "@nono-art/ui-mobile": "workspace:^"
@@ -12108,6 +12114,7 @@ __metadata:
     "@eslint/js": "npm:^9.39.4"
     "@nono-art/api": "workspace:^"
     "@nono-art/api-types": "workspace:^"
+    "@nono-art/dal": "workspace:^"
     "@nono-art/domain": "workspace:^"
     "@nono-art/types": "workspace:^"
     "@nono-art/ui-web": "workspace:^"

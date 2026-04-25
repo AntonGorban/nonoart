@@ -1,7 +1,8 @@
 import { Image } from 'expo-image';
 import { Link } from 'expo-router';
-import { Platform, StyleSheet } from 'react-native';
+import { Button, Platform, StyleSheet, Text, View } from 'react-native';
 
+import { useFlag } from '@nono-art/dal';
 import { UI } from '@nono-art/ui-mobile';
 import { formatDate } from '@nono-art/utils';
 
@@ -11,6 +12,8 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 
 export default function HomeScreen() {
+  const [flag, { toggle }] = useFlag();
+
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
@@ -24,6 +27,12 @@ export default function HomeScreen() {
       <UI.Hello>qwe</UI.Hello>
 
       <UI.Hello />
+
+      <View>
+        <Text style={{ color: 'white' }}>{flag ? 'true' : 'false'}</Text>
+
+        <Button onPress={toggle} title="toggle" />
+      </View>
 
       <ThemedView style={styles.titleContainer}>
         <ThemedText type="title">{formatDate(new Date())}</ThemedText>

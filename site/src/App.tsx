@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { type ApiError, getApiError } from '@nono-art/api';
 import type { REST } from '@nono-art/api-types';
+import { useFlag } from '@nono-art/dal';
 import { UI } from '@nono-art/ui-web';
 import { uuidV4 } from '@nono-art/utils';
 
@@ -12,12 +13,12 @@ import { useApiDictionaryContext } from './context';
 function App() {
   const { apiDictionary } = useApiDictionaryContext();
 
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, { enable: enableIsLoading, disable: disableIsLoading }] = useFlag(false);
   const [users, setUsers] = useState<REST.user.get.R | null>(null);
   const [error, setError] = useState<ApiError | null>(null);
 
   const fetchUsers = useCallback(async () => {
-    setIsLoading(true);
+    enableIsLoading();
     setError(null);
     try {
       const res = await apiDictionary.user.get({}, {}, {});
@@ -25,9 +26,9 @@ function App() {
     } catch (error) {
       setError(getApiError(error));
     } finally {
-      setIsLoading(false);
+      disableIsLoading();
     }
-  }, [apiDictionary.user]);
+  }, [apiDictionary.user, disableIsLoading, enableIsLoading]);
 
   useEffect(() => {
     fetchUsers();
