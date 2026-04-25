@@ -2,17 +2,16 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { type ApiError, getApiError } from '@nono-art/api';
 import type { REST } from '@nono-art/api-types';
-import { useFlag } from '@nono-art/dal';
-import { useIsLoadingFlag } from '@nono-art/hooks';
+import { useFlag, useIsLoadingFlag } from '@nono-art/hooks';
 import { UI } from '@nono-art/ui-web';
 import { uuidV4 } from '@nono-art/utils';
 
 import './App.css';
 
-import { useApiDictionaryContext } from './context';
+import { useApiDictionary } from './hooks';
 
 function App() {
-  const { apiDictionary } = useApiDictionaryContext();
+  const { api } = useApiDictionary();
 
   const { isLoading, enableIsLoading, disableIsLoading } = useIsLoadingFlag(false);
   const [users, setUsers] = useState<REST.user.get.R | null>(null);
@@ -22,14 +21,14 @@ function App() {
     enableIsLoading();
     setError(null);
     try {
-      const res = await apiDictionary.user.get({}, {}, {});
+      const res = await api.user.get({}, {}, {});
       setUsers(res.data);
     } catch (error) {
       setError(getApiError(error));
     } finally {
       disableIsLoading();
     }
-  }, [apiDictionary.user, disableIsLoading, enableIsLoading]);
+  }, [api.user, disableIsLoading, enableIsLoading]);
 
   useEffect(() => {
     fetchUsers();

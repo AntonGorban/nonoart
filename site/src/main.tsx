@@ -4,12 +4,15 @@ import { createRoot } from 'react-dom/client';
 import './index.css';
 
 import App from './App.tsx';
-import { api, apiDictionaryContext } from './context';
+import { ApiDictionaryProvider } from './components/index.ts';
+
+const BASE_URL = 'http://localhost:7000/api';
+const REFRESH_TOKEN_URL = 'user/refresh-token';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <apiDictionaryContext.Provider value={api}>
+    <ApiDictionaryProvider baseURL={BASE_URL} refreshTokenURL={REFRESH_TOKEN_URL}>
       <App />
-    </apiDictionaryContext.Provider>
+    </ApiDictionaryProvider>
   </StrictMode>,
 );
