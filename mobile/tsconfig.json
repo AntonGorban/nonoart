@@ -4,11 +4,36 @@
     "jsx": "react-native",
     "types": ["react-native"],
     "strict": true,
+    "moduleResolution": "bundler",
+
+    // "rootDir": "./src",
+    // "outDir": "./dist",
+    // "module": "ESNext",
+    // "moduleResolution": "node",
+    "incremental": true,
+    "composite": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+    // "tsBuildInfoFile": "./dist/tsconfig.tsbuildinfo",
+
     "paths": {
-      "@nono-art/*": ["../libs/*/src"],
       "@/*": ["./*"]
     }
   },
   "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"],
-  "exclude": ["node_modules", "dist", ".expo", "ios", "android"]
+  "exclude": ["node_modules", "dist", ".expo", "ios", "android"],
+  "references": [
+    { "path": "../libs/api" },
+    { "path": "../libs/api-types" },
+    { "path": "../libs/dal" },
+    { "path": "../libs/domain" },
+    { "path": "../libs/types" },
+    { "path": "../libs/ui-web" },
+    { "path": "../libs/utils" },
+    { "path": "../libs/validation" }
+  ]
 }

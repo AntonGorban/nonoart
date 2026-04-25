@@ -5,8 +5,10 @@
     { "path": "./tsconfig.node.json" },
     { "path": "../libs/api" },
     { "path": "../libs/api-types" },
+    { "path": "../libs/dal" },
     { "path": "../libs/domain" },
     { "path": "../libs/types" },
+    { "path": "../libs/ui-web" },
     { "path": "../libs/utils" },
     { "path": "../libs/validation" }
   ]

@@ -46,7 +46,7 @@
     "**/.git": true,
     "**/.DS_Store": true,
     "**/node_modules": true,
-    "**/dist": true,
+    "**/dist": false,
     "**/build": true,
     "**/.turbo": true
   },

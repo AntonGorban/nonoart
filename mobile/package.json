@@ -19,6 +19,7 @@
     "@nono-art/api-types": "workspace:^",
     "@nono-art/domain": "workspace:^",
     "@nono-art/types": "workspace:^",
+    "@nono-art/ui-mobile": "workspace:^",
     "@nono-art/utils": "workspace:^",
     "@react-navigation/bottom-tabs": "^7.4.0",
     "@react-navigation/elements": "^2.6.3",

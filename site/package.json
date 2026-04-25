@@ -19,6 +19,7 @@
     "@nono-art/api-types": "workspace:^",
     "@nono-art/domain": "workspace:^",
     "@nono-art/types": "workspace:^",
+    "@nono-art/ui-web": "workspace:^",
     "@nono-art/utils": "workspace:^",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"
