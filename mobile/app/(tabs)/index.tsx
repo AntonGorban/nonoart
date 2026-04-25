@@ -1,9 +1,11 @@
 import { Image } from 'expo-image';
 import { Link } from 'expo-router';
+import { useCallback, useEffect, useState } from 'react';
 import { Button, Platform, StyleSheet, Text, View } from 'react-native';
 
-import { useFlag } from '@nono-art/dal';
-import { useIsLoadingFlag } from '@nono-art/hooks';
+import { type ApiError, getApiError } from '@nono-art/api';
+import type { REST } from '@nono-art/api-types';
+import { useFlag, useIsLoadingFlag } from '@nono-art/hooks';
 import { UI } from '@nono-art/ui-mobile';
 import { formatDate } from '@nono-art/utils';
 
@@ -11,10 +13,33 @@ import { HelloWave } from '@/components/hello-wave';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
+import { useApiDictionary } from '@/hooks';
 
 export default function HomeScreen() {
-  const { isLoading, toggleIsLoading } = useIsLoadingFlag();
   const [flag, { toggle }] = useFlag();
+
+  const { api } = useApiDictionary();
+
+  const { isLoading, enableIsLoading, disableIsLoading } = useIsLoadingFlag(false);
+  const [users, setUsers] = useState<REST.user.get.R | null>(null);
+  const [error, setError] = useState<ApiError | null>(null);
+
+  const fetchUsers = useCallback(async () => {
+    enableIsLoading();
+    setError(null);
+    try {
+      const res = await api.user.get({}, {}, {});
+      setUsers(res.data);
+    } catch (error) {
+      setError(getApiError(error));
+    } finally {
+      disableIsLoading();
+    }
+  }, [api.user, disableIsLoading, enableIsLoading]);
+
+  useEffect(() => {
+    fetchUsers();
+  }, [fetchUsers]);
 
   return (
     <ParallaxScrollView
@@ -33,13 +58,21 @@ export default function HomeScreen() {
       <View>
         <Text style={{ color: 'white' }}>{isLoading ? 'isLoading: true' : 'isLoading: false'}</Text>
 
-        <Button onPress={toggleIsLoading} title="toggle" />
+        <Button onPress={fetchUsers} title="fetchUsers" />
       </View>
 
       <View>
         <Text style={{ color: 'white' }}>{flag ? 'true' : 'false'}</Text>
 
         <Button onPress={toggle} title="toggle" />
+      </View>
+
+      <View>
+        <Text style={{ color: 'green' }}>{JSON.stringify({ users }, null, 2)}</Text>
+      </View>
+
+      <View>
+        <Text style={{ color: 'red' }}>{JSON.stringify({ error }, null, 2)}</Text>
       </View>
 
       <ThemedView style={styles.titleContainer}>
