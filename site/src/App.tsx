@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { type ApiError, getApiError } from '@nono-art/api';
 import type { REST } from '@nono-art/api-types';
 import { useFlag } from '@nono-art/dal';
+import { useIsLoadingFlag } from '@nono-art/hooks';
 import { UI } from '@nono-art/ui-web';
 import { uuidV4 } from '@nono-art/utils';
 
@@ -13,7 +14,7 @@ import { useApiDictionaryContext } from './context';
 function App() {
   const { apiDictionary } = useApiDictionaryContext();
 
-  const [isLoading, { enable: enableIsLoading, disable: disableIsLoading }] = useFlag(false);
+  const { isLoading, enableIsLoading, disableIsLoading } = useIsLoadingFlag(false);
   const [users, setUsers] = useState<REST.user.get.R | null>(null);
   const [error, setError] = useState<ApiError | null>(null);
 
@@ -34,9 +35,17 @@ function App() {
     fetchUsers();
   }, [fetchUsers]);
 
+  const [flag, { toggle }] = useFlag();
+
   return (
     <>
       <h1>App</h1>
+
+      <hr />
+
+      <span>{flag ? 'true' : 'false'}</span>
+
+      <UI.Button onClick={toggle}>toggle</UI.Button>
 
       <hr />
 

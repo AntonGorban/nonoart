@@ -3,6 +3,7 @@ import { Link } from 'expo-router';
 import { Button, Platform, StyleSheet, Text, View } from 'react-native';
 
 import { useFlag } from '@nono-art/dal';
+import { useIsLoadingFlag } from '@nono-art/hooks';
 import { UI } from '@nono-art/ui-mobile';
 import { formatDate } from '@nono-art/utils';
 
@@ -12,6 +13,7 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 
 export default function HomeScreen() {
+  const { isLoading, toggleIsLoading } = useIsLoadingFlag();
   const [flag, { toggle }] = useFlag();
 
   return (
@@ -27,6 +29,12 @@ export default function HomeScreen() {
       <UI.Hello>qwe</UI.Hello>
 
       <UI.Hello />
+
+      <View>
+        <Text style={{ color: 'white' }}>{isLoading ? 'isLoading: true' : 'isLoading: false'}</Text>
+
+        <Button onPress={toggleIsLoading} title="toggle" />
+      </View>
 
       <View>
         <Text style={{ color: 'white' }}>{flag ? 'true' : 'false'}</Text>

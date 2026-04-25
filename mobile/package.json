@@ -19,6 +19,7 @@
     "@nono-art/api-types": "workspace:^",
     "@nono-art/dal": "workspace:^",
     "@nono-art/domain": "workspace:^",
+    "@nono-art/hooks": "workspace:^",
     "@nono-art/types": "workspace:^",
     "@nono-art/ui-mobile": "workspace:^",
     "@nono-art/utils": "workspace:^",
