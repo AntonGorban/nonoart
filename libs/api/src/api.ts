@@ -1,0 +1,13 @@
+import { createLevelApiDictionary, createUserApiDictionary } from './api/index.js';
+import { type CreateApiProps, createClient } from './client.api.js';
+
+export const createApiDictionary = (options: CreateApiProps) => {
+  const client = createClient(options);
+
+  const apiDictionary = {
+    user: createUserApiDictionary(client),
+    level: createLevelApiDictionary(client),
+  };
+
+  return { apiDictionary, client };
+};

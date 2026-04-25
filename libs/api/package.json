@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@nono-art/api-types": "workspace:^",
+    "@nono-art/utils": "workspace:^",
     "axios": "^1.15.0"
   },
   "devDependencies": {
