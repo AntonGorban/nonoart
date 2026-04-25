@@ -1,4 +1,13 @@
 {
   "files": [],
-  "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }]
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" },
+    { "path": "./libs/api" },
+    { "path": "./libs/api-types" },
+    { "path": "./libs/domain" },
+    { "path": "./libs/types" },
+    { "path": "./libs/utils" },
+    { "path": "./libs/validation" }
+  ]
 }
