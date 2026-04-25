@@ -1,3 +1,3 @@
-export * from './date/index.js';
-export * from './utils/index.js';
-export * from './asserts.js';
+export * from './date/index';
+export * from './utils/index';
+export * from './asserts';
