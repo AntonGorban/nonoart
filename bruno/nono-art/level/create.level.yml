@@ -5,7 +5,7 @@ info:
 
 http:
   method: POST
-  url: "{{baseURL}}/api/level"
+  url: '{{baseURL}}/api/level'
   body:
     type: json
     data: |-

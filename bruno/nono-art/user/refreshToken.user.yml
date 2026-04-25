@@ -5,7 +5,7 @@ info:
 
 http:
   method: POST
-  url: "{{baseURL}}/api/user/refresh-token"
+  url: '{{baseURL}}/api/user/refresh-token'
   body:
     type: json
     data: |-

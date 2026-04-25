@@ -5,7 +5,7 @@ info:
 
 http:
   method: GET
-  url: "{{baseURL}}/api/level"
+  url: '{{baseURL}}/api/level'
   auth: inherit
 
 settings:
