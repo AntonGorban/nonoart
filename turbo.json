@@ -4,6 +4,7 @@
   "globalEnv": ["NODE_ENV", "EXPO_PUBLIC_*"],
   "tasks": {
     "build": {
+      "cache": true,
       "dependsOn": ["^build", "typecheck"],
       "outputs": ["dist/**", ".next/**", "build/**", "android/**", "ios/**", ".expo/**"],
       "inputs": ["src/**", "app/**", "public/**", "*.json", "*.js", "*.ts"]

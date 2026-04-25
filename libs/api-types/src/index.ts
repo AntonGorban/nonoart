@@ -1,1 +1,1 @@
-export type * as REST from './rest';
+export type * as REST from './rest.js';

@@ -35,5 +35,13 @@
     "composite": true,
     "incremental": true
   },
-  "exclude": ["node_modules", "dist", "build", ".turbo", "coverage"]
+  "exclude": ["node_modules", "dist", "build", ".turbo", "coverage"],
+  "references": [
+    { "path": "./libs/api" },
+    { "path": "./libs/api-types" },
+    { "path": "./libs/domain" },
+    { "path": "./libs/types" },
+    { "path": "./libs/utils" },
+    { "path": "./libs/validation" }
+  ]
 }

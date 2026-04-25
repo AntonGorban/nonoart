@@ -1,2 +1,2 @@
-export type * as level from './level';
-export type * as user from './user';
+export type * as level from './level/index.js';
+export type * as user from './user/index.js';

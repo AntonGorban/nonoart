@@ -1,5 +1,5 @@
-import { createLevelApiDictionary, createUserApiDictionary } from './api';
-import { type CreateApiProps, createClient } from './client.api';
+import { createLevelApiDictionary, createUserApiDictionary } from './api/index.js';
+import { type CreateApiProps, createClient } from './client.api.js';
 
 export const createApiDictionary = (options: CreateApiProps) => {
   const client = createClient(options);
