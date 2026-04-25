@@ -4,9 +4,12 @@ import { createRoot } from 'react-dom/client';
 import './index.css';
 
 import App from './App.tsx';
+import { api, apiDictionaryContext } from './context';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+    <apiDictionaryContext.Provider value={api}>
+      <App />
+    </apiDictionaryContext.Provider>
   </StrictMode>,
 );
