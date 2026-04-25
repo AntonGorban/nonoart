@@ -23,8 +23,9 @@
     "@nono-art/types": "workspace:^",
     "@nono-art/ui-web": "workspace:^",
     "@nono-art/utils": "workspace:^",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4"
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "swr": "^2.4.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",

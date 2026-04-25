@@ -28,7 +28,8 @@
     "@nono-art/api-types": "workspace:^"
   },
   "peerDependencies": {
-    "react": "^19.0.0"
+    "react": "19.1.0",
+    "swr": "^2.4.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",
