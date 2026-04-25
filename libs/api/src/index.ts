@@ -1,3 +1,3 @@
-export * from './api.js';
-export * from './utils.js';
-export type * from './client.api.js';
+export * from './api';
+export * from './utils';
+export type * from './client.api';

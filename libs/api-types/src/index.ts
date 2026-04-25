@@ -1,2 +1,2 @@
-export type * as REST from './rest.js';
-export * from './types.js';
+export type * as REST from './rest';
+export * from './types';

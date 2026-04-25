@@ -1,7 +1,7 @@
 import type { AxiosInstance } from 'axios';
 
-import { createLevelApiDictionary, createUserApiDictionary, type Level, type User } from './api/index.js';
-import { type CreateApiProps, createClient } from './client.api.js';
+import { createLevelApiDictionary, createUserApiDictionary, type Level, type User } from './api/index';
+import { type CreateApiProps, createClient } from './client.api';
 
 export const createApiDictionary = (options: CreateApiProps) => {
   const client: ApiClient = createClient(options);
