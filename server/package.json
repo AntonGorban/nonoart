@@ -2,10 +2,11 @@
   "name": "server",
   "version": "0.0.1",
   "private": true,
+  "type": "module",
   "packageManager": "yarn@4.13.0",
   "scripts": {
     "dev": "nodemon",
-    "build": "tsc",
+    "build": "tsc -b",
     "start": "node dist/main.mjs",
     "clean": "rm -rf dist",
     "lint": "eslint .",
@@ -32,6 +33,7 @@
     "reflect-metadata": "^0.2.2",
     "sequelize": "^6.37.8",
     "sequelize-typescript": "^2.1.6",
+    "tsx": "^4.21.0",
     "winston": "^3.19.0",
     "zod": "^4.3.6"
   },
@@ -54,7 +56,6 @@
     "eslint-plugin-security": "^4.0.0",
     "globals": "^17.4.0",
     "nodemon": "^3.1.14",
-    "ts-node": "^10.9.2",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.58.0"
   }

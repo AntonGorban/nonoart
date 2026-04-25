@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from 'express';
+import express from 'express';
 
 import { uuidV4 } from '@nono-art/utils';
 
@@ -6,7 +6,7 @@ import { context } from '../services';
 
 // import { context } from '../utils/context';
 
-export const requestContextMiddleware = (req: Request, res: Response, next: NextFunction) => {
+export const requestContextMiddleware = (req: express.Request, res: express.Response, next: express.NextFunction) => {
   // Берём requestId из заголовка X-Request-Id, иначе генерируем новый
   const requestId = (req.headers['x-request-id'] as string) || uuidV4();
 
