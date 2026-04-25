@@ -60,6 +60,7 @@ export const fn: Fn = async ({ body, transaction, utils, req }) => {
     throw error;
   }
 
+  // TODO: add `role`
   const { userId } = payload as Partial<tokenService.TokenPayload>;
 
   if (!userId) {
@@ -97,7 +98,7 @@ export const fn: Fn = async ({ body, transaction, utils, req }) => {
     throw error;
   }
 
-  const newPayload: tokenService.TokenPayload = { userId: user.id };
+  const newPayload: tokenService.TokenPayload = { userId: user.id, role: user.role };
   const newAccessToken = tokenService.generate.accessToken(newPayload);
   const newRefreshToken = tokenService.generate.refreshToken(newPayload);
 

@@ -44,6 +44,7 @@ const verifyAccessToken = (token: string): D.User.Id | null => {
     if (!payload) return null;
     if (typeof payload === 'string') return null;
 
+    // TODO: add `role`
     const userId = (payload as tokenService.TokenPayload).userId;
 
     return !!userId ? userId : null;
@@ -62,6 +63,7 @@ const verifyRefreshToken = (token: string): D.User.Id | null => {
     if (!payload) return null;
     if (typeof payload === 'string') return null;
 
+    // TODO: add `role`
     const userId = (payload as tokenService.TokenPayload).userId;
 
     return !!userId ? userId : null;

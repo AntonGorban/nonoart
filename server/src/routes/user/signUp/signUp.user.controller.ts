@@ -17,7 +17,7 @@ export const fn: Fn = async ({ body, transaction, utils }) => {
   const hashedPassword = await bcrypt.hash(body.password + environment.SALT, 10);
   const user = await createUser({ login: body.login, password: hashedPassword }, date, transaction);
 
-  const payload: tokenService.TokenPayload = { userId: user.id };
+  const payload: tokenService.TokenPayload = { userId: user.id, role: user.role };
   const accessToken = tokenService.generate.accessToken(payload);
   const refreshToken = tokenService.generate.refreshToken(payload);
 

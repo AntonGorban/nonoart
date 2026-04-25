@@ -20,7 +20,7 @@ export const fn: Fn = async ({ body, transaction, utils }) => {
     throw error;
   }
 
-  const payload: tokenService.TokenPayload = { userId: user.id };
+  const payload: tokenService.TokenPayload = { userId: user.id, role: user.role };
   const accessToken = tokenService.generate.accessToken(payload);
   const refreshToken = tokenService.generate.refreshToken(payload);
 
