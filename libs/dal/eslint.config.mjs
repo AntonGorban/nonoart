@@ -105,6 +105,8 @@ export default tseslint.config(
 
       'no-console': 'warn',
       'no-debugger': 'warn',
+
+      'no-extra-boolean-cast': 'off',
     },
   },
 

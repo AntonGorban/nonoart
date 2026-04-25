@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { type ApiError, getApiError } from '@nono-art/api';
 import type { REST } from '@nono-art/api-types';
+import { DAL } from '@nono-art/dal';
 import { useFlag, useIsLoadingFlag } from '@nono-art/hooks';
 import { UI } from '@nono-art/ui-web';
 import { uuidV4 } from '@nono-art/utils';
@@ -36,6 +37,8 @@ function App() {
 
   const [flag, { toggle }] = useFlag();
 
+  const levels = DAL.level.get.useDAL();
+
   return (
     <>
       <h1>App</h1>
@@ -61,6 +64,10 @@ function App() {
       <hr />
 
       <pre>{JSON.stringify({ error }, null, 2)}</pre>
+
+      <hr />
+
+      <pre>{JSON.stringify(levels, null, 2)}</pre>
     </>
   );
 }

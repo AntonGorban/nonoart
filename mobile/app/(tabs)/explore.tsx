@@ -1,5 +1,7 @@
 import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { Button, Platform, StyleSheet, Text, View } from 'react-native';
+
+import { DAL } from '@nono-art/dal';
 
 import { ExternalLink } from '@/components/external-link';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
@@ -10,6 +12,8 @@ import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Fonts } from '@/constants/theme';
 
 export default function TabTwoScreen() {
+  const { levels, error, isLoading, isValidating, refresh } = DAL.level.get.useDAL();
+
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
@@ -32,6 +36,21 @@ export default function TabTwoScreen() {
           Explore
         </ThemedText>
       </ThemedView>
+
+      <View>
+        <Text style={{ color: 'white' }}>{JSON.stringify({ isLoading, isValidating }, null, 2)}</Text>
+
+        <Button title="refresh" onPress={refresh} disabled={isLoading || isValidating} />
+      </View>
+
+      <View>
+        <Text style={{ color: 'green' }}>{JSON.stringify(levels, null, 2)}</Text>
+      </View>
+
+      <View>
+        <Text style={{ color: 'red' }}>{JSON.stringify(error, null, 2)}</Text>
+      </View>
+
       <ThemedText>This app includes example code to help you get started.</ThemedText>
       <Collapsible title="File-based routing">
         <ThemedText>
