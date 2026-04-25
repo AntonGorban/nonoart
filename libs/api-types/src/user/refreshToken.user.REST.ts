@@ -40,6 +40,7 @@ export interface R {
   readonly user: {
     readonly id: D.User.Id;
     readonly login: D.User.Login;
+    readonly role: D.User.Role;
   };
   readonly accessToken: string;
   readonly refreshToken: string;

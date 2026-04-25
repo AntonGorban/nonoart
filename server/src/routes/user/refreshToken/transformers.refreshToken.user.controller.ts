@@ -10,7 +10,8 @@ export const prepareResponse = (user: models.User, accessToken: string, refreshT
 
 /* -------------------------------------------------------------------------- */
 
-export const prepareUser = ({ id, login }: models.User): R['user'] => ({
+export const prepareUser = ({ id, login, role }: models.User): R['user'] => ({
   id,
   login,
+  role,
 });

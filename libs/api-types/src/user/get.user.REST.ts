@@ -37,6 +37,7 @@ export interface B {}
 export interface R extends ReadonlyArray<{
   readonly id: D.User.Id;
   readonly login: D.User.Login;
+  readonly role: D.User.Role;
   readonly createdAt: number;
   readonly updatedAt: number;
   readonly deletedAt: number | null;
