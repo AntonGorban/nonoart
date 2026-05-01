@@ -1,9 +1,9 @@
 import { ParallaxScrollView, ThemedText } from '@/components';
 
-export default function ExploreScreen() {
+export default function LevelsScreen() {
   return (
     <ParallaxScrollView>
-      <ThemedText>explore</ThemedText>
+      <ThemedText>levels</ThemedText>
     </ParallaxScrollView>
   );
 }

@@ -1,1 +1,1 @@
-export * as UI from './components';
+export * as UI from './ui';
