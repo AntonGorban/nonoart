@@ -8,9 +8,9 @@ import { Text, View } from 'react-native';
 export const Hello = React.memo<Props>(({ children }) => {
   return (
     <View>
-      <Text style={{ color: 'white' }}>Hello Form lib</Text>
+      <Text style={{ color: 'red' }}>Hello Form lib</Text>
 
-      {!!children && <Text style={{ color: 'white' }}>{children}</Text>}
+      {!!children && <Text style={{ color: 'red' }}>{children}</Text>}
     </View>
   );
 });

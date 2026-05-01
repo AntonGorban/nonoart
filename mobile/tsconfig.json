@@ -2,14 +2,11 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "jsx": "react-native",
-    "types": ["react-native"],
+    "types": [
+      "react-native"
+    ],
     "strict": true,
     "moduleResolution": "bundler",
-
-    // "rootDir": "./src",
-    // "outDir": "./dist",
-    // "module": "ESNext",
-    // "moduleResolution": "node",
     "incremental": true,
     "composite": true,
     "declaration": true,
@@ -18,22 +15,47 @@
     "isolatedModules": true,
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
-    // "tsBuildInfoFile": "./dist/tsconfig.tsbuildinfo",
-
     "paths": {
-      "@/*": ["./*"]
+      "@/*": [
+        "./*"
+      ]
     }
   },
-  "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"],
-  "exclude": ["node_modules", "dist", ".expo", "ios", "android"],
+  "include": [
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    ".expo",
+    "ios",
+    "android"
+  ],
   "references": [
-    { "path": "../libs/api" },
-    { "path": "../libs/api-types" },
-    { "path": "../libs/dal" },
-    { "path": "../libs/domain" },
-    { "path": "../libs/types" },
-    { "path": "../libs/ui-web" },
-    { "path": "../libs/utils" },
-    { "path": "../libs/validation" }
+    {
+      "path": "../libs/api"
+    },
+    {
+      "path": "../libs/api-types"
+    },
+    {
+      "path": "../libs/dal"
+    },
+    {
+      "path": "../libs/domain"
+    },
+    {
+      "path": "../libs/types"
+    },
+    {
+      "path": "../libs/ui-web"
+    },
+    {
+      "path": "../libs/utils"
+    },
+    {
+      "path": "../libs/validation"
+    }
   ]
 }

@@ -1,24 +1,35 @@
-import type { PropsWithChildren } from 'react';
 import type React from 'react';
-import { StyleSheet } from 'react-native';
-import Animated, { useAnimatedRef } from 'react-native-reanimated';
 
-import { UI } from '@nono-art/ui-mobile';
+// import { PaperProvider, Portal } from 'react-native-paper';
+// import 'react-native-reanimated';
 
-import { ThemedView } from './ThemedView';
+import { AppPresentation } from './App.presentation';
+import { ApiDictionaryProvider } from './components/core/ApiDictionaryProvider';
+
+// import { theme } from './constants';
+
+const BASE_URL = 'http://192.168.31.111:7000/api';
+const REFRESH_TOKEN_URL = 'user/refresh-token';
 
 /* -------------------------------------------------------------------------- */
 /*                                  COMPONENT                                 */
 /* -------------------------------------------------------------------------- */
 
-export const ParallaxScrollView: React.FC<Props> = ({ children }) => {
-  const scrollRef = useAnimatedRef<Animated.ScrollView>();
-
+export const App: React.FC<Props> = () => {
   return (
-    <Animated.ScrollView ref={scrollRef} style={{ flex: 1 }} scrollEventThrottle={16}>
-      <ThemedView style={styles.content}>{children}</ThemedView>
-    </Animated.ScrollView>
+    <ApiDictionaryProvider baseURL={BASE_URL} refreshTokenURL={REFRESH_TOKEN_URL}>
+      <AppPresentation />
+    </ApiDictionaryProvider>
   );
+  // return (
+  //   <PaperProvider theme={theme}>
+  //     <ApiDictionaryProvider baseURL={BASE_URL} refreshTokenURL={REFRESH_TOKEN_URL}>
+  //       <Portal.Host>
+  //         <AppPresentation />
+  //       </Portal.Host>
+  //     </ApiDictionaryProvider>
+  //   </PaperProvider>
+  // );
 };
 
 /* -------------------------------------------------------------------------- */
@@ -29,18 +40,8 @@ export const ParallaxScrollView: React.FC<Props> = ({ children }) => {
 /*                                    TYPES                                   */
 /* -------------------------------------------------------------------------- */
 
-interface Props extends PropsWithChildren {}
+interface Props {}
 
 /* -------------------------------------------------------------------------- */
 /*                                   / TYPES                                  */
 /* -------------------------------------------------------------------------- */
-
-const styles = StyleSheet.create({
-  content: {
-    backgroundColor: UI.color.black500,
-    flex: 1,
-    padding: 16,
-    gap: 16,
-    overflow: 'hidden',
-  },
-});
