@@ -15,6 +15,7 @@
     "typecheck:watch": "yarn typecheck --watch"
   },
   "dependencies": {
+    "@ant-design/icons": "6.x",
     "@nono-art/api": "workspace:^",
     "@nono-art/api-types": "workspace:^",
     "@nono-art/dal": "workspace:^",
@@ -23,6 +24,7 @@
     "@nono-art/types": "workspace:^",
     "@nono-art/ui-web": "workspace:^",
     "@nono-art/utils": "workspace:^",
+    "antd": "^6.3.6",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "swr": "^2.4.1"

@@ -22,7 +22,7 @@
     "dev:mobile": "yarn workspace mobile run dev",
     "dev:mobile:libs": "turbo run dev --filter=mobile^...",
     "dev:mobile:with-libs": "turbo run dev --filter=mobile...",
-    "dev:libs": "turbo run dev --filter=\"./libs/*\"",
+    "dev:libs": "turbo run dev --filter=\"./libs/*\" --concurrency=20",
     "dev:lib:api": "turbo run dev --filter=@nono-art/api...",
     "dev:lib:api-types": "turbo run dev --filter=@nono-art/api-types...",
     "dev:lib:domain": "turbo run dev --filter=@nono-art/domain...",

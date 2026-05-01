@@ -9,9 +9,14 @@ import { uuidV4 } from '@nono-art/utils';
 
 import './App.css';
 
+import { Layout } from './components';
 import { useApiDictionary } from './hooks';
 
-function App() {
+/* -------------------------------------------------------------------------- */
+/*                                  COMPONENT                                 */
+/* -------------------------------------------------------------------------- */
+
+export const App: React.FC<Props> = () => {
   const { api } = useApiDictionary();
 
   const { isLoading, enableIsLoading, disableIsLoading } = useIsLoadingFlag(false);
@@ -40,7 +45,7 @@ function App() {
   const levels = DAL.level.get.useDAL();
 
   return (
-    <>
+    <Layout title="App">
       <h1>App</h1>
 
       <hr />
@@ -68,8 +73,20 @@ function App() {
       <hr />
 
       <pre>{JSON.stringify(levels, null, 2)}</pre>
-    </>
+    </Layout>
   );
-}
+};
 
-export default App;
+/* -------------------------------------------------------------------------- */
+/*                                 / COMPONENT                                */
+/* -------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------- */
+/*                                    TYPES                                   */
+/* -------------------------------------------------------------------------- */
+
+interface Props {}
+
+/* -------------------------------------------------------------------------- */
+/*                                   / TYPES                                  */
+/* -------------------------------------------------------------------------- */
