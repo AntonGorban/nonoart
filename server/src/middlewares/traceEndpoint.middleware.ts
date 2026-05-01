@@ -1,6 +1,6 @@
 import type express from 'express';
 
-import { formatDate } from '@nono-art/utils';
+import { f } from '@nono-art/utils';
 
 import { context, logger } from '../services';
 
@@ -14,13 +14,15 @@ export const traceEndpointMiddleware = (req: express.Request, res: express.Respo
   logger.trace(`==================== STARTED ====================`);
 
   if (!!startDate) {
-    logger.trace(`start date: ${formatDate(startDate)}`);
+    logger.trace(`start date: ${f.date(startDate, { withMilliseconds: true })}`);
   }
 
   res.on('finish', () => {
     if (!!startDate) {
       const finishDate = new Date();
-      logger.trace(`${formatDate(finishDate)} | finished in ${finishDate.getTime() - startDate.getTime()}ms`);
+      logger.trace(
+        `${f.date(finishDate, { withMilliseconds: true })} | finished in ${f.number(finishDate.getTime() - startDate.getTime())}ms`,
+      );
     }
 
     logger.trace(`==================== FINISHED ====================`);

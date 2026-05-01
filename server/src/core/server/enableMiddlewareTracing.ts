@@ -1,5 +1,7 @@
 import type express from 'express';
 
+import { f } from '@nono-art/utils';
+
 import { logger } from '../../services';
 
 /**
@@ -20,7 +22,7 @@ function wrapHandler(handler: express.RequestHandler, name: string): express.Req
 
     const wrappedNext: express.NextFunction = (err?: any) => {
       const duration = Date.now() - start;
-      logger.trace(`<-- ${name} finished in ${duration}ms`);
+      logger.trace(`<-- ${name} finished in ${f.number(duration)}ms`);
 
       next(err);
     };

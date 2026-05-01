@@ -1,5 +1,7 @@
 import * as http from 'http';
 
+import { f } from '@nono-art/utils';
+
 import { BaseError } from '../../errors';
 import { logger } from '../../services';
 
@@ -22,7 +24,7 @@ export const gracefulShutdown = (signal: string, server: http.Server, timeoutMs:
 
   // Принудительное завершение после таймаута
   const timer = setTimeout(() => {
-    logger.error(`Forced shutdown after ${timeoutMs}ms timeout`);
+    logger.error(`Forced shutdown after ${f.number(timeoutMs)}ms timeout`);
     // eslint-disable-next-line n/no-process-exit
     process.exit(1);
   }, timeoutMs);

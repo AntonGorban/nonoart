@@ -2,6 +2,8 @@ import type express from 'express';
 import type { Transaction } from 'sequelize';
 import type z from 'zod';
 
+import { f } from '@nono-art/utils';
+
 import { db } from '../../db';
 import { logger } from '../../services';
 
@@ -23,7 +25,7 @@ export const wrapController =
         validateWithLog<B>('body')(bodyValidator)(req.body),
       ]);
       const finishValidationTime = new Date().getTime();
-      logger.trace(`[VALIDATOR] finished | ${finishValidationTime - startValidationTime}ms`);
+      logger.trace(`[VALIDATOR] finished | ${f.number(finishValidationTime - startValidationTime)}ms`);
 
       transaction = await db.transaction();
 

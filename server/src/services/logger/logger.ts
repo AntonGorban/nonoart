@@ -1,5 +1,7 @@
 import winston from 'winston';
 
+import { f } from '@nono-art/utils';
+
 import { environment } from '../../environment';
 import { context } from '../context';
 
@@ -18,7 +20,7 @@ const withRequestId = winston.format((info) => {
 const consoleFormat = winston.format.printf(({ level, message, timestamp, requestId, durationMs, ...meta }) => {
   let log = `${timestamp} [${level}]`;
   if (requestId) log += ` [reqID:${requestId}]`;
-  if (!!durationMs && typeof durationMs === 'number') log += ` (${durationMs}ms)`;
+  if (!!durationMs && typeof durationMs === 'number') log += ` (${f.number(durationMs)}ms)`;
   log += `: ${message}`;
   if (Object.keys(meta).length) {
     log += ` ${JSON.stringify(meta)}`;
