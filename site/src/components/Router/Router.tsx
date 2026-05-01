@@ -1,28 +1,27 @@
-import { useCallback, useEffect, useState } from 'react';
+import React from 'react';
+import { Route, Routes } from 'react-router';
 
-import { type ApiError, getApiError } from '@nono-art/api';
-import type { REST } from '@nono-art/api-types';
-import { DAL } from '@nono-art/dal';
-import { useFlag, useIsLoadingFlag } from '@nono-art/hooks';
-import { UI } from '@nono-art/ui-web';
-import { uuidV4 } from '@nono-art/utils';
-
-import './App.css';
-
-import { Layout, Router } from './components';
-import { routeList } from './config/routes';
+import type { RouteList } from '../../config';
 
 /* -------------------------------------------------------------------------- */
 /*                                  COMPONENT                                 */
 /* -------------------------------------------------------------------------- */
 
-export const App: React.FC<Props> = () => {
+export const Router = React.memo<Props>(({ routeList }) => {
   return (
-    <Layout title="App">
-      <Router routeList={routeList} />
-    </Layout>
+    <Routes>
+      {routeList.map(({ path, Page, subRouteList }) => (
+        <>
+          {!!Page && <Route key={path} path={path} element={<Page />} />}
+
+          {!!subRouteList && (
+            <Route key={path + '/*'} path={path + '/*'} element={<Router routeList={subRouteList} />} />
+          )}
+        </>
+      ))}
+    </Routes>
   );
-};
+});
 
 /* -------------------------------------------------------------------------- */
 /*                                 / COMPONENT                                */
@@ -32,7 +31,9 @@ export const App: React.FC<Props> = () => {
 /*                                    TYPES                                   */
 /* -------------------------------------------------------------------------- */
 
-interface Props {}
+interface Props {
+  readonly routeList: RouteList;
+}
 
 /* -------------------------------------------------------------------------- */
 /*                                   / TYPES                                  */

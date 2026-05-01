@@ -1,40 +1,25 @@
-import { Layout as AntdLayout, Flex, Menu, type MenuProps, Typography } from 'antd';
-import React, { useState } from 'react';
+import { Layout as AntdLayout, Flex, Typography } from 'antd';
+import React, { useCallback } from 'react';
 
-import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
+import { useFlag } from '@nono-art/hooks';
 
-const menu: MenuItemList = [
-  {
-    id: 'users',
-    name: 'users',
-    icon: <UserOutlined />,
-  },
-];
+import { routeList } from '../../config/routes';
 
-const prepareMenuItem = ({ id, name, icon, subMenu }: MenuItem): Required<MenuProps>['items'][number] => ({
-  key: id,
-  label: name,
-  icon,
-  ...(!!subMenu ? { children: subMenu.map(prepareMenuItem) } : {}),
-});
-
-type MenuItemList = ReadonlyArray<MenuItem>;
-
-interface MenuItem {
-  readonly id: string;
-  readonly name: string;
-  readonly icon?: React.ReactNode;
-  readonly subMenu?: MenuItemList;
-}
-
-const menuItemList: Required<MenuProps>['items'] = menu.map(prepareMenuItem);
+import { Menu } from './Menu';
 
 /* -------------------------------------------------------------------------- */
 /*                                  COMPONENT                                 */
 /* -------------------------------------------------------------------------- */
 
 export const Layout = React.memo<Props>(({ children, title }) => {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, { set: setCollapsed }] = useFlag(false);
+
+  const changeCollapsed = useCallback(
+    (flag: boolean) => {
+      setCollapsed(flag);
+    },
+    [setCollapsed],
+  );
 
   const currentYear = new Date().getFullYear();
 
@@ -44,7 +29,7 @@ export const Layout = React.memo<Props>(({ children, title }) => {
         <AntdLayout.Sider
           collapsible
           collapsed={collapsed}
-          onCollapse={(value) => setCollapsed(value)}
+          onCollapse={changeCollapsed}
           style={{
             overflow: 'auto',
             height: '100vh',
@@ -55,30 +40,8 @@ export const Layout = React.memo<Props>(({ children, title }) => {
             scrollbarGutter: 'stable',
           }}
         >
-          <Flex style={{ padding: 'min(1vh, 1vw)' }}>
-            <Menu
-              theme="dark"
-              mode="inline"
-              defaultSelectedKeys={['1']}
-              items={[
-                ...menuItemList,
-                {
-                  key: '1',
-                  icon: <UserOutlined />,
-                  label: 'nav 1',
-                },
-                {
-                  key: '2',
-                  icon: <VideoCameraOutlined />,
-                  label: 'nav 2',
-                },
-                {
-                  key: '3',
-                  icon: <UploadOutlined />,
-                  label: 'nav 3',
-                },
-              ]}
-            />
+          <Flex style={{ padding: 'min(1vh, 1vw) 0' }}>
+            <Menu routeList={routeList} />
           </Flex>
         </AntdLayout.Sider>
         <AntdLayout>

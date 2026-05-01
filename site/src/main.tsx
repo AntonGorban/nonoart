@@ -1,6 +1,7 @@
 import 'antd/dist/reset.css';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router';
 
 import './index.css';
 
@@ -13,7 +14,9 @@ const REFRESH_TOKEN_URL = 'user/refresh-token';
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ApiDictionaryProvider baseURL={BASE_URL} refreshTokenURL={REFRESH_TOKEN_URL}>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </ApiDictionaryProvider>
   </StrictMode>,
 );

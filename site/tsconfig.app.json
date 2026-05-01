@@ -9,8 +9,7 @@
     "skipLibCheck": true,
 
     "paths": {
-      "@nono-art/*": ["../libs/*/src"],
-      "@/*": ["./src/*"]
+      "@nono-art/*": ["../libs/*/src"]
     },
 
     /* Bundler mode */
