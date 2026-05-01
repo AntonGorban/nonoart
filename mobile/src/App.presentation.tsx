@@ -1,29 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import type React from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 
+import { FontAwesome, FontAwesome6, MaterialCommunityIcons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-// import { Text } from 'react-native-paper';
-
-// import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { DAL } from '@nono-art/dal';
 import { UI } from '@nono-art/ui-mobile';
 
-// import { UI } from '@nono-art/ui';
-
-// import { ScreenHeader } from './Components';
-// import {
-//   AsyncStorageScreen,
-//   ColorPaletteScreen,
-//   DesignerScreen,
-//   GameScreen,
-//   HomeScreen,
-//   RootStackParamList,
-//   UsersScreen,
-// } from './Screens';
+import { ScreenHeader } from './components';
 
 export type RootStackParamList = {
   /* ---------------------------------- home ---------------------------------- */
@@ -71,23 +58,9 @@ const Tab = createBottomTabNavigator<RootStackParamList>();
 export const AppPresentation: React.FC<Props> = () => {
   // DAL.user.auth.useGet();
 
-  // return (
-  //   <>
-  //     <StatusBar style="dark" backgroundColor={UI.color.black700} translucent={false} />
-
-  //     <UI.Hello />
-  //     <UI.Hello />
-  //     <UI.Hello />
-  //     <UI.Hello />
-  //     <UI.Hello />
-  //     <UI.Hello />
-
-  //     <Text>Hello</Text>
-  //   </>
-  // );
   return (
     <>
-      <StatusBar style="dark" backgroundColor={UI.color.black700} translucent={false} />
+      <StatusBar style="light" backgroundColor={UI.color.black700} translucent={false} />
 
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Home">
@@ -96,6 +69,7 @@ export const AppPresentation: React.FC<Props> = () => {
           {/* -------------------------------------------------------------------------- */}
 
           {/* <Stack.Screen name="Home" component={HomeScreen} options={{ header: () => null }} /> */}
+
           <Stack.Screen
             name="Home"
             component={() => (
@@ -105,11 +79,17 @@ export const AppPresentation: React.FC<Props> = () => {
                   tabBarStyle: {
                     backgroundColor: UI.color.black700,
                     borderColor: UI.color.tealA400,
-                    height: 52,
+                    height: 65,
                   },
                   tabBarActiveTintColor: UI.color.tealA400,
                   tabBarInactiveTintColor: UI.color.grey700,
-                  tabBarIconStyle: {},
+                  tabBarIconStyle: {
+                    // backgroundColor: 'red',
+                    height: '100%',
+                    flex: 1,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  },
                   tabBarLabelStyle: { fontSize: 0 },
                 }}
               >
@@ -123,19 +103,19 @@ export const AppPresentation: React.FC<Props> = () => {
                     </View>
                   )}
                   options={{
-                    // header: () => (
-                    //   <ScreenHeader
-                    //     title="Уровни"
-                    //     icon={
-                    //       <>
-                    //         <MaterialCommunityIcons name="alert-circle-outline" size={14} color={UI.color.yellow300} />
+                    header: () => (
+                      <ScreenHeader
+                        title="Уровни"
+                        icon={
+                          <>
+                            <MaterialCommunityIcons name="alert-circle-outline" size={14} color={UI.color.yellow300} />
 
-                    //         <FontAwesome6 name="puzzle-piece" size={18} color={UI.color.white} />
-                    //       </>
-                    //     }
-                    //   />
-                    // ),
-                    // tabBarIcon: ({ color }) => <FontAwesome6 name="puzzle-piece" size={28} color={color} />,
+                            <FontAwesome6 name="puzzle-piece" size={18} color={UI.color.white} />
+                          </>
+                        }
+                      />
+                    ),
+                    tabBarIcon: ({ color }) => <FontAwesome6 name="puzzle-piece" size={30} color={color} />,
                     tabBarLabel: '',
                   }}
                 />
@@ -150,19 +130,19 @@ export const AppPresentation: React.FC<Props> = () => {
                     </View>
                   )}
                   options={{
-                    // header: () => (
-                    //   <ScreenHeader
-                    //     title="Мои уровни"
-                    //     icon={
-                    //       <>
-                    //         <MaterialCommunityIcons name="alert-circle-outline" size={14} color={UI.color.yellow300} />
+                    header: () => (
+                      <ScreenHeader
+                        title="Мои уровни"
+                        icon={
+                          <>
+                            <MaterialCommunityIcons name="alert-circle-outline" size={14} color={UI.color.yellow300} />
 
-                    //         <FontAwesome name="paint-brush" size={18} color={UI.color.white} />
-                    //       </>
-                    //     }
-                    //   />
-                    // ),
-                    // tabBarIcon: ({ color }) => <FontAwesome name="paint-brush" size={28} color={color} />,
+                            <FontAwesome name="paint-brush" size={18} color={UI.color.white} />
+                          </>
+                        }
+                      />
+                    ),
+                    tabBarIcon: ({ color }) => <FontAwesome name="paint-brush" size={30} color={color} />,
                     tabBarLabel: '',
                   }}
                 />
@@ -177,19 +157,19 @@ export const AppPresentation: React.FC<Props> = () => {
                     </View>
                   )}
                   options={{
-                    // header: () => (
-                    //   <ScreenHeader
-                    //     title="Аккаунт"
-                    //     icon={
-                    //       <>
-                    //         <MaterialCommunityIcons name="alert-circle-outline" size={14} color={UI.color.yellow300} />
+                    header: () => (
+                      <ScreenHeader
+                        title="Аккаунт"
+                        icon={
+                          <>
+                            <MaterialCommunityIcons name="alert-circle-outline" size={14} color={UI.color.yellow300} />
 
-                    //         <FontAwesome6 name="user-large" size={18} color={UI.color.white} />
-                    //       </>
-                    //     }
-                    //   />
-                    // ),
-                    // tabBarIcon: ({ color }) => <FontAwesome6 name="user-large" size={28} color={color} />,
+                            <FontAwesome6 name="user-large" size={18} color={UI.color.white} />
+                          </>
+                        }
+                      />
+                    ),
+                    tabBarIcon: ({ color }) => <FontAwesome6 name="user-large" size={30} color={color} />,
                     tabBarLabel: '',
                   }}
                 />

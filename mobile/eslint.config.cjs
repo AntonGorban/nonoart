@@ -106,6 +106,7 @@ module.exports = defineConfig([
       'react-native/no-inline-styles': 'off',
       'jsx-a11y/accessible-emoji': 'off',
       '@typescript-eslint/no-empty-object-type': 'off',
+      'react/display-name': 'off',
 
       /* -------------------------------------------------------------------------- */
       /*                                 / MY RULES                                 */
