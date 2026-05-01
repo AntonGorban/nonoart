@@ -7,6 +7,8 @@ import { useNavigation } from '@react-navigation/native';
 
 import { UI } from '@nono-art/ui-mobile';
 
+import { useStoreSelectors } from '@/src/store';
+
 // import { UI } from '@nono-art/ui';
 
 // import { useStoreSelectors } from '../../store';
@@ -16,9 +18,9 @@ import { UI } from '@nono-art/ui-mobile';
 /* -------------------------------------------------------------------------- */
 
 export const ScreenHeader = React.memo<Props>(({ title, icon, isBackButton = false }) => {
-  // const {
-  //   settings: { appHeaderTitle },
-  // } = useStoreSelectors();
+  const {
+    config: { appHeaderTitle },
+  } = useStoreSelectors();
 
   const navigation = useNavigation();
 
@@ -40,8 +42,7 @@ export const ScreenHeader = React.memo<Props>(({ title, icon, isBackButton = fal
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 7 }}>
             {!!icon && icon}
 
-            {/* <Text variant="titleLarge">{title || appHeaderTitle}</Text> */}
-            {!!title && <Text variant="titleLarge">{title}</Text>}
+            <Text variant="titleLarge">{title || appHeaderTitle}</Text>
           </View>
         }
       />

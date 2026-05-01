@@ -107,6 +107,7 @@ module.exports = defineConfig([
       'jsx-a11y/accessible-emoji': 'off',
       '@typescript-eslint/no-empty-object-type': 'off',
       'react/display-name': 'off',
+      'import/no-unresolved': 'warn',
 
       /* -------------------------------------------------------------------------- */
       /*                                 / MY RULES                                 */
