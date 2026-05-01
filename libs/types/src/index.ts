@@ -1,1 +1,1 @@
-export type MyType = () => string;
+export * from './utils';
