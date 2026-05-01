@@ -1,5 +1,5 @@
 import { useAppDispatch } from './hooks';
-import { useConfigActions } from './slices';
+import { useConfigActions, useLevelsActions } from './slices';
 
 /* -------------------------------------------------------------------------- */
 /*                                    HOOK                                    */
@@ -10,7 +10,7 @@ export const useStoreActions = () => {
 
   /* --------------------------------- actions -------------------------------- */
 
-  // const levels = useLevelsActions(dispatch);
+  const levels = useLevelsActions(dispatch);
   // const myLevels = useMyLevelsActions(dispatch);
   const config = useConfigActions(dispatch);
 
@@ -18,7 +18,7 @@ export const useStoreActions = () => {
 
   /* --------------------------------- RETURN --------------------------------- */
 
-  return { config };
+  return { levels, config };
 };
 
 /* -------------------------------------------------------------------------- */

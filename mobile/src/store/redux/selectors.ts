@@ -1,4 +1,4 @@
-import { useConfigSelectors } from './slices';
+import { useConfigSelectors, useLevelsSelectors } from './slices';
 
 /* -------------------------------------------------------------------------- */
 /*                                    HOOK                                    */
@@ -7,7 +7,7 @@ import { useConfigSelectors } from './slices';
 export const useStoreSelectors = () => {
   /* -------------------------------- selectors ------------------------------- */
 
-  // const levels = useLevelsSelectors();
+  const levels = useLevelsSelectors();
   // const myLevels = useMyLevelsSelectors();
   const config = useConfigSelectors();
 
@@ -15,7 +15,7 @@ export const useStoreSelectors = () => {
 
   /* --------------------------------- RETURN --------------------------------- */
 
-  return { config };
+  return { levels, config };
 };
 
 /* -------------------------------------------------------------------------- */

@@ -108,6 +108,8 @@ module.exports = defineConfig([
       '@typescript-eslint/no-empty-object-type': 'off',
       'react/display-name': 'off',
       'import/no-unresolved': 'warn',
+      'import/no-extraneous-dependencies': 'warn',
+      '@typescript-eslint/array-type': 'off',
 
       /* -------------------------------------------------------------------------- */
       /*                                 / MY RULES                                 */
