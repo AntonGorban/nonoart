@@ -1,5 +1,7 @@
 import { useCallback, useMemo } from 'react';
 
+import { calcArtComplexity } from '@nono-art/utils';
+
 import { useAppSelector } from '../../hooks';
 
 import { selectors } from './myLevels.slice';
@@ -28,8 +30,7 @@ export const useMyLevelsSelectors = (): { [key in keyof typeof selectors]: Retur
         ...level,
         gridWidth: level.grid[0].length,
         gridHeight: level.grid.length,
-        // complexity: calcArtComplexity(level.grid),
-        complexity: 1,
+        complexity: calcArtComplexity(level.grid),
         createdAt: new Date(level.createdAt),
       })),
     [rawMyLevelList],

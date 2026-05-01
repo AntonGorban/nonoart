@@ -23,6 +23,7 @@
     "typecheck:watch": "yarn typecheck --watch"
   },
   "dependencies": {
+    "@nono-art/domain": "workspace:^",
     "uuid": "^13.0.0"
   },
   "devDependencies": {
