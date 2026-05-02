@@ -28,6 +28,7 @@ export const declOfNumDictionary = {
   ['год' as const]: decorateDeclOfNum(['год', 'года', 'лет']),
   ['действие' as const]: decorateDeclOfNum(['действие', 'действия', 'действий']),
   ['день' as const]: decorateDeclOfNum(['день', 'дня', 'дней']),
+  ['пара' as const]: decorateDeclOfNum(['пара', 'пары', 'пар']),
   ['диалог' as const]: decorateDeclOfNum(['диалог', 'диалога', 'диалогов']),
   ['достижение' as const]: decorateDeclOfNum(['достижение', 'достижения', 'достижений']),
   ['звезда' as const]: decorateDeclOfNum(['звезда', 'звезды', 'звёзд']),
