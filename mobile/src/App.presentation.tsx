@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import type React from 'react';
+import Toast from 'react-native-toast-message';
 
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { NavigationContainer } from '@react-navigation/native';
@@ -8,6 +9,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { UI } from '@nono-art/ui-mobile';
 
 import { ScreenHeader } from '@/components';
+import { toastConfig } from '@/constants';
 import {
   AsyncStorageScreen,
   ColorPaletteScreen,
@@ -151,6 +153,8 @@ export const AppPresentation: React.FC<Props> = () => {
           {/* -------------------------------------------------------------------------- */}
         </Stack.Navigator>
       </NavigationContainer>
+
+      <Toast config={toastConfig} autoHide avoidKeyboard swipeable type="info" position="top" />
     </>
   );
 };
