@@ -110,6 +110,7 @@ module.exports = defineConfig([
       'import/no-unresolved': 'warn',
       'import/no-extraneous-dependencies': 'warn',
       '@typescript-eslint/array-type': 'off',
+      'react-native/no-raw-text': 'off',
 
       /* -------------------------------------------------------------------------- */
       /*                                 / MY RULES                                 */

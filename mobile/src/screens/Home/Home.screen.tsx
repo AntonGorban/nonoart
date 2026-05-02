@@ -98,7 +98,7 @@ export const HomeScreen: React.FC<Props> = () => {
 
 const TAB_BAR_ICON_SIZE = 32;
 
-const TAB_NAVIGATOR_INITIAL_ROUTE_NAME: ComponentProps<typeof Tab.Navigator>['initialRouteName'] = 'Levels';
+const TAB_NAVIGATOR_INITIAL_ROUTE_NAME: ComponentProps<typeof Tab.Navigator>['initialRouteName'] = 'Account';
 
 const TAB_NAVIGATOR_SCREEN_OPTIONS: ComponentProps<typeof Tab.Navigator>['screenOptions'] = {
   tabBarStyle: {
