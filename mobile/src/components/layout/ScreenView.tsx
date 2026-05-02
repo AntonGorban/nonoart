@@ -1,6 +1,5 @@
 import type React from 'react';
-import { StyleSheet } from 'react-native';
-import { SafeAreaView, type SafeAreaViewProps } from 'react-native-safe-area-context';
+import { StyleSheet, View, type ViewProps } from 'react-native';
 
 import { UI } from '@nono-art/ui-mobile';
 
@@ -8,10 +7,16 @@ import { UI } from '@nono-art/ui-mobile';
 /*                                  COMPONENT                                 */
 /* -------------------------------------------------------------------------- */
 
+// export const ScreenView: React.FC<Props> = ({ children, style, centered = false, ...props }) => (
+//   <SafeAreaView {...props} style={[styles.wrap, centered && styles.centered, style]}>
+//     {children}
+//   </SafeAreaView>
+// );
+
 export const ScreenView: React.FC<Props> = ({ children, style, centered = false, ...props }) => (
-  <SafeAreaView {...props} style={[styles.wrap, centered && styles.centered, style]}>
+  <View {...props} style={[styles.wrap, centered && styles.centered, style]}>
     {children}
-  </SafeAreaView>
+  </View>
 );
 
 /* -------------------------------------------------------------------------- */
@@ -25,7 +30,8 @@ export const ScreenView: React.FC<Props> = ({ children, style, centered = false,
 const styles = StyleSheet.create({
   wrap: {
     flex: 1,
-    padding: 7,
+    padding: 8,
+    gap: 8,
     backgroundColor: UI.color.black500,
   },
   centered: {
@@ -42,7 +48,8 @@ const styles = StyleSheet.create({
 /*                                    TYPES                                   */
 /* -------------------------------------------------------------------------- */
 
-interface Props extends SafeAreaViewProps {
+// interface Props extends SafeAreaViewProps {
+interface Props extends ViewProps {
   readonly centered?: boolean;
   readonly children?: React.ReactNode;
 }
