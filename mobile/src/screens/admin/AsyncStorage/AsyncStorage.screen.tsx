@@ -1,7 +1,7 @@
 import Color from 'color';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { ScrollView, View } from 'react-native';
-import { ActivityIndicator, Divider, IconButton, List, ProgressBar, Text } from 'react-native-paper';
+import { ActivityIndicator, Button, Divider, List, ProgressBar, Text } from 'react-native-paper';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -64,13 +64,24 @@ export const AsyncStorageScreen: React.FC<Props> = () => {
       >
         <View style={{ alignItems: 'center' }}>
           <Text>
-            {data.length} {f.declOfNumDictionary['пара'](data.length)}
+            <Text>{isLoading ? <ActivityIndicator size={8} animating /> : f.number(data.length)}</Text>{' '}
+            <Text style={{ color: UI.color.greyWhite }}>{f.declOfNumDictionary['пара'](data.length)}</Text>
           </Text>
 
           <Text style={{ color: UI.color.grey }}>ключ-значение</Text>
         </View>
 
-        <IconButton onPress={refresh} icon="refresh" mode="contained" loading={isLoading} disabled={isLoading} />
+        <Button
+          onPress={refresh}
+          loading={isLoading}
+          disabled={isLoading}
+          rippleColor={UI.color.black300}
+          mode="outlined"
+          icon="refresh"
+          compact
+        >
+          Обновить
+        </Button>
       </View>
 
       <Divider />
