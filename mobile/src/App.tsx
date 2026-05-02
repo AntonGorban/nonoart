@@ -4,10 +4,11 @@ import { PaperProvider, Portal } from 'react-native-paper';
 import 'react-native-reanimated';
 import { Provider } from 'react-redux';
 
+import { ApiDictionaryProvider } from '@/components';
+import { theme } from '@/constants';
+import { store } from '@/store';
+
 import { AppPresentation } from './App.presentation';
-import { ApiDictionaryProvider } from './components/core/ApiDictionaryProvider';
-import { theme } from './constants';
-import { store } from './store';
 
 const BASE_URL = 'http://192.168.31.111:7000/api';
 const REFRESH_TOKEN_URL = 'user/refresh-token';

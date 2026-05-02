@@ -7,7 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import { UI } from '@nono-art/ui-mobile';
 
-import { useStoreSelectors } from '@/src/store';
+import { useStoreSelectors } from '@/store';
 
 /* -------------------------------------------------------------------------- */
 /*                                  COMPONENT                                 */

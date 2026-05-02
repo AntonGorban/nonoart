@@ -2,9 +2,7 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "jsx": "react-native",
-    "types": [
-      "react-native"
-    ],
+    "types": ["react-native"],
     "strict": true,
     "moduleResolution": "bundler",
     "incremental": true,
@@ -16,22 +14,16 @@
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
     "paths": {
-      "@/*": [
-        "./*"
-      ]
+      "@/components": ["./src/components"],
+      "@/constants": ["./src/constants"],
+      "@/hooks": ["./src/hooks"],
+      "@/screens": ["./src/screens"],
+      "@/store": ["./src/store"],
+      "@/*": ["./src/*"]
     }
   },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    ".expo",
-    "ios",
-    "android"
-  ],
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules", "dist", ".expo", "ios", "android"],
   "references": [
     {
       "path": "../libs/api"

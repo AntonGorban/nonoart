@@ -6,7 +6,7 @@ import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import { UI } from '@nono-art/ui-mobile';
 
-import { ScreenHeader } from '@/src/components';
+import { ScreenHeader } from '@/components';
 
 import { AccountScreen } from '../Account';
 import { LevelsScreen } from '../Levels';

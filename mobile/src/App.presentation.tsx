@@ -7,7 +7,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { UI } from '@nono-art/ui-mobile';
 
-import { ScreenHeader } from './components';
+import { ScreenHeader } from '@/components';
 import {
   AsyncStorageScreen,
   ColorPaletteScreen,
@@ -16,7 +16,7 @@ import {
   HomeScreen,
   type RootStackParamList,
   UsersScreen,
-} from './screens';
+} from '@/screens';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
