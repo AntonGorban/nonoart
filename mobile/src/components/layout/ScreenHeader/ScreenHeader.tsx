@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Appbar, Text } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -8,10 +8,6 @@ import { useNavigation } from '@react-navigation/native';
 import { UI } from '@nono-art/ui-mobile';
 
 import { useStoreSelectors } from '@/src/store';
-
-// import { UI } from '@nono-art/ui';
-
-// import { useStoreSelectors } from '../../store';
 
 /* -------------------------------------------------------------------------- */
 /*                                  COMPONENT                                 */
@@ -29,20 +25,17 @@ export const ScreenHeader = React.memo<Props>(({ title, icon, isBackButton = fal
   /* --------------------------------- RETURN --------------------------------- */
 
   return (
-    <Appbar
-      dark
-      mode="center-aligned"
-      style={{ shadowColor: UI.color.primary, elevation: 1, height: 85 }}
-      safeAreaInsets={{ top }}
-    >
+    <Appbar dark mode="center-aligned" style={styles.appBar} safeAreaInsets={{ top }}>
       {isBackButton && <Appbar.BackAction onPress={navigation.goBack} />}
 
       <Appbar.Content
         title={
-          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 7 }}>
+          <View style={styles.wrap}>
             {!!icon && icon}
 
-            <Text variant="titleLarge">{title || appHeaderTitle}</Text>
+            <Text variant="titleLarge" style={styles.title}>
+              {title || appHeaderTitle}
+            </Text>
           </View>
         }
       />
@@ -52,6 +45,31 @@ export const ScreenHeader = React.memo<Props>(({ title, icon, isBackButton = fal
 
 /* -------------------------------------------------------------------------- */
 /*                                 / COMPONENT                                */
+/* -------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------- */
+/*                                   STYLES                                   */
+/* -------------------------------------------------------------------------- */
+
+const styles = StyleSheet.create({
+  appBar: {
+    shadowColor: UI.color.primary,
+    elevation: 1,
+    height: 80,
+  },
+  wrap: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 7,
+  },
+  title: {
+    fontSize: 20,
+  },
+});
+
+/* -------------------------------------------------------------------------- */
+/*                                  / STYLES                                  */
 /* -------------------------------------------------------------------------- */
 
 /* -------------------------------------------------------------------------- */
