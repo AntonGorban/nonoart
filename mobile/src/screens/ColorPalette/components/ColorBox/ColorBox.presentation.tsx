@@ -8,8 +8,8 @@ import { UI } from '@nono-art/ui-mobile';
 /*                                  COMPONENT                                 */
 /* -------------------------------------------------------------------------- */
 
-export const ColorBoxPresentation = React.memo<Props>(({ color, colorIsDark, colorCode }) => (
-  <View style={[styles.box, { backgroundColor: color }]}>
+export const ColorBoxPresentation = React.memo<Props>(({ color, colorIsDark, colorCode, onTouchEnd }) => (
+  <View onTouchEnd={onTouchEnd} style={[styles.box, { backgroundColor: color }]}>
     <Text style={[styles.label, { color: colorIsDark ? UI.color.white1 : UI.color.black999 }]}>{colorCode}</Text>
   </View>
 ));
@@ -49,6 +49,7 @@ interface Props {
   readonly color: string;
   readonly colorIsDark: boolean;
   readonly colorCode: string;
+  readonly onTouchEnd: () => void;
 }
 
 /* -------------------------------------------------------------------------- */

@@ -1,5 +1,7 @@
+import * as Clipboard from 'expo-clipboard';
 import Color from 'color';
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
+import { Alert, Platform, ToastAndroid } from 'react-native';
 
 import { UI } from '@nono-art/ui-mobile';
 
@@ -19,7 +21,18 @@ export const ColorBox = React.memo<Props>(({ colorCode, viewFullColorCode = fals
     [colorCode, viewFullColorCode],
   );
 
-  return <ColorBoxPresentation color={color} colorIsDark={colorIsDark} colorCode={colorLabel} />;
+  const handlePress = useCallback(async () => {
+    await Clipboard.setStringAsync(color);
+    if (Platform.OS === 'android') {
+      ToastAndroid.show(`Скопировано: ${colorCode} (${color})`, ToastAndroid.SHORT);
+    } else {
+      Alert.alert('Скопировано', `${colorCode} (${color})`, [{ text: 'OK' }]);
+    }
+  }, [color, colorCode]);
+
+  return (
+    <ColorBoxPresentation color={color} colorIsDark={colorIsDark} colorCode={colorLabel} onTouchEnd={handlePress} />
+  );
 });
 
 /* -------------------------------------------------------------------------- */
