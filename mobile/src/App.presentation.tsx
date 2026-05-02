@@ -1,55 +1,24 @@
 import { StatusBar } from 'expo-status-bar';
 import type React from 'react';
-import { View } from 'react-native';
 
-import { FontAwesome, FontAwesome6, MaterialCommunityIcons } from '@expo/vector-icons';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { DAL } from '@nono-art/dal';
 import { UI } from '@nono-art/ui-mobile';
 
 import { ScreenHeader } from './components';
-
-export type RootStackParamList = {
-  /* ---------------------------------- home ---------------------------------- */
-
-  readonly Home: undefined;
-
-  readonly Levels: undefined;
-
-  readonly MyLevels: undefined;
-
-  readonly Account: undefined;
-
-  /* --------------------------------- / home --------------------------------- */
-
-  /* ---------------------------------- game ---------------------------------- */
-
-  readonly Game: { readonly levelId?: string };
-
-  readonly Designer: { readonly levelId: string };
-
-  /* --------------------------------- / game --------------------------------- */
-
-  /* ---------------------------------- utils --------------------------------- */
-
-  readonly ColorPalette: undefined;
-
-  readonly AsyncStorage: undefined;
-
-  /* --------------------------------- / utils -------------------------------- */
-
-  /* ---------------------------------- admin --------------------------------- */
-
-  readonly Users: undefined;
-
-  /* --------------------------------- / admin -------------------------------- */
-};
+import {
+  AsyncStorageScreen,
+  ColorPaletteScreen,
+  DesignerScreen,
+  GameScreen,
+  HomeScreen,
+  type RootStackParamList,
+  UsersScreen,
+} from './screens';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
-const Tab = createBottomTabNavigator<RootStackParamList>();
 
 /* -------------------------------------------------------------------------- */
 /*                                  COMPONENT                                 */
@@ -68,115 +37,7 @@ export const AppPresentation: React.FC<Props> = () => {
           {/*                                    HOME                                    */}
           {/* -------------------------------------------------------------------------- */}
 
-          {/* <Stack.Screen name="Home" component={HomeScreen} options={{ header: () => null }} /> */}
-
-          <Stack.Screen
-            name="Home"
-            component={() => (
-              <Tab.Navigator
-                initialRouteName="Levels"
-                screenOptions={{
-                  tabBarStyle: {
-                    backgroundColor: UI.color.black700,
-                    borderColor: UI.color.tealA400,
-                    height: 65,
-                  },
-                  tabBarActiveTintColor: UI.color.tealA400,
-                  tabBarInactiveTintColor: UI.color.grey700,
-                  tabBarIconStyle: {
-                    // backgroundColor: 'red',
-                    height: '100%',
-                    flex: 1,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  },
-                  tabBarLabelStyle: { fontSize: 0 },
-                }}
-              >
-                <Tab.Screen
-                  name="Levels"
-                  component={() => (
-                    <View>
-                      <UI.Hello>LevelsScreen</UI.Hello>
-                      <UI.Hello>LevelsScreen</UI.Hello>
-                      <UI.Hello>LevelsScreen</UI.Hello>
-                    </View>
-                  )}
-                  options={{
-                    header: () => (
-                      <ScreenHeader
-                        title="Уровни"
-                        icon={
-                          <>
-                            <MaterialCommunityIcons name="alert-circle-outline" size={14} color={UI.color.yellow300} />
-
-                            <FontAwesome6 name="puzzle-piece" size={18} color={UI.color.white} />
-                          </>
-                        }
-                      />
-                    ),
-                    tabBarIcon: ({ color }) => <FontAwesome6 name="puzzle-piece" size={30} color={color} />,
-                    tabBarLabel: '',
-                  }}
-                />
-
-                <Tab.Screen
-                  name="MyLevels"
-                  component={() => (
-                    <View>
-                      <UI.Hello>MyLevelsScreen</UI.Hello>
-                      <UI.Hello>MyLevelsScreen</UI.Hello>
-                      <UI.Hello>MyLevelsScreen</UI.Hello>
-                    </View>
-                  )}
-                  options={{
-                    header: () => (
-                      <ScreenHeader
-                        title="Мои уровни"
-                        icon={
-                          <>
-                            <MaterialCommunityIcons name="alert-circle-outline" size={14} color={UI.color.yellow300} />
-
-                            <FontAwesome name="paint-brush" size={18} color={UI.color.white} />
-                          </>
-                        }
-                      />
-                    ),
-                    tabBarIcon: ({ color }) => <FontAwesome name="paint-brush" size={30} color={color} />,
-                    tabBarLabel: '',
-                  }}
-                />
-
-                <Tab.Screen
-                  name="Account"
-                  component={() => (
-                    <View>
-                      <UI.Hello>AccountScreen</UI.Hello>
-                      <UI.Hello>AccountScreen</UI.Hello>
-                      <UI.Hello>AccountScreen</UI.Hello>
-                    </View>
-                  )}
-                  options={{
-                    header: () => (
-                      <ScreenHeader
-                        title="Аккаунт"
-                        icon={
-                          <>
-                            <MaterialCommunityIcons name="alert-circle-outline" size={14} color={UI.color.yellow300} />
-
-                            <FontAwesome6 name="user-large" size={18} color={UI.color.white} />
-                          </>
-                        }
-                      />
-                    ),
-                    tabBarIcon: ({ color }) => <FontAwesome6 name="user-large" size={30} color={color} />,
-                    tabBarLabel: '',
-                  }}
-                />
-              </Tab.Navigator>
-            )}
-            options={{ header: () => null }}
-          />
+          <Stack.Screen name="Home" component={HomeScreen} options={{ header: () => null }} />
 
           {/* -------------------------------------------------------------------------- */}
           {/*                                   / HOME                                   */}
@@ -186,7 +47,7 @@ export const AppPresentation: React.FC<Props> = () => {
           {/*                                    GAME                                    */}
           {/* -------------------------------------------------------------------------- */}
 
-          {/* <Stack.Screen
+          <Stack.Screen
             name="Game"
             component={GameScreen}
             initialParams={{ levelId: undefined }}
@@ -199,9 +60,9 @@ export const AppPresentation: React.FC<Props> = () => {
                 />
               ),
             }}
-          /> */}
+          />
 
-          {/* <Stack.Screen
+          <Stack.Screen
             name="Designer"
             component={DesignerScreen}
             options={{
@@ -213,7 +74,7 @@ export const AppPresentation: React.FC<Props> = () => {
                 />
               ),
             }}
-          /> */}
+          />
 
           {/* -------------------------------------------------------------------------- */}
           {/*                                   / GAME                                   */}
@@ -223,7 +84,7 @@ export const AppPresentation: React.FC<Props> = () => {
           {/*                                    UTILS                                   */}
           {/* -------------------------------------------------------------------------- */}
 
-          {/* <Stack.Screen
+          <Stack.Screen
             name="ColorPalette"
             component={ColorPaletteScreen}
             options={{
@@ -235,9 +96,9 @@ export const AppPresentation: React.FC<Props> = () => {
                 />
               ),
             }}
-          /> */}
+          />
 
-          {/* <Stack.Screen
+          <Stack.Screen
             name="AsyncStorage"
             component={AsyncStorageScreen}
             options={{
@@ -249,7 +110,7 @@ export const AppPresentation: React.FC<Props> = () => {
                 />
               ),
             }}
-          /> */}
+          />
 
           {/* -------------------------------------------------------------------------- */}
           {/*                                   / UTILS                                  */}
@@ -259,7 +120,7 @@ export const AppPresentation: React.FC<Props> = () => {
           {/*                                    ADMIN                                   */}
           {/* -------------------------------------------------------------------------- */}
 
-          {/* <Stack.Screen
+          <Stack.Screen
             name="Users"
             component={UsersScreen}
             options={{
@@ -277,7 +138,7 @@ export const AppPresentation: React.FC<Props> = () => {
                 />
               ),
             }}
-          /> */}
+          />
 
           {/* -------------------------------------------------------------------------- */}
           {/*                                   / ADMIN                                  */}
