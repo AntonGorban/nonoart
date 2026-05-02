@@ -13,8 +13,17 @@ import { UI } from '@nono-art/ui-mobile';
 //   </SafeAreaView>
 // );
 
-export const ScreenView: React.FC<Props> = ({ children, style, centered = false, ...props }) => (
-  <View {...props} style={[styles.wrap, centered && styles.centered, style]}>
+export const ScreenView: React.FC<Props> = ({ children, padding, gap, style, centered = false, ...props }) => (
+  <View
+    {...props}
+    style={[
+      styles.wrap,
+      centered && styles.centered,
+      padding !== undefined ? { padding } : styles.padding,
+      gap !== undefined ? { gap } : styles.gap,
+      style,
+    ]}
+  >
     {children}
   </View>
 );
@@ -30,13 +39,17 @@ export const ScreenView: React.FC<Props> = ({ children, style, centered = false,
 const styles = StyleSheet.create({
   wrap: {
     flex: 1,
-    padding: 8,
-    gap: 8,
     backgroundColor: UI.color.black500,
   },
   centered: {
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  padding: {
+    padding: 8,
+  },
+  gap: {
+    gap: 8,
   },
 });
 
@@ -51,6 +64,8 @@ const styles = StyleSheet.create({
 // interface Props extends SafeAreaViewProps {
 interface Props extends ViewProps {
   readonly centered?: boolean;
+  readonly padding?: number;
+  readonly gap?: number;
   readonly children?: React.ReactNode;
 }
 
