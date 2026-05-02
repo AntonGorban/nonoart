@@ -32,7 +32,13 @@ export const AppPresentation: React.FC<Props> = () => {
       <StatusBar style="light" backgroundColor={UI.color.black700} translucent={false} />
 
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
+        <Stack.Navigator
+          initialRouteName="Home"
+          screenOptions={{
+            contentStyle: { backgroundColor: UI.color.black500 },
+            animation: 'none',
+          }}
+        >
           {/* -------------------------------------------------------------------------- */}
           {/*                                    HOME                                    */}
           {/* -------------------------------------------------------------------------- */}

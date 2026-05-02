@@ -113,6 +113,8 @@ const TAB_NAVIGATOR_SCREEN_OPTIONS: ComponentProps<typeof Tab.Navigator>['screen
     width: '100%',
   },
   tabBarLabelStyle: { fontSize: 0 },
+  animation: 'none',
+  sceneStyle: { backgroundColor: UI.color.black500 },
 };
 
 /* -------------------------------------------------------------------------- */
