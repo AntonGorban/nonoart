@@ -1,21 +1,17 @@
 import { useCallback, useMemo } from 'react';
 
-import { calcArtComplexity } from '@nono-art/utils';
+import { calcArtComplexity, calcGridHeight, calcGridWidth } from '@nono-art/utils';
 
 import { useAppSelector } from '../../hooks';
 
-import { selectors } from './myLevels.slice';
-import type { MyLevel } from './myLevels.state';
+import { selectors, type Selectors } from './myLevels.slice';
+import type { MyLevel, MyLevelList } from './myLevels.state';
 
 /* -------------------------------------------------------------------------- */
 /*                                    HOOK                                    */
 /* -------------------------------------------------------------------------- */
 
-export const useMyLevelsSelectors = (): { [key in keyof typeof selectors]: ReturnType<(typeof selectors)[key]> } & {
-  readonly myLevelList: MyLevelList;
-  readonly getMyLevelById: GetMyLevelById;
-  readonly getMyLevelByIdx: GetMyLevelByIdx;
-} => {
+export const useMyLevelsSelectors = (): MyLevelsSelectors => {
   /* -------------------------------- selectors ------------------------------- */
 
   const rawMyLevelList = useAppSelector(selectors.rawMyLevelList);
@@ -28,8 +24,8 @@ export const useMyLevelsSelectors = (): { [key in keyof typeof selectors]: Retur
     () =>
       rawMyLevelList.map((level) => ({
         ...level,
-        gridWidth: level.grid[0].length,
-        gridHeight: level.grid.length,
+        gridWidth: calcGridWidth(level.grid),
+        gridHeight: calcGridHeight(level.grid),
         complexity: calcArtComplexity(level.grid),
         createdAt: new Date(level.createdAt),
       })),
@@ -63,9 +59,16 @@ export const useMyLevelsSelectors = (): { [key in keyof typeof selectors]: Retur
 /*                                    TYPES                                   */
 /* -------------------------------------------------------------------------- */
 
-type MyLevelList = ReadonlyArray<MyLevel>;
-type GetMyLevelById = (id: string) => MyLevel | null;
-type GetMyLevelByIdx = (idx: number) => MyLevel | null;
+export interface MyLevelsSelectors extends Selectors {
+  readonly myLevelList: MyLevelList;
+  readonly getMyLevelById: GetMyLevelById;
+  readonly getMyLevelByIdx: GetMyLevelByIdx;
+}
+
+/* -------------------------------------------------------------------------- */
+
+export type GetMyLevelById = (id: string) => MyLevel | null;
+export type GetMyLevelByIdx = (idx: number) => MyLevel | null;
 
 /* -------------------------------------------------------------------------- */
 /*                                   / TYPES                                  */

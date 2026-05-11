@@ -1,4 +1,4 @@
-import type { D } from '@nono-art/domain';
+import { D } from '@nono-art/domain';
 import type { ProtoExtends } from '@nono-art/types';
 import { uuidV4 } from '@nono-art/utils';
 
@@ -10,10 +10,11 @@ export const initialState: State = [
   {
     id: uuidV4(),
     name: 'Сердечко',
-    likes: 65,
-    dislikes: 4,
-    status: 'done',
-    createdAt: '2024-08-03T11:35:41.265Z',
+    description: 'Сердечко',
+    likesCount: 65,
+    dislikesCount: 4,
+    status: D.Level.Status.done,
+    createdAt: 1722684941265,
     colors: ['#000a12', '#ff1744', '#ffab00'],
     grid: [
       [null, 0, 0, 0, null, null, 0, 0, 0, null],
@@ -31,10 +32,11 @@ export const initialState: State = [
   {
     id: uuidV4(),
     name: 'Яблочко',
-    likes: 20,
-    dislikes: 13,
-    status: 'done',
-    createdAt: '2024-08-04T11:35:41.265Z',
+    description: 'Яблочко',
+    likesCount: 20,
+    dislikesCount: 13,
+    status: D.Level.Status.done,
+    createdAt: 1722771341265,
     colors: ['#fe4445', '#201a1c', '#4e7851'],
     grid: [
       [null, null, null, null, null, null, null, 2, null, null, null, null],
@@ -56,10 +58,11 @@ export const initialState: State = [
   {
     id: uuidV4(),
     name: 'Кошара',
-    likes: 34,
-    dislikes: 9,
-    status: 'done',
-    createdAt: '2024-08-04T11:35:41.265Z',
+    description: 'Кошара',
+    likesCount: 34,
+    dislikesCount: 9,
+    status: D.Level.Status.done,
+    createdAt: 1722771341265,
     colors: ['#a1887f', '#1b1b1b', '#ff9777'],
     grid: [
       [0, 0, 0, null, null, null, null, 0, 0, 0],
@@ -77,10 +80,11 @@ export const initialState: State = [
   {
     id: uuidV4(),
     name: 'Помидорчик',
-    likes: 33,
-    dislikes: 12,
-    status: 'done',
-    createdAt: '2024-08-06T11:35:41.265Z',
+    description: 'Помидорчик',
+    likesCount: 33,
+    dislikesCount: 12,
+    status: D.Level.Status.done,
+    createdAt: 1722944141265,
     colors: ['#1b1b1b', '#dd2c00', '#2c9846'],
     grid: [
       [null, null, null, null, null, null, null, 0, 0, null, null, null, null, null, null, null],
@@ -104,10 +108,11 @@ export const initialState: State = [
   {
     id: uuidV4(),
     name: 'Лягушка',
-    likes: 72,
-    dislikes: 14,
-    status: 'updated',
-    createdAt: '2024-10-24T11:35:41.265Z',
+    description: 'Лягушка',
+    likesCount: 72,
+    dislikesCount: 14,
+    status: D.Level.Status.updated,
+    createdAt: 1729774541265,
     colors: ['#000000', '#009F00', '#F5CE3C'],
     grid: [
       [null, 0, 0, 0, 0, null, null, null, null, null, 0, 0, 0, 0, null],
@@ -131,10 +136,11 @@ export const initialState: State = [
   {
     id: uuidV4(),
     name: 'Кактус',
-    likes: null,
-    dislikes: null,
-    status: 'new',
-    createdAt: '2024-11-17T11:35:41.265Z',
+    description: 'Кактус',
+    likesCount: null,
+    dislikesCount: null,
+    status: D.Level.Status.new,
+    createdAt: 1731843341265,
     colors: ['#000000', '#FA3F16', '#56AF61'],
     grid: [
       [null, null, null, null, null, null, 0, 0, 0, 0, null, null, null, null, null, null],
@@ -167,30 +173,35 @@ export const initialState: State = [
 
 export type State = StoreMyLevelList;
 
-export type StoreMyLevelList = ReadonlyArray<StoreMyLevel>;
-
-export interface StoreMyLevel {
-  readonly id: string;
-  readonly name: string;
-  readonly grid: D.Level.Grid;
-  readonly colors: D.Level.Colors;
-  readonly likes: number | null;
-  readonly dislikes: number | null;
-  readonly status: 'new' | 'done' | 'updated';
-  readonly createdAt: string;
-}
+/* -------------------------------------------------------------------------- */
 
 export type MyLevelList = ReadonlyArray<MyLevel>;
 
 export interface MyLevel extends ProtoExtends<
   StoreMyLevel,
   {
-    readonly createdAt: Date;
+    readonly createdAt: D.Level.CreatedAt;
   }
 > {
   readonly gridWidth: number;
   readonly gridHeight: number;
   readonly complexity: number;
+}
+
+/* -------------------------------------------------------------------------- */
+
+export type StoreMyLevelList = ReadonlyArray<StoreMyLevel>;
+
+export interface StoreMyLevel {
+  readonly id: D.Level.Id;
+  readonly name: D.Level.Name;
+  readonly description: D.Level.Description;
+  readonly status: D.Level.Status;
+  readonly colors: D.Level.Colors;
+  readonly grid: D.Level.Grid;
+  readonly likesCount: D.Level.LikesCount | null;
+  readonly dislikesCount: D.Level.DislikesCount | null;
+  readonly createdAt: D.Level.SerializedCreatedAt;
 }
 
 /* -------------------------------------------------------------------------- */

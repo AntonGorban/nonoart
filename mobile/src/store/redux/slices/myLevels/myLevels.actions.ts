@@ -2,15 +2,13 @@ import { useCallback } from 'react';
 
 import type { useAppDispatch } from '../../hooks';
 
-import { actions } from './myLevels.slice';
+import { type Action, actions } from './myLevels.slice';
 
 /* -------------------------------------------------------------------------- */
 /*                                    HOOK                                    */
 /* -------------------------------------------------------------------------- */
 
-export const useMyLevelsActions = (
-  d: ReturnType<typeof useAppDispatch>,
-): { [key in keyof typeof actions]: Action<key> } => {
+export const useMyLevelsActions = (d: ReturnType<typeof useAppDispatch>): MyLevelsActions => {
   /* --------------------------------- actions -------------------------------- */
 
   const createMyLevel = useCallback<Action<'createMyLevel'>>(
@@ -35,7 +33,7 @@ export const useMyLevelsActions = (
 /*                                    TYPES                                   */
 /* -------------------------------------------------------------------------- */
 
-type Action<T extends keyof typeof actions> = (...args: Parameters<(typeof actions)[T]>) => void;
+export type MyLevelsActions = { [key in keyof typeof actions]: Action<key> };
 
 /* -------------------------------------------------------------------------- */
 /*                                   / TYPES                                  */
