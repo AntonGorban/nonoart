@@ -1,6 +1,6 @@
 import { StyleSheet, View, type ViewProps } from 'react-native';
 
-import { UI } from '@nono-art/ui-mobile';
+import { color } from '../../colors';
 
 /* -------------------------------------------------------------------------- */
 /*                                  COMPONENT                                 */
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     width: '98%',
   },
   color: {
-    backgroundColor: UI.color.grey800,
+    backgroundColor: color.grey800,
   },
   margin: {
     marginVertical: 7,

@@ -6,7 +6,6 @@ import { TouchableRipple } from 'react-native-paper';
 import { D } from '@nono-art/domain';
 import { UI } from '@nono-art/ui-mobile';
 
-import { Divider } from '@/components';
 import type { Level } from '@/store';
 
 import { ArtIcon } from '../ArtIcon';
@@ -41,7 +40,7 @@ export const LevelPresentation = React.memo<Props>(({ level, navToGame }) => (
           <LevelComplexity gridWidth={level.gridWidth} gridHeight={level.gridHeight} complexity={level.complexity} />
         </View>
 
-        <Divider margin={0} />
+        <UI.Layout.Divider margin={0} />
 
         <View style={styles.footerSectionWrap}>
           <LevelSocial likesCount={level.likesCount} dislikesCount={level.dislikesCount} />

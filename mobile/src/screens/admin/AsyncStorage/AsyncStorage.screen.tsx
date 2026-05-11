@@ -1,7 +1,7 @@
 import Color from 'color';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { ScrollView, View } from 'react-native';
-import { ActivityIndicator, Button, Divider, List, ProgressBar, Text } from 'react-native-paper';
+import { ActivityIndicator, Button, List, ProgressBar, Text } from 'react-native-paper';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -84,7 +84,7 @@ export const AsyncStorageScreen: React.FC<Props> = () => {
         </Button>
       </View>
 
-      <Divider />
+      <UI.Layout.Divider />
 
       <ScrollView style={{ width: '100%' }}>
         <List.Section>

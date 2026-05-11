@@ -6,7 +6,7 @@ import { AntDesign } from '@expo/vector-icons';
 
 import { UI } from '@nono-art/ui-mobile';
 
-import { Divider, ScreenView } from '@/components';
+import { ScreenView } from '@/components';
 
 /* -------------------------------------------------------------------------- */
 /*                                  COMPONENT                                 */
@@ -14,7 +14,7 @@ import { Divider, ScreenView } from '@/components';
 
 export const LevelNotFoundPlugPresentation = React.memo<Props>(() => (
   <ScreenView centered gap={16}>
-    <Divider />
+    <UI.Layout.Divider />
 
     <AntDesign name="file-unknown" size={150} color={UI.color.greyWhite} />
 
@@ -22,7 +22,7 @@ export const LevelNotFoundPlugPresentation = React.memo<Props>(() => (
       Уровень не найден
     </Text>
 
-    <Divider />
+    <UI.Layout.Divider />
   </ScreenView>
 ));
 

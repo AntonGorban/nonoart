@@ -10,7 +10,7 @@ import { useIsLoadingFlag } from '@nono-art/hooks';
 import { UI } from '@nono-art/ui-mobile';
 import { f } from '@nono-art/utils';
 
-import { Divider, ScreenView } from '@/components';
+import { ScreenView } from '@/components';
 import type { RootStackParamList } from '@/screens';
 
 /* -------------------------------------------------------------------------- */
@@ -86,7 +86,7 @@ export const UsersScreen: React.FC<Props> = () => {
           </Button>
         </View>
 
-        <Divider margin={0} />
+        <UI.Layout.Divider margin={0} />
       </View>
 
       {!totalIsLoading && !userList && !!error && <HelperText type="error">{error}</HelperText>}

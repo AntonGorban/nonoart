@@ -2,7 +2,9 @@ import React, { useCallback } from 'react';
 
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-import { Divider, ScreenView } from '@/components';
+import { UI } from '@nono-art/ui-mobile';
+
+import { ScreenView } from '@/components';
 
 import type { RootStackParamList } from '../routes';
 
@@ -50,7 +52,7 @@ export const AccountScreen: React.FC<Props> = ({ navigation }) => {
         <SignForm loginRequest={login} registrationRequest={registration} />
       )} */}
 
-      <Divider />
+      <UI.Layout.Divider />
 
       <LinksSection
         isAuth={isAuth}
