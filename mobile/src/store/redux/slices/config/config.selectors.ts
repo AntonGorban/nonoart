@@ -1,12 +1,12 @@
 import { useAppSelector } from '../../hooks';
 
-import { selectors } from './config.slice';
+import { selectors, type Selectors } from './config.slice';
 
 /* -------------------------------------------------------------------------- */
 /*                                    HOOK                                    */
 /* -------------------------------------------------------------------------- */
 
-export const useConfigSelectors = (): { [key in keyof typeof selectors]: ReturnType<(typeof selectors)[key]> } => {
+export const useConfigSelectors = (): ConfigSelectors => {
   /* -------------------------------- selectors ------------------------------- */
 
   const appHeaderTitle = useAppSelector(selectors.appHeaderTitle);
@@ -28,4 +28,14 @@ export const useConfigSelectors = (): { [key in keyof typeof selectors]: ReturnT
 
 /* -------------------------------------------------------------------------- */
 /*                                   / HOOK                                   */
+/* -------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------- */
+/*                                    TYPES                                   */
+/* -------------------------------------------------------------------------- */
+
+export interface ConfigSelectors extends Selectors {}
+
+/* -------------------------------------------------------------------------- */
+/*                                   / TYPES                                  */
 /* -------------------------------------------------------------------------- */

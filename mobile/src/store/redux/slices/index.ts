@@ -1,4 +1,11 @@
-export * from './config';
+export {
+  type ConfigActions,
+  type ConfigSelectors,
+  type ConfigState,
+  config,
+  useConfigActions,
+  useConfigSelectors,
+} from './config';
 export {
   type GetLevelById,
   type GetLevelByIdx,
