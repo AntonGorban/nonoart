@@ -13,17 +13,21 @@ import { UI } from '@nono-art/ui-mobile';
 
 export const LevelSocial = React.memo<Props>(({ likesCount, dislikesCount }) => (
   <View style={styles.wrap}>
-    <View style={styles.socialWrap}>
-      <Text>{likesCount}</Text>
+    {likesCount !== null && (
+      <View style={styles.socialWrap}>
+        <Text>{likesCount}</Text>
 
-      <AntDesign name="like" size={12} color={UI.color.greyWhite} />
-    </View>
+        <AntDesign name="like" size={12} color={UI.color.greyWhite} />
+      </View>
+    )}
 
-    <View style={styles.socialWrap}>
-      <Text>{dislikesCount}</Text>
+    {dislikesCount !== null && (
+      <View style={styles.socialWrap}>
+        <Text>{dislikesCount}</Text>
 
-      <AntDesign name="dislike" size={12} color={UI.color.greyWhite} />
-    </View>
+        <AntDesign name="dislike" size={12} color={UI.color.greyWhite} />
+      </View>
+    )}
   </View>
 ));
 
@@ -57,8 +61,8 @@ const styles = StyleSheet.create({
 /* -------------------------------------------------------------------------- */
 
 interface Props {
-  readonly likesCount: D.Level.LikesCount;
-  readonly dislikesCount: D.Level.DislikesCount;
+  readonly likesCount: D.Level.LikesCount | null;
+  readonly dislikesCount: D.Level.DislikesCount | null;
 }
 
 /* -------------------------------------------------------------------------- */

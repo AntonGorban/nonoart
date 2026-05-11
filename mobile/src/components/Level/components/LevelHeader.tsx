@@ -6,15 +6,20 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { D } from '@nono-art/domain';
 import { UI } from '@nono-art/ui-mobile';
+import { f } from '@nono-art/utils';
 
 /* -------------------------------------------------------------------------- */
 /*                                  COMPONENT                                 */
 /* -------------------------------------------------------------------------- */
 
-export const LevelHeader = React.memo<Props>(({ name, authorName, status }) => (
+export const LevelHeader = React.memo<Props>(({ name, authorName, createdAt, status }) => (
   <View style={styles.wrap}>
     <View style={styles.nameWrap}>
       {status === D.Level.Status.new && <MaterialCommunityIcons name="new-box" size={18} color={UI.color.secondary} />}
+
+      {status === D.Level.Status.updated && (
+        <MaterialCommunityIcons name="update" size={18} color={UI.color.yellowA400} />
+      )}
 
       {status === D.Level.Status.progress && (
         <MaterialCommunityIcons name="progress-question" size={18} color={UI.color.yellowA400} />
@@ -27,9 +32,17 @@ export const LevelHeader = React.memo<Props>(({ name, authorName, status }) => (
       <Text variant="labelLarge">{name}</Text>
     </View>
 
-    <Text variant="labelSmall" style={styles.authorWrap}>
-      @{authorName}
-    </Text>
+    {!!authorName && (
+      <Text variant="labelSmall" style={styles.authorWrap}>
+        @{authorName}
+      </Text>
+    )}
+
+    {!!createdAt && (
+      <Text variant="labelSmall" style={styles.authorWrap}>
+        {f.date(createdAt)}
+      </Text>
+    )}
   </View>
 ));
 
@@ -67,7 +80,8 @@ const styles = StyleSheet.create({
 
 interface Props {
   readonly name: D.Level.Name;
-  readonly authorName: D.Level.AuthorName;
+  readonly authorName?: D.Level.AuthorName;
+  readonly createdAt?: D.Level.CreatedAt;
   readonly status: D.Level.Status;
 }
 

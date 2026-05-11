@@ -15,6 +15,7 @@ export const LevelPresentation = React.memo<Props>(
   ({
     name,
     authorName,
+    createdAt,
     colors,
     status,
     grid,
@@ -37,7 +38,7 @@ export const LevelPresentation = React.memo<Props>(
 
         <View style={styles.contentWrap}>
           <View style={styles.HeaderSectionWrap}>
-            <LevelHeader name={name} authorName={authorName} status={status} />
+            <LevelHeader name={name} authorName={authorName} createdAt={createdAt} status={status} />
 
             <LevelComplexity gridWidth={gridWidth} gridHeight={gridHeight} complexity={complexity} />
           </View>

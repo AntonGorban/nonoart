@@ -17,7 +17,7 @@ export type RootStackParamList = {
 
   readonly Game: { readonly levelId: D.Level.Id };
 
-  readonly Designer: { readonly levelId: D.Level.Id };
+  readonly Designer: { readonly myLevelId: D.Level.Id };
 
   /* --------------------------------- / game --------------------------------- */
 
