@@ -1,7 +1,8 @@
 import type React from 'react';
 import type { ComponentProps } from 'react';
 import { StyleSheet, type ViewStyle } from 'react-native';
-import Animated, { useAnimatedRef } from 'react-native-reanimated';
+
+// import Animated, { useAnimatedRef } from 'react-native-reanimated';
 
 import { ScreenView } from './ScreenView';
 
@@ -9,6 +10,7 @@ import { ScreenView } from './ScreenView';
 /*                                  COMPONENT                                 */
 /* -------------------------------------------------------------------------- */
 
+/** @deprecated */
 export const ScrollViewScreen: React.FC<Props> = ({
   children,
   contentContainerStyle,
@@ -16,19 +18,19 @@ export const ScrollViewScreen: React.FC<Props> = ({
   showsVerticalScrollIndicator = false,
   ...props
 }) => {
-  const scrollRef = useAnimatedRef<Animated.ScrollView>();
+  // const scrollRef = useAnimatedRef<Animated.ScrollView>();
 
   return (
     <ScreenView {...props}>
-      <Animated.ScrollView
+      {/* <Animated.ScrollView
         ref={scrollRef}
         style={styles.container}
         contentContainerStyle={[styles.content, contentContainerStyle]}
         showsVerticalScrollIndicator={showsVerticalScrollIndicator}
         scrollEventThrottle={scrollEventThrottle}
-      >
-        {children}
-      </Animated.ScrollView>
+      > */}
+      {children}
+      {/* </Animated.ScrollView> */}
     </ScreenView>
   );
 };

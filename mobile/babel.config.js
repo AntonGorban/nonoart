@@ -19,7 +19,7 @@ module.exports = function (api) {
         },
       ],
       // Если используете react-native-reanimated
-      'react-native-reanimated/plugin',
+      // 'react-native-reanimated/plugin',
     ],
   };
 };

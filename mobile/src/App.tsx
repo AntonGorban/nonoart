@@ -1,7 +1,7 @@
 import type React from 'react';
 import 'react-native-get-random-values';
 import { PaperProvider, Portal } from 'react-native-paper';
-import 'react-native-reanimated';
+// import 'react-native-reanimated';
 import { Provider } from 'react-redux';
 
 import { ApiDictionaryProvider } from '@/components';
