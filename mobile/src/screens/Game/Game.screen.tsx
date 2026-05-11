@@ -4,11 +4,11 @@ import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import { useIsLoadingFlag } from '@nono-art/hooks';
 
+import { LevelLoadingPlug, LevelNotFoundPlug } from '@/components';
 import { type Level, useStoreSelectors } from '@/store';
 
 import type { RootStackParamList } from '../routes';
 
-import { LevelLoadingPlug, LevelNotFoundPlug } from './components';
 import { Game } from './Game';
 
 /* -------------------------------------------------------------------------- */

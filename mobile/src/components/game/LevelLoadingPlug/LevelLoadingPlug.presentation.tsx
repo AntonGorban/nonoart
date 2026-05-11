@@ -1,24 +1,19 @@
-import React, { useLayoutEffect } from 'react';
+import React from 'react';
+import { ActivityIndicator } from 'react-native-paper';
 
-import { useStoreActions } from '@/store';
+import { UI } from '@nono-art/ui-mobile';
 
-import { LevelLoadingPlugPresentation } from './LevelLoadingPlug.presentation';
+import { ScreenView } from '../../layout';
 
 /* -------------------------------------------------------------------------- */
 /*                                  COMPONENT                                 */
 /* -------------------------------------------------------------------------- */
 
-export const LevelLoadingPlug = React.memo<Props>(() => {
-  const {
-    config: { setAppHeaderTitle },
-  } = useStoreActions();
-
-  useLayoutEffect(() => {
-    setAppHeaderTitle('Загрузка уровня...');
-  }, [setAppHeaderTitle]);
-
-  return <LevelLoadingPlugPresentation />;
-});
+export const LevelLoadingPlugPresentation = React.memo<Props>(() => (
+  <ScreenView centered>
+    <ActivityIndicator animating size="large" color={UI.color.primary} />
+  </ScreenView>
+));
 
 /* -------------------------------------------------------------------------- */
 /*                                 / COMPONENT                                */

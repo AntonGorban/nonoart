@@ -3,10 +3,8 @@ import React, { useLayoutEffect, useMemo } from 'react';
 import { D } from '@nono-art/domain';
 import { useEnumFlag } from '@nono-art/hooks';
 
-import { Grid, ScreenView } from '@/components';
+import { ColorsSection, Grid, ScreenView } from '@/components';
 import { type Level, useStoreActions } from '@/store';
-
-import { ColorsSection } from './components';
 
 /* -------------------------------------------------------------------------- */
 /*                                  COMPONENT                                 */
