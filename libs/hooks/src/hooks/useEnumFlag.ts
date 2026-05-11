@@ -1,16 +1,15 @@
-import { useFlag } from './useFlag';
+import { useCallback, useState } from 'react';
 
 /* -------------------------------------------------------------------------- */
 /*                                    HOOK                                    */
 /* -------------------------------------------------------------------------- */
 
-export const useIsLoadingFlag = (defaultIsLoading: boolean = false) => {
-  const [
-    isLoading,
-    { set: setIsLoading, enable: enableIsLoading, disable: disableIsLoading, toggle: toggleIsLoading },
-  ] = useFlag(defaultIsLoading);
+export const useEnumFlag = <T>(initValue: T): [value: T, setValue: (flag: T) => void] => {
+  const [flag, setFlag] = useState<T>(initValue);
 
-  return { isLoading, enableIsLoading, disableIsLoading, toggleIsLoading, setIsLoading };
+  const setValue = useCallback((value: T) => setFlag(value), []);
+
+  return [flag, setValue];
 };
 
 /* -------------------------------------------------------------------------- */
