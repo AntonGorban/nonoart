@@ -1,27 +1,34 @@
-import { useCallback } from 'react';
+import React, { type ComponentProps, useCallback } from 'react';
 
-import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useStoreActions, useStoreSelectors } from '@/store';
 
-import type { RootStackParamList } from '../routes';
-
-import { Levels } from './Levels';
+import { LevelsPresentation } from './Levels.presentation';
 
 /* -------------------------------------------------------------------------- */
 /*                                  COMPONENT                                 */
 /* -------------------------------------------------------------------------- */
 
-export const LevelsScreen: React.FC<Props> = ({ navigation }) => {
-  const navToGame = useCallback(
+export const Levels = React.memo<Props>(({ navToGame }) => {
+  const {
+    levels: { levelList },
+  } = useStoreSelectors();
+
+  const {
+    config: { setAppHeaderTitle },
+  } = useStoreActions();
+
+  const navToGameHandler = useCallback(
     (levelId: string) => {
-      navigation.push('Game', { levelId });
+      setAppHeaderTitle('загрузка уровня...');
+      navToGame(levelId);
     },
-    [navigation],
+    [navToGame, setAppHeaderTitle],
   );
 
   /* --------------------------------- RETURN --------------------------------- */
 
-  return <Levels navToGame={navToGame} />;
-};
+  return <LevelsPresentation levelList={levelList} navToGame={navToGameHandler} />;
+});
 
 /* -------------------------------------------------------------------------- */
 /*                                 / COMPONENT                                */
@@ -31,7 +38,9 @@ export const LevelsScreen: React.FC<Props> = ({ navigation }) => {
 /*                                    TYPES                                   */
 /* -------------------------------------------------------------------------- */
 
-interface Props extends NativeStackScreenProps<RootStackParamList, 'Levels'> {}
+type LevelsPresentationProps = ComponentProps<typeof LevelsPresentation>;
+
+interface Props extends Omit<LevelsPresentationProps, 'levelList'> {}
 
 /* -------------------------------------------------------------------------- */
 /*                                   / TYPES                                  */

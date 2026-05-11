@@ -1,27 +1,18 @@
-import { useCallback } from 'react';
+import React, { type ComponentProps, useCallback } from 'react';
 
-import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-
-import type { RootStackParamList } from '../routes';
-
-import { Levels } from './Levels';
+import { LevelPresentation } from './Level.presentation';
 
 /* -------------------------------------------------------------------------- */
 /*                                  COMPONENT                                 */
 /* -------------------------------------------------------------------------- */
 
-export const LevelsScreen: React.FC<Props> = ({ navigation }) => {
-  const navToGame = useCallback(
-    (levelId: string) => {
-      navigation.push('Game', { levelId });
-    },
-    [navigation],
-  );
+export const Level = React.memo<Props>(({ level, navToGame, ...props }) => {
+  const navToGameHandler = useCallback(() => navToGame(level.id), [navToGame, level.id]);
 
   /* --------------------------------- RETURN --------------------------------- */
 
-  return <Levels navToGame={navToGame} />;
-};
+  return <LevelPresentation {...props} level={level} navToGame={navToGameHandler} />;
+});
 
 /* -------------------------------------------------------------------------- */
 /*                                 / COMPONENT                                */
@@ -31,7 +22,13 @@ export const LevelsScreen: React.FC<Props> = ({ navigation }) => {
 /*                                    TYPES                                   */
 /* -------------------------------------------------------------------------- */
 
-interface Props extends NativeStackScreenProps<RootStackParamList, 'Levels'> {}
+type LevelPresentationProps = ComponentProps<typeof LevelPresentation>;
+
+/* -------------------------------------------------------------------------- */
+
+interface Props extends Omit<LevelPresentationProps, 'navToGame'> {
+  readonly navToGame: (id: string) => void;
+}
 
 /* -------------------------------------------------------------------------- */
 /*                                   / TYPES                                  */
