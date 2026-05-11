@@ -5,23 +5,39 @@ export namespace Level {
   export type Id = UUID;
 
   export type Name = string;
-
   export type Description = string;
 
   export type Color = string;
-
   export type Colors = readonly [Color, Color, Color];
 
   export type Cell = 0 | 1 | 2 | null;
-
   export type Grid = ReadonlyArray<ReadonlyArray<Cell>>;
+  export type Progress = Grid;
+
+  export type Complexity = number;
+  export type GridWidth = number;
+  export type GridHeight = number;
 
   export type AuthorID = User.Id;
   export type Author = User;
+  export type AuthorName = User.Login;
+
+  export type LikesCount = number;
+  export type DislikesCount = number;
+
+  export enum Status {
+    'new' = 'NEW',
+    'progress' = 'PROGRESS',
+    'done' = 'DONE',
+    'updated' = 'UPDATED',
+  }
 
   export type CreatedAt = Date;
+  export type SerializedCreatedAt = number;
   export type UpdatedAt = Date;
+  export type SerializedUpdatedAt = number;
   export type DeletedAt = Date | null;
+  export type SerializedDeletedAt = number | null;
 }
 
 /* -------------------------------------------------------------------------- */
