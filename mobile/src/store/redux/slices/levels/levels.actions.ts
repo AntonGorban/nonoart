@@ -1,14 +1,12 @@
 import type { useAppDispatch } from '../../hooks';
 
-import type { actions } from './levels.slice';
+import type { Action, actions } from './levels.slice';
 
 /* -------------------------------------------------------------------------- */
 /*                                    HOOK                                    */
 /* -------------------------------------------------------------------------- */
 
-export const useLevelsActions = (
-  d: ReturnType<typeof useAppDispatch>,
-): { [key in keyof typeof actions]: Action<key> } => {
+export const useLevelsActions = (d: ReturnType<typeof useAppDispatch>): LevelsActions => {
   /* --------------------------------- actions -------------------------------- */
 
   /* -------------------------------- / actions ------------------------------- */
@@ -26,7 +24,7 @@ export const useLevelsActions = (
 /*                                    TYPES                                   */
 /* -------------------------------------------------------------------------- */
 
-type Action<T extends keyof typeof actions> = (...args: Parameters<(typeof actions)[T]>) => void;
+export type LevelsActions = { [key in keyof typeof actions]: Action<key> };
 
 /* -------------------------------------------------------------------------- */
 /*                                   / TYPES                                  */

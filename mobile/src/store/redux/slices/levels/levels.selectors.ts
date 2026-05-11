@@ -1,25 +1,35 @@
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
+
+import { calcArtComplexity, calcGridHeight, calcGridWidth } from '@nono-art/utils';
 
 import { useAppSelector } from '../../hooks';
 
-import { selectors } from './levels.slice';
-import type { Level } from './levels.state';
+import { selectors, type Selectors } from './levels.slice';
+import type { Level, LevelList } from './levels.state';
 
 /* -------------------------------------------------------------------------- */
 /*                                    HOOK                                    */
 /* -------------------------------------------------------------------------- */
 
-export const useLevelsSelectors = (): { [key in keyof typeof selectors]: ReturnType<(typeof selectors)[key]> } & {
-  readonly getLevelById: GetLevelById;
-  readonly getLevelByIdx: GetLevelByIdx;
-} => {
+export const useLevelsSelectors = (): LevelsSelectors => {
   /* -------------------------------- selectors ------------------------------- */
 
-  const levelList = useAppSelector(selectors.levelList);
+  const rawLevelList = useAppSelector(selectors.rawLevelList);
 
   /* ------------------------------- / selectors ------------------------------ */
 
   /* ---------------------------- custom selectors ---------------------------- */
+
+  const levelList = useMemo<LevelList>(
+    () =>
+      rawLevelList.map((level) => ({
+        ...level,
+        gridWidth: calcGridWidth(level.grid),
+        gridHeight: calcGridHeight(level.grid),
+        complexity: calcArtComplexity(level.grid),
+      })),
+    [rawLevelList],
+  );
 
   const getLevelById = useCallback<GetLevelById>(
     (id) => levelList.find((level) => level.id === id) || null,
@@ -33,6 +43,7 @@ export const useLevelsSelectors = (): { [key in keyof typeof selectors]: ReturnT
   /* --------------------------------- RETURN --------------------------------- */
 
   return {
+    rawLevelList,
     levelList,
     getLevelById,
     getLevelByIdx,
@@ -47,8 +58,16 @@ export const useLevelsSelectors = (): { [key in keyof typeof selectors]: ReturnT
 /*                                    TYPES                                   */
 /* -------------------------------------------------------------------------- */
 
-type GetLevelById = (id: string) => Level | null;
-type GetLevelByIdx = (idx: number) => Level | null;
+export interface LevelsSelectors extends Selectors {
+  readonly levelList: LevelList;
+  readonly getLevelById: GetLevelById;
+  readonly getLevelByIdx: GetLevelByIdx;
+}
+
+/* -------------------------------------------------------------------------- */
+
+export type GetLevelById = (id: string) => Level | null;
+export type GetLevelByIdx = (idx: number) => Level | null;
 
 /* -------------------------------------------------------------------------- */
 /*                                   / TYPES                                  */
