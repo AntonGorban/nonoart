@@ -1,3 +1,5 @@
+import type { D } from '@nono-art/domain';
+
 export type RootStackParamList = {
   /* ---------------------------------- home ---------------------------------- */
 
@@ -13,9 +15,9 @@ export type RootStackParamList = {
 
   /* ---------------------------------- game ---------------------------------- */
 
-  readonly Game: { readonly levelId?: string };
+  readonly Game: { readonly levelId: D.Level.Id };
 
-  readonly Designer: { readonly levelId: string };
+  readonly Designer: { readonly levelId: D.Level.Id };
 
   /* --------------------------------- / game --------------------------------- */
 

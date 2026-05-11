@@ -1,34 +1,48 @@
-import React, { type ComponentProps, useCallback } from 'react';
+import React, { useLayoutEffect, useMemo } from 'react';
 
-import { useStoreActions, useStoreSelectors } from '@/store';
+import { D } from '@nono-art/domain';
+import { useEnumFlag } from '@nono-art/hooks';
 
-import { LevelsPresentation } from './Levels.presentation';
+import { Grid, ScreenView } from '@/components';
+import { type Level, useStoreActions } from '@/store';
+
+import { ColorsSection } from './components';
 
 /* -------------------------------------------------------------------------- */
 /*                                  COMPONENT                                 */
 /* -------------------------------------------------------------------------- */
 
-export const Levels = React.memo<Props>(({ navToGame }) => {
-  const {
-    levels: { levelList },
-  } = useStoreSelectors();
-
+export const Game: React.FC<Props> = ({ level }) => {
   const {
     config: { setAppHeaderTitle },
   } = useStoreActions();
 
-  const navToGameHandler = useCallback(
-    (levelId: string) => {
-      setAppHeaderTitle('Загрузка уровня...');
-      navToGame(levelId);
-    },
-    [navToGame, setAppHeaderTitle],
-  );
+  useLayoutEffect(() => {
+    setAppHeaderTitle(level.name);
+  }, [level.name, setAppHeaderTitle]);
+
+  const isDone = useMemo<boolean>(() => level.status === D.Level.Status.done, [level.status]);
+
+  const [selectedColor, setSelectedColor] = useEnumFlag<D.Level.SelectedColor>(1);
 
   /* --------------------------------- RETURN --------------------------------- */
 
-  return <LevelsPresentation levelList={levelList} navToGame={navToGameHandler} />;
-});
+  return (
+    <ScreenView padding={0} gap={0}>
+      <Grid
+        grid={isDone ? level.grid : level.progress}
+        colors={level.colors}
+        gridWidth={level.gridWidth}
+        gridHeight={level.gridHeight}
+        isDone={isDone}
+        selectedColor={selectedColor}
+        showCounters
+      />
+
+      <ColorsSection colors={level.colors} selectedColor={selectedColor} setSelectedColor={setSelectedColor} />
+    </ScreenView>
+  );
+};
 
 /* -------------------------------------------------------------------------- */
 /*                                 / COMPONENT                                */
@@ -38,9 +52,9 @@ export const Levels = React.memo<Props>(({ navToGame }) => {
 /*                                    TYPES                                   */
 /* -------------------------------------------------------------------------- */
 
-type LevelsPresentationProps = ComponentProps<typeof LevelsPresentation>;
-
-interface Props extends Omit<LevelsPresentationProps, 'levelList'> {}
+interface Props {
+  readonly level: Level;
+}
 
 /* -------------------------------------------------------------------------- */
 /*                                   / TYPES                                  */

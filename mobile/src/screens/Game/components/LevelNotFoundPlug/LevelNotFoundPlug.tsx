@@ -1,33 +1,23 @@
-import React, { type ComponentProps, useCallback } from 'react';
+import React, { useLayoutEffect } from 'react';
 
-import { useStoreActions, useStoreSelectors } from '@/store';
+import { useStoreActions } from '@/store';
 
-import { LevelsPresentation } from './Levels.presentation';
+import { LevelNotFoundPlugPresentation } from './LevelNotFoundPlug.presentation';
 
 /* -------------------------------------------------------------------------- */
 /*                                  COMPONENT                                 */
 /* -------------------------------------------------------------------------- */
 
-export const Levels = React.memo<Props>(({ navToGame }) => {
-  const {
-    levels: { levelList },
-  } = useStoreSelectors();
-
+export const LevelNotFoundPlug = React.memo<Props>(() => {
   const {
     config: { setAppHeaderTitle },
   } = useStoreActions();
 
-  const navToGameHandler = useCallback(
-    (levelId: string) => {
-      setAppHeaderTitle('Загрузка уровня...');
-      navToGame(levelId);
-    },
-    [navToGame, setAppHeaderTitle],
-  );
+  useLayoutEffect(() => {
+    setAppHeaderTitle('Уровень не найден');
+  }, [setAppHeaderTitle]);
 
-  /* --------------------------------- RETURN --------------------------------- */
-
-  return <LevelsPresentation levelList={levelList} navToGame={navToGameHandler} />;
+  return <LevelNotFoundPlugPresentation />;
 });
 
 /* -------------------------------------------------------------------------- */
@@ -38,9 +28,7 @@ export const Levels = React.memo<Props>(({ navToGame }) => {
 /*                                    TYPES                                   */
 /* -------------------------------------------------------------------------- */
 
-type LevelsPresentationProps = ComponentProps<typeof LevelsPresentation>;
-
-interface Props extends Omit<LevelsPresentationProps, 'levelList'> {}
+interface Props {}
 
 /* -------------------------------------------------------------------------- */
 /*                                   / TYPES                                  */

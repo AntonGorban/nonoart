@@ -1,33 +1,23 @@
-import React, { type ComponentProps, useCallback } from 'react';
+import React, { type ComponentProps, useCallback, useMemo } from 'react';
 
-import { useStoreActions, useStoreSelectors } from '@/store';
+import type { D } from '@nono-art/domain';
 
-import { LevelsPresentation } from './Levels.presentation';
+import { ColorButtonPresentation } from './ColorButton.presentation';
 
 /* -------------------------------------------------------------------------- */
 /*                                  COMPONENT                                 */
 /* -------------------------------------------------------------------------- */
 
-export const Levels = React.memo<Props>(({ navToGame }) => {
-  const {
-    levels: { levelList },
-  } = useStoreSelectors();
+export const ColorButton = React.memo<Props>(({ colorIdx, selectedColor, setSelectedColor, ...props }) => {
+  const isSelected = useMemo(() => colorIdx === selectedColor, [colorIdx, selectedColor]);
 
-  const {
-    config: { setAppHeaderTitle },
-  } = useStoreActions();
-
-  const navToGameHandler = useCallback(
-    (levelId: string) => {
-      setAppHeaderTitle('Загрузка уровня...');
-      navToGame(levelId);
-    },
-    [navToGame, setAppHeaderTitle],
-  );
+  const setSelectedColorHandler = useCallback(() => {
+    setSelectedColor(colorIdx);
+  }, [colorIdx, setSelectedColor]);
 
   /* --------------------------------- RETURN --------------------------------- */
 
-  return <LevelsPresentation levelList={levelList} navToGame={navToGameHandler} />;
+  return <ColorButtonPresentation {...props} isSelected={isSelected} onPress={setSelectedColorHandler} />;
 });
 
 /* -------------------------------------------------------------------------- */
@@ -38,9 +28,15 @@ export const Levels = React.memo<Props>(({ navToGame }) => {
 /*                                    TYPES                                   */
 /* -------------------------------------------------------------------------- */
 
-type LevelsPresentationProps = ComponentProps<typeof LevelsPresentation>;
+type ColorButtonPresentationProps = ComponentProps<typeof ColorButtonPresentation>;
 
-interface Props extends Omit<LevelsPresentationProps, 'levelList'> {}
+/* -------------------------------------------------------------------------- */
+
+interface Props extends Omit<ColorButtonPresentationProps, 'isSelected' | 'onPress'> {
+  readonly colorIdx: D.Level.SelectedColor;
+  readonly selectedColor: D.Level.SelectedColor;
+  readonly setSelectedColor: (color: D.Level.SelectedColor) => void;
+}
 
 /* -------------------------------------------------------------------------- */
 /*                                   / TYPES                                  */

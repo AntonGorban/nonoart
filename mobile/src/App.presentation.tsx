@@ -58,7 +58,7 @@ export const AppPresentation: React.FC<Props> = () => {
           <Stack.Screen
             name="Game"
             component={GameScreen}
-            initialParams={{ levelId: undefined }}
+            initialParams={{ levelId: 'null' }}
             options={{
               header: () => (
                 <ScreenHeader
