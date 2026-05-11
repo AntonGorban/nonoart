@@ -13,6 +13,7 @@ export namespace Level {
   export type Cell = 0 | 1 | 2 | null;
   export type Grid = ReadonlyArray<ReadonlyArray<Cell>>;
   export type Progress = Grid;
+  export type SelectedColor = NonNullable<Cell>;
 
   export type Complexity = number;
   export type GridWidth = number;
