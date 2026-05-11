@@ -3,54 +3,57 @@ import React, { type ComponentProps } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { TouchableRipple } from 'react-native-paper';
 
-import { D } from '@nono-art/domain';
 import { UI } from '@nono-art/ui-mobile';
 
-import type { Level } from '@/store';
-
-import { ArtIcon } from '../ArtIcon';
-import { ArtIconPlug } from '../ArtIconPlug';
-import { LevelColors } from '../LevelColors';
-import { LevelComplexity } from '../LevelComplexity';
-import { LevelHeader } from '../LevelHeader';
-import { LevelSocial } from '../LevelSocial';
+import { ArtIcon, ArtIconPlug, LevelColors, LevelComplexity, LevelHeader, LevelSocial } from './components';
 
 /* -------------------------------------------------------------------------- */
 /*                                  COMPONENT                                 */
 /* -------------------------------------------------------------------------- */
 
-export const LevelPresentation = React.memo<Props>(({ level, navToGame }) => (
-  <TouchableRipple
-    onPress={navToGame}
-    rippleColor={Color(UI.color.primary).alpha(0.7).string()}
-    borderless
-    style={styles.touchable}
-  >
-    <View style={styles.wrap}>
-      {level.status === D.Level.Status.new ? (
-        <ArtIconPlug />
-      ) : (
-        <ArtIcon grid={level.status === D.Level.Status.done ? level.grid : level.progress} colors={level.colors} />
-      )}
+export const LevelPresentation = React.memo<Props>(
+  ({
+    name,
+    authorName,
+    colors,
+    status,
+    grid,
+    gridWidth,
+    gridHeight,
+    complexity,
+    likesCount,
+    dislikesCount,
+    showArtIconPlug,
+    onPress,
+  }) => (
+    <TouchableRipple
+      onPress={onPress}
+      rippleColor={Color(UI.color.primary).alpha(0.7).string()}
+      borderless
+      style={styles.touchable}
+    >
+      <View style={styles.wrap}>
+        {showArtIconPlug ? <ArtIconPlug /> : <ArtIcon grid={grid} colors={colors} />}
 
-      <View style={styles.contentWrap}>
-        <View style={styles.HeaderSectionWrap}>
-          <LevelHeader name={level.name} authorName={level.authorName} status={level.status} />
+        <View style={styles.contentWrap}>
+          <View style={styles.HeaderSectionWrap}>
+            <LevelHeader name={name} authorName={authorName} status={status} />
 
-          <LevelComplexity gridWidth={level.gridWidth} gridHeight={level.gridHeight} complexity={level.complexity} />
-        </View>
+            <LevelComplexity gridWidth={gridWidth} gridHeight={gridHeight} complexity={complexity} />
+          </View>
 
-        <UI.Layout.Divider margin={0} />
+          <UI.Layout.Divider margin={0} />
 
-        <View style={styles.footerSectionWrap}>
-          <LevelSocial likesCount={level.likesCount} dislikesCount={level.dislikesCount} />
+          <View style={styles.footerSectionWrap}>
+            <LevelSocial likesCount={likesCount} dislikesCount={dislikesCount} />
 
-          <LevelColors colors={level.colors} />
+            <LevelColors colors={colors} />
+          </View>
         </View>
       </View>
-    </View>
-  </TouchableRipple>
-));
+    </TouchableRipple>
+  ),
+);
 
 /* -------------------------------------------------------------------------- */
 /*                                 / COMPONENT                                */
@@ -108,15 +111,9 @@ type LevelColorsProps = ComponentProps<typeof LevelColors>;
 
 /* -------------------------------------------------------------------------- */
 
-interface Props
-  extends
-    Omit<ArtIconProps, keyof Level>,
-    Omit<LevelHeaderProps, keyof Level>,
-    Omit<LevelComplexityProps, keyof Level>,
-    Omit<LevelSocialProps, keyof Level>,
-    Omit<LevelColorsProps, keyof Level> {
-  readonly level: Level;
-  readonly navToGame: () => void;
+interface Props extends ArtIconProps, LevelHeaderProps, LevelComplexityProps, LevelSocialProps, LevelColorsProps {
+  readonly showArtIconPlug: boolean;
+  readonly onPress: () => void;
 }
 
 /* -------------------------------------------------------------------------- */

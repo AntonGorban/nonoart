@@ -1,22 +1,39 @@
 import React, { type ComponentProps } from 'react';
 import { FlatList, StyleSheet } from 'react-native';
 
-import { ScreenView } from '@/components';
-import type { LevelList, Level as LevelType } from '@/store';
+import { D } from '@nono-art/domain';
 
-import { Level } from './components';
+import { Level, ScreenView } from '@/components';
+import type { LevelList, Level as LevelType } from '@/store';
 
 /* -------------------------------------------------------------------------- */
 /*                                  COMPONENT                                 */
 /* -------------------------------------------------------------------------- */
 
-export const LevelsPresentation = React.memo<Props>(({ levelList, ...props }) => (
+export const LevelsPresentation = React.memo<Props>(({ levelList, navToGame, ...props }) => (
   <ScreenView padding={0} gap={0}>
     <FlatList
       data={levelList}
       style={styles.flatList}
       contentContainerStyle={styles.wrap}
-      renderItem={(level) => <Level {...props} level={level.item} />}
+      renderItem={({ item: level }) => (
+        <Level
+          {...props}
+          id={level.id}
+          name={level.name}
+          authorName={level.authorName}
+          colors={level.colors}
+          status={level.status}
+          grid={level.status === D.Level.Status.new ? level.grid : level.progress}
+          gridWidth={level.gridWidth}
+          gridHeight={level.gridHeight}
+          complexity={level.complexity}
+          likesCount={level.likesCount}
+          dislikesCount={level.dislikesCount}
+          showArtIconPlug={level.status === D.Level.Status.new}
+          onPress={navToGame}
+        />
+      )}
       keyExtractor={(level) => level.id}
       extraData={props}
     />
@@ -46,8 +63,9 @@ const styles = StyleSheet.create({
 
 type LevelProps = ComponentProps<typeof Level>;
 
-interface Props extends Omit<LevelProps, keyof LevelType | 'level'> {
+interface Props extends Omit<LevelProps, keyof LevelType | 'onPress'> {
   readonly levelList: LevelList;
+  readonly navToGame: (id: D.Level.Id) => void;
 }
 
 /* -------------------------------------------------------------------------- */

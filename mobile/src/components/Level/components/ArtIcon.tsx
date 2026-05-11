@@ -4,7 +4,7 @@ import { StyleSheet, View } from 'react-native';
 import type { D } from '@nono-art/domain';
 import { UI } from '@nono-art/ui-mobile';
 
-import { ArtSvg } from '@/components';
+import { ArtSvg } from '../../ArtSvg';
 
 /* -------------------------------------------------------------------------- */
 /*                                  COMPONENT                                 */

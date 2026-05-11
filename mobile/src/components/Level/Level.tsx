@@ -1,17 +1,19 @@
 import React, { type ComponentProps, useCallback } from 'react';
 
+import type { D } from '@nono-art/domain';
+
 import { LevelPresentation } from './Level.presentation';
 
 /* -------------------------------------------------------------------------- */
 /*                                  COMPONENT                                 */
 /* -------------------------------------------------------------------------- */
 
-export const Level = React.memo<Props>(({ level, navToGame, ...props }) => {
-  const navToGameHandler = useCallback(() => navToGame(level.id), [navToGame, level.id]);
+export const Level = React.memo<Props>(({ onPress, id, ...props }) => {
+  const onPressHandler = useCallback(() => onPress(id), [id, onPress]);
 
   /* --------------------------------- RETURN --------------------------------- */
 
-  return <LevelPresentation {...props} level={level} navToGame={navToGameHandler} />;
+  return <LevelPresentation {...props} onPress={onPressHandler} />;
 });
 
 /* -------------------------------------------------------------------------- */
@@ -26,8 +28,9 @@ type LevelPresentationProps = ComponentProps<typeof LevelPresentation>;
 
 /* -------------------------------------------------------------------------- */
 
-interface Props extends Omit<LevelPresentationProps, 'navToGame'> {
-  readonly navToGame: (id: string) => void;
+interface Props extends Omit<LevelPresentationProps, 'onPress'> {
+  readonly id: D.Level.Id;
+  readonly onPress: (id: string) => void;
 }
 
 /* -------------------------------------------------------------------------- */
