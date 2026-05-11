@@ -1,3 +1,3 @@
-export * as v from './validators/index.js';
-export * from './utils.js';
-export type * from './types.js';
+export * as v from './validators';
+export * from './utils';
+export type * from './types';

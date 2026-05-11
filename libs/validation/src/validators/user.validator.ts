@@ -2,7 +2,7 @@ import z from 'zod';
 
 import type { D } from '@nono-art/domain';
 
-import { createZod } from '../utils.js';
+import { createZod } from '../utils';
 
 /* ---------------------------------- login --------------------------------- */
 

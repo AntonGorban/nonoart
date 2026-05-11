@@ -1,6 +1,6 @@
 import z from 'zod';
 
-import { createZod } from '../utils.js';
+import { createZod } from '../utils';
 
 export const emptyObject = createZod<{}>()(z.object({}).readonly());
 

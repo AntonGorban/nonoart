@@ -1,1 +1,1 @@
-export * as D from './domain.js';
+export * as D from './domain';

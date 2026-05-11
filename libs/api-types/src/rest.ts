@@ -1,2 +1,2 @@
-export type * as level from './level/index';
-export type * as user from './user/index';
+export type * as level from './level';
+export type * as user from './user';

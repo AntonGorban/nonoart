@@ -1,5 +1,5 @@
-import type { UUID } from './common.domain.js';
-import type { Level } from './Level.domain.js';
+import type { UUID } from './common.domain';
+import type { Level } from './Level.domain';
 
 export namespace User {
   export type Id = UUID;

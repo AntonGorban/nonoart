@@ -1,6 +1,6 @@
 import type z from 'zod';
 
-import type { AssertExact } from './types.js';
+import type { AssertExact } from './types';
 
 export const createZod =
   <T>() =>

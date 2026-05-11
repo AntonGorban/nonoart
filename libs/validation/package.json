@@ -15,7 +15,7 @@
   },
   "scripts": {
     "build": "tsc -b",
-    "dev": "tsc --build --watch --preserveWatchOutput",
+    "dev": "tsc -b -w --preserveWatchOutput",
     "clean": "rm -rf dist",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
