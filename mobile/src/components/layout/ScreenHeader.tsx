@@ -7,6 +7,8 @@ import { useNavigation } from '@react-navigation/native';
 
 import { UI } from '@nono-art/ui-mobile';
 
+import { appHeaderStore } from '@/store';
+
 /* -------------------------------------------------------------------------- */
 /*                                  COMPONENT                                 */
 /* -------------------------------------------------------------------------- */
@@ -15,6 +17,9 @@ export const ScreenHeader = React.memo<Props>(({ title, icon, isBackButton = fal
   const navigation = useNavigation();
 
   const { top } = useSafeAreaInsets();
+
+  const appHeaderTitle = appHeaderStore.selector.useTitle();
+  const appHeaderIcon = appHeaderStore.selector.useIcon();
 
   /* --------------------------------- RETURN --------------------------------- */
 
@@ -25,10 +30,10 @@ export const ScreenHeader = React.memo<Props>(({ title, icon, isBackButton = fal
       <Appbar.Content
         title={
           <View style={styles.wrap}>
-            {!!icon && icon}
+            {!!appHeaderIcon && appHeaderIcon}
 
             <Text variant="titleLarge" style={styles.title}>
-              {title}
+              {appHeaderTitle}
             </Text>
           </View>
         }
