@@ -1,9 +1,13 @@
 import React, { useMemo } from 'react';
 
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+
 import { D } from '@nono-art/domain';
 import { useEnumFlag } from '@nono-art/hooks';
+import { UI } from '@nono-art/ui-mobile';
 
 import { ColorsSection, Grid, ScreenView } from '@/components';
+import { useSetAppHeader } from '@/hooks';
 import { type Level } from '@/store';
 
 /* -------------------------------------------------------------------------- */
@@ -14,6 +18,12 @@ export const Game: React.FC<Props> = ({ level }) => {
   const isDone = useMemo<boolean>(() => level.status === D.Level.Status.done, [level.status]);
 
   const [selectedColor, setSelectedColor] = useEnumFlag<D.Level.SelectedColor>(1);
+
+  useSetAppHeader({
+    title: level.name,
+    icon: <MaterialCommunityIcons name="alert-circle-outline" size={14} color={UI.color.red300} />,
+    actionList: null,
+  });
 
   /* --------------------------------- RETURN --------------------------------- */
 

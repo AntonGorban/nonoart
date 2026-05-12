@@ -13,13 +13,12 @@ import { appHeaderStore } from '@/store';
 /*                                  COMPONENT                                 */
 /* -------------------------------------------------------------------------- */
 
-export const ScreenHeader = React.memo<Props>(({ title, icon, isBackButton = false }) => {
+export const ScreenHeader = React.memo<Props>(({ isBackButton = false }) => {
   const navigation = useNavigation();
 
   const { top } = useSafeAreaInsets();
 
-  const appHeaderTitle = appHeaderStore.selector.useTitle();
-  const appHeaderIcon = appHeaderStore.selector.useIcon();
+  const { title, icon } = appHeaderStore.selector.useState();
 
   /* --------------------------------- RETURN --------------------------------- */
 
@@ -30,10 +29,10 @@ export const ScreenHeader = React.memo<Props>(({ title, icon, isBackButton = fal
       <Appbar.Content
         title={
           <View style={styles.wrap}>
-            {!!appHeaderIcon && appHeaderIcon}
+            {!!icon && icon}
 
             <Text variant="titleLarge" style={styles.title}>
-              {appHeaderTitle}
+              {title}
             </Text>
           </View>
         }
@@ -76,8 +75,6 @@ const styles = StyleSheet.create({
 /* -------------------------------------------------------------------------- */
 
 interface Props {
-  readonly title: string;
-  readonly icon?: React.ReactNode;
   readonly isBackButton?: boolean;
 }
 

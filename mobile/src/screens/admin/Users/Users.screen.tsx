@@ -3,6 +3,7 @@ import { ScrollView, View } from 'react-native';
 import { ActivityIndicator, Button, HelperText, Text } from 'react-native-paper';
 import Toast from 'react-native-toast-message';
 
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import { getApiError } from '@nono-art/api';
@@ -11,6 +12,7 @@ import { UI } from '@nono-art/ui-mobile';
 import { f } from '@nono-art/utils';
 
 import { ScreenView } from '@/components';
+import { useSetAppHeader } from '@/hooks';
 import type { RootStackParamList } from '@/screens';
 
 /* -------------------------------------------------------------------------- */
@@ -48,6 +50,18 @@ export const UsersScreen: React.FC<Props> = () => {
   }, [disableRefreshIsLoading, enableRefreshIsLoading]);
 
   const totalIsLoading = useMemo(() => isLoading || refreshIsLoading, [isLoading, refreshIsLoading]);
+
+  useSetAppHeader({
+    title: 'Пользователи',
+    icon: (
+      <>
+        <MaterialCommunityIcons name="alert-circle-outline" size={14} color={UI.color.yellow300} />
+
+        <MaterialCommunityIcons name="account-group" size={20} color={UI.color.white} />
+      </>
+    ),
+    actionList: null,
+  });
 
   /* --------------------------------- RETURN --------------------------------- */
 

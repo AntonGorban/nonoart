@@ -1,8 +1,9 @@
 import React, { type ComponentProps, useCallback } from 'react';
+import { ActivityIndicator } from 'react-native-paper';
 
 import { uuidV4 } from '@nono-art/utils';
 
-import { useStoreActions, useStoreSelectors } from '@/store';
+import { appHeaderStore, useStoreActions, useStoreSelectors } from '@/store';
 
 import { MyLevelsPresentation } from './MyLevels.presentation';
 
@@ -21,6 +22,11 @@ export const MyLevels = React.memo<Props>(({ navToDesigner }) => {
 
   const navToDesignerHandler = useCallback(
     (myLevelId: string) => {
+      appHeaderStore.set.state({
+        title: 'Загрузка уровня...',
+        icon: <ActivityIndicator size={14} animating />,
+        actionList: null,
+      });
       navToDesigner(myLevelId);
     },
     [navToDesigner],

@@ -1,8 +1,12 @@
 import { View } from 'react-native';
 
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
+import { UI } from '@nono-art/ui-mobile';
+
 import { ScreenView } from '@/components';
+import { useSetAppHeader } from '@/hooks';
 
 import type { RootStackParamList } from '../routes';
 
@@ -14,6 +18,12 @@ import { ColorBox, LabelBox } from './components';
 
 // TODO: refactor
 export const ColorPaletteScreen: React.FC<Props> = () => {
+  useSetAppHeader({
+    title: 'Палитра цветов',
+    icon: <MaterialCommunityIcons name="palette" size={20} color={UI.color.white} />,
+    actionList: null,
+  });
+
   return (
     <ScreenView padding={0} gap={0}>
       <View style={{ flexGrow: 1, flex: 1, flexDirection: 'row' }}>

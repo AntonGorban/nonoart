@@ -1,10 +1,12 @@
 import React, { useCallback } from 'react';
 
+import { FontAwesome6, MaterialCommunityIcons } from '@expo/vector-icons';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import { UI } from '@nono-art/ui-mobile';
 
 import { ScreenView } from '@/components';
+import { useSetAppHeader } from '@/hooks';
 
 import type { RootStackParamList } from '../routes';
 
@@ -39,6 +41,18 @@ export const AccountScreen: React.FC<Props> = ({ navigation }) => {
   const navToAsyncStorage = useCallback(() => {
     navigation.push('AsyncStorage');
   }, [navigation]);
+
+  useSetAppHeader({
+    title: 'Аккаунт',
+    icon: (
+      <>
+        <MaterialCommunityIcons name="alert-circle-outline" size={14} color={UI.color.yellow300} />
+
+        <FontAwesome6 name="user-large" size={18} color={UI.color.white} />
+      </>
+    ),
+    actionList: null,
+  });
 
   /* ------------------------------ / navigation ------------------------------ */
 

@@ -2,7 +2,6 @@ import { StatusBar } from 'expo-status-bar';
 import type React from 'react';
 import Toast from 'react-native-toast-message';
 
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -60,13 +59,7 @@ export const AppPresentation: React.FC<Props> = () => {
             component={GameScreen}
             initialParams={{ levelId: 'null' }}
             options={{
-              header: () => (
-                <ScreenHeader
-                  title=""
-                  isBackButton
-                  icon={<MaterialCommunityIcons name="alert-circle-outline" size={14} color={UI.color.red300} />}
-                />
-              ),
+              header: () => <ScreenHeader isBackButton />,
             }}
           />
 
@@ -74,13 +67,7 @@ export const AppPresentation: React.FC<Props> = () => {
             name="Designer"
             component={DesignerScreen}
             options={{
-              header: () => (
-                <ScreenHeader
-                  title=""
-                  isBackButton
-                  icon={<MaterialCommunityIcons name="alert-circle-outline" size={14} color={UI.color.red300} />}
-                />
-              ),
+              header: () => <ScreenHeader isBackButton />,
             }}
           />
 
@@ -96,13 +83,7 @@ export const AppPresentation: React.FC<Props> = () => {
             name="ColorPalette"
             component={ColorPaletteScreen}
             options={{
-              header: () => (
-                <ScreenHeader
-                  title="Палитра цветов"
-                  isBackButton
-                  icon={<MaterialCommunityIcons name="palette" size={20} color={UI.color.white} />}
-                />
-              ),
+              header: () => <ScreenHeader isBackButton />,
             }}
           />
 
@@ -110,13 +91,7 @@ export const AppPresentation: React.FC<Props> = () => {
             name="AsyncStorage"
             component={AsyncStorageScreen}
             options={{
-              header: () => (
-                <ScreenHeader
-                  title="Хранилище"
-                  isBackButton
-                  icon={<MaterialCommunityIcons name="database" size={20} color={UI.color.white} />}
-                />
-              ),
+              header: () => <ScreenHeader isBackButton />,
             }}
           />
 
@@ -132,19 +107,7 @@ export const AppPresentation: React.FC<Props> = () => {
             name="Users"
             component={UsersScreen}
             options={{
-              header: () => (
-                <ScreenHeader
-                  title="Пользователи"
-                  isBackButton
-                  icon={
-                    <>
-                      <MaterialCommunityIcons name="alert-circle-outline" size={14} color={UI.color.yellow300} />
-
-                      <MaterialCommunityIcons name="account-group" size={20} color={UI.color.white} />
-                    </>
-                  }
-                />
-              ),
+              header: () => <ScreenHeader isBackButton />,
             }}
           />
 

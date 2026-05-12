@@ -3,6 +3,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { ScrollView, View } from 'react-native';
 import { ActivityIndicator, Button, List, ProgressBar, Text } from 'react-native-paper';
 
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
@@ -11,6 +12,7 @@ import { UI } from '@nono-art/ui-mobile';
 import { f } from '@nono-art/utils';
 
 import { ScreenView } from '@/components';
+import { useSetAppHeader } from '@/hooks';
 import type { RootStackParamList } from '@/screens/routes';
 
 /* -------------------------------------------------------------------------- */
@@ -49,6 +51,12 @@ export const AsyncStorageScreen: React.FC<Props> = () => {
   useEffect(() => {
     refresh();
   }, [refresh]);
+
+  useSetAppHeader({
+    title: 'Хранилище',
+    icon: <MaterialCommunityIcons name="database" size={20} color={UI.color.white} />,
+    actionList: null,
+  });
 
   /* --------------------------------- RETURN --------------------------------- */
 

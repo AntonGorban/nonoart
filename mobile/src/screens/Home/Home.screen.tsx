@@ -1,6 +1,6 @@
 import React, { type ComponentProps } from 'react';
 
-import { FontAwesome, FontAwesome6, MaterialCommunityIcons } from '@expo/vector-icons';
+import { FontAwesome, FontAwesome6 } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
@@ -26,18 +26,7 @@ export const HomeScreen: React.FC<Props> = () => {
         name="Levels"
         component={LevelsScreen}
         options={{
-          header: () => (
-            <ScreenHeader
-              title="Уровни"
-              icon={
-                <>
-                  <MaterialCommunityIcons name="alert-circle-outline" size={14} color={UI.color.yellow300} />
-
-                  <FontAwesome6 name="puzzle-piece" size={18} color={UI.color.white} />
-                </>
-              }
-            />
-          ),
+          header: () => <ScreenHeader />,
           tabBarIcon: ({ color }) => <FontAwesome6 name="puzzle-piece" size={TAB_BAR_ICON_SIZE} color={color} />,
           tabBarLabel: '',
         }}
@@ -47,18 +36,7 @@ export const HomeScreen: React.FC<Props> = () => {
         name="MyLevels"
         component={MyLevelsScreen}
         options={{
-          header: () => (
-            <ScreenHeader
-              title="Мои уровни"
-              icon={
-                <>
-                  <MaterialCommunityIcons name="alert-circle-outline" size={14} color={UI.color.yellow300} />
-
-                  <FontAwesome name="paint-brush" size={18} color={UI.color.white} />
-                </>
-              }
-            />
-          ),
+          header: () => <ScreenHeader />,
           tabBarIcon: ({ color }) => <FontAwesome name="paint-brush" size={TAB_BAR_ICON_SIZE} color={color} />,
           tabBarLabel: '',
         }}
@@ -68,18 +46,7 @@ export const HomeScreen: React.FC<Props> = () => {
         name="Account"
         component={AccountScreen}
         options={{
-          header: () => (
-            <ScreenHeader
-              title="Аккаунт"
-              icon={
-                <>
-                  <MaterialCommunityIcons name="alert-circle-outline" size={14} color={UI.color.yellow300} />
-
-                  <FontAwesome6 name="user-large" size={18} color={UI.color.white} />
-                </>
-              }
-            />
-          ),
+          header: () => <ScreenHeader />,
           tabBarIcon: ({ color }) => <FontAwesome6 name="user-large" size={TAB_BAR_ICON_SIZE} color={color} />,
           tabBarLabel: '',
         }}

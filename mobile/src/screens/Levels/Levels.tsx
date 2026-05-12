@@ -1,6 +1,7 @@
 import React, { type ComponentProps, useCallback } from 'react';
+import { ActivityIndicator } from 'react-native-paper';
 
-import { useStoreSelectors } from '@/store';
+import { appHeaderStore, useStoreSelectors } from '@/store';
 
 import { LevelsPresentation } from './Levels.presentation';
 
@@ -15,6 +16,11 @@ export const Levels = React.memo<Props>(({ navToGame }) => {
 
   const navToGameHandler = useCallback(
     (levelId: string) => {
+      appHeaderStore.set.state({
+        title: 'Загрузка уровня...',
+        icon: <ActivityIndicator size={14} animating />,
+        actionList: null,
+      });
       navToGame(levelId);
     },
     [navToGame],
