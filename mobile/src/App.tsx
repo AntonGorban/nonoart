@@ -9,6 +9,7 @@ import { theme } from '@/constants';
 import { store } from '@/store';
 
 import { AppPresentation } from './App.presentation';
+import { SlotsContextProvider } from './services';
 
 const BASE_URL = 'http://192.168.31.111:7000/api';
 const REFRESH_TOKEN_URL = 'user/refresh-token';
@@ -23,7 +24,9 @@ export const App: React.FC<Props> = () => {
       <ApiDictionaryProvider baseURL={BASE_URL} refreshTokenURL={REFRESH_TOKEN_URL}>
         <Provider store={store}>
           <Portal.Host>
-            <AppPresentation />
+            <SlotsContextProvider>
+              <AppPresentation />
+            </SlotsContextProvider>
           </Portal.Host>
         </Provider>
       </ApiDictionaryProvider>
