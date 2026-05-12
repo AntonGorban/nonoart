@@ -7,17 +7,11 @@ import { useNavigation } from '@react-navigation/native';
 
 import { UI } from '@nono-art/ui-mobile';
 
-import { useStoreSelectors } from '@/store';
-
 /* -------------------------------------------------------------------------- */
 /*                                  COMPONENT                                 */
 /* -------------------------------------------------------------------------- */
 
 export const ScreenHeader = React.memo<Props>(({ title, icon, isBackButton = false }) => {
-  const {
-    config: { appHeaderTitle },
-  } = useStoreSelectors();
-
   const navigation = useNavigation();
 
   const { top } = useSafeAreaInsets();
@@ -34,7 +28,7 @@ export const ScreenHeader = React.memo<Props>(({ title, icon, isBackButton = fal
             {!!icon && icon}
 
             <Text variant="titleLarge" style={styles.title}>
-              {title || appHeaderTitle}
+              {title}
             </Text>
           </View>
         }

@@ -1,6 +1,4 @@
-import React, { useLayoutEffect } from 'react';
-
-import { useStoreActions } from '@/store';
+import React from 'react';
 
 import { LevelLoadingPlugPresentation } from './LevelLoadingPlug.presentation';
 
@@ -9,14 +7,6 @@ import { LevelLoadingPlugPresentation } from './LevelLoadingPlug.presentation';
 /* -------------------------------------------------------------------------- */
 
 export const LevelLoadingPlug = React.memo<Props>(() => {
-  const {
-    config: { setAppHeaderTitle },
-  } = useStoreActions();
-
-  useLayoutEffect(() => {
-    setAppHeaderTitle('Загрузка уровня...');
-  }, [setAppHeaderTitle]);
-
   return <LevelLoadingPlugPresentation />;
 });
 

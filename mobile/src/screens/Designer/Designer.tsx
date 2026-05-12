@@ -1,24 +1,16 @@
-import React, { useLayoutEffect } from 'react';
+import React from 'react';
 
 import type { D } from '@nono-art/domain';
 import { useEnumFlag } from '@nono-art/hooks';
 
 import { ColorsSection, Grid, ScreenView } from '@/components';
-import { type MyLevel, useStoreActions } from '@/store';
+import { type MyLevel } from '@/store';
 
 /* -------------------------------------------------------------------------- */
 /*                                  COMPONENT                                 */
 /* -------------------------------------------------------------------------- */
 
 export const Designer: React.FC<Props> = ({ myLevel }) => {
-  const {
-    config: { setAppHeaderTitle },
-  } = useStoreActions();
-
-  useLayoutEffect(() => {
-    setAppHeaderTitle(myLevel.name);
-  }, [myLevel.name, setAppHeaderTitle]);
-
   const [selectedColor, setSelectedColor] = useEnumFlag<D.Level.SelectedColor>(1);
 
   /* --------------------------------- RETURN --------------------------------- */

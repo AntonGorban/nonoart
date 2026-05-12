@@ -1,6 +1,4 @@
-import React, { useLayoutEffect } from 'react';
-
-import { useStoreActions } from '@/store';
+import React from 'react';
 
 import { LevelNotFoundPlugPresentation } from './LevelNotFoundPlug.presentation';
 
@@ -9,14 +7,6 @@ import { LevelNotFoundPlugPresentation } from './LevelNotFoundPlug.presentation'
 /* -------------------------------------------------------------------------- */
 
 export const LevelNotFoundPlug = React.memo<Props>(() => {
-  const {
-    config: { setAppHeaderTitle },
-  } = useStoreActions();
-
-  useLayoutEffect(() => {
-    setAppHeaderTitle('Уровень не найден');
-  }, [setAppHeaderTitle]);
-
   return <LevelNotFoundPlugPresentation />;
 });
 

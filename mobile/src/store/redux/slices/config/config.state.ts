@@ -3,7 +3,6 @@
 /* -------------------------------------------------------------------------- */
 
 export const initialState: State = {
-  appHeaderTitle: '',
   artGapSize: 1,
   artCounterSizeModifier: 2.5,
   artCellBorderRadiusModifier: 0.1,
@@ -18,10 +17,9 @@ export const initialState: State = {
 /* -------------------------------------------------------------------------- */
 
 export interface State {
-  readonly appHeaderTitle: string;
-  readonly artGapSize: number;
-  readonly artCounterSizeModifier: number;
-  readonly artCellBorderRadiusModifier: number;
+  artGapSize: number;
+  artCounterSizeModifier: number;
+  artCellBorderRadiusModifier: number;
 }
 
 /* -------------------------------------------------------------------------- */

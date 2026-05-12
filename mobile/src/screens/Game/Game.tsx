@@ -1,24 +1,16 @@
-import React, { useLayoutEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 
 import { D } from '@nono-art/domain';
 import { useEnumFlag } from '@nono-art/hooks';
 
 import { ColorsSection, Grid, ScreenView } from '@/components';
-import { type Level, useStoreActions } from '@/store';
+import { type Level } from '@/store';
 
 /* -------------------------------------------------------------------------- */
 /*                                  COMPONENT                                 */
 /* -------------------------------------------------------------------------- */
 
 export const Game: React.FC<Props> = ({ level }) => {
-  const {
-    config: { setAppHeaderTitle },
-  } = useStoreActions();
-
-  useLayoutEffect(() => {
-    setAppHeaderTitle(level.name);
-  }, [level.name, setAppHeaderTitle]);
-
   const isDone = useMemo<boolean>(() => level.status === D.Level.Status.done, [level.status]);
 
   const [selectedColor, setSelectedColor] = useEnumFlag<D.Level.SelectedColor>(1);

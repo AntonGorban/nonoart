@@ -1,8 +1,6 @@
-import { useCallback } from 'react';
-
 import type { useAppDispatch } from '../../hooks';
 
-import { type Action, actions } from './config.slice';
+import type { Action, actions } from './config.slice';
 
 /* -------------------------------------------------------------------------- */
 /*                                    HOOK                                    */
@@ -11,18 +9,11 @@ import { type Action, actions } from './config.slice';
 export const useConfigActions = (d: ReturnType<typeof useAppDispatch>): ConfigActions => {
   /* --------------------------------- actions -------------------------------- */
 
-  const setAppHeaderTitle = useCallback<Action<'setAppHeaderTitle'>>(
-    (...args) => {
-      d(actions.setAppHeaderTitle(...args));
-    },
-    [d],
-  );
-
   /* -------------------------------- / actions ------------------------------- */
 
   /* --------------------------------- RETURN --------------------------------- */
 
-  return { setAppHeaderTitle };
+  return {};
 };
 
 /* -------------------------------------------------------------------------- */

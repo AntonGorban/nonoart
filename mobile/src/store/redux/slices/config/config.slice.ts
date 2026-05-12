@@ -1,4 +1,4 @@
-import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 import { initialState } from './config.state';
 
@@ -10,11 +10,7 @@ export const slice = createSlice({
   /*                                  REDUCERS                                  */
   /* -------------------------------------------------------------------------- */
 
-  reducers: {
-    setAppHeaderTitle: (state, action: PayloadAction<string>) => {
-      state.appHeaderTitle = action.payload;
-    },
-  },
+  reducers: {},
 
   /* -------------------------------------------------------------------------- */
   /*                                 / REDUCERS                                 */
@@ -25,7 +21,6 @@ export const slice = createSlice({
   /* -------------------------------------------------------------------------- */
 
   selectors: {
-    appHeaderTitle: (s) => s.appHeaderTitle,
     artGapSize: (s) => s.artGapSize,
     artCounterSizeModifier: (s) => s.artCounterSizeModifier,
     artCellBorderRadiusModifier: (s) => s.artCellBorderRadiusModifier,

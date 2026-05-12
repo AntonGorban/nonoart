@@ -9,7 +9,6 @@ import { selectors, type Selectors } from './config.slice';
 export const useConfigSelectors = (): ConfigSelectors => {
   /* -------------------------------- selectors ------------------------------- */
 
-  const appHeaderTitle = useAppSelector(selectors.appHeaderTitle);
   const artGapSize = useAppSelector(selectors.artGapSize);
   const artCounterSizeModifier = useAppSelector(selectors.artCounterSizeModifier);
   const artCellBorderRadiusModifier = useAppSelector(selectors.artCellBorderRadiusModifier);
@@ -19,7 +18,6 @@ export const useConfigSelectors = (): ConfigSelectors => {
   /* --------------------------------- RETURN --------------------------------- */
 
   return {
-    appHeaderTitle,
     artGapSize,
     artCounterSizeModifier,
     artCellBorderRadiusModifier,

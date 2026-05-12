@@ -1,6 +1,6 @@
 import React, { type ComponentProps, useCallback } from 'react';
 
-import { useStoreActions, useStoreSelectors } from '@/store';
+import { useStoreSelectors } from '@/store';
 
 import { LevelsPresentation } from './Levels.presentation';
 
@@ -13,16 +13,11 @@ export const Levels = React.memo<Props>(({ navToGame }) => {
     levels: { levelList },
   } = useStoreSelectors();
 
-  const {
-    config: { setAppHeaderTitle },
-  } = useStoreActions();
-
   const navToGameHandler = useCallback(
     (levelId: string) => {
-      setAppHeaderTitle('Загрузка уровня...');
       navToGame(levelId);
     },
-    [navToGame, setAppHeaderTitle],
+    [navToGame],
   );
 
   /* --------------------------------- RETURN --------------------------------- */

@@ -17,15 +17,13 @@ export const MyLevels = React.memo<Props>(({ navToDesigner }) => {
 
   const {
     myLevels: { createMyLevel },
-    config: { setAppHeaderTitle },
   } = useStoreActions();
 
   const navToDesignerHandler = useCallback(
     (myLevelId: string) => {
-      setAppHeaderTitle('Загрузка уровня...');
       navToDesigner(myLevelId);
     },
-    [navToDesigner, setAppHeaderTitle],
+    [navToDesigner],
   );
 
   const createMyLevelHandler = useCallback(() => {
