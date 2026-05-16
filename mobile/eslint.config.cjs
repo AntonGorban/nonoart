@@ -111,6 +111,7 @@ module.exports = defineConfig([
       'import/no-extraneous-dependencies': 'warn',
       '@typescript-eslint/array-type': 'off',
       'react-native/no-raw-text': 'off',
+      '@typescript-eslint/consistent-type-imports': 'warn',
 
       /* -------------------------------------------------------------------------- */
       /*                                 / MY RULES                                 */
