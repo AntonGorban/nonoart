@@ -2,7 +2,7 @@
   "name": "nono-art",
   "private": true,
   "type": "module",
-  "packageManager": "yarn@4.13.0",
+  "packageManager": "yarn@4.14.1",
   "resolutions": {
     "react-native": "0.81.5",
     "@react-native/codegen": "0.81.5"
