@@ -34,6 +34,8 @@ export namespace Level {
     'updated' = 'UPDATED',
   }
 
+  export type ProgressUpdatedAt = Date;
+  export type SerializedProgressUpdatedAt = number;
   export type CreatedAt = Date;
   export type SerializedCreatedAt = number;
   export type UpdatedAt = Date;

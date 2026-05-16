@@ -74,6 +74,13 @@ export const dislikesCount = (value: unknown): Level.DislikesCount => {
 
 /* -------------------------------------------------------------------------- */
 
+export const serializedProgressUpdatedAt = (value: unknown): Level.SerializedProgressUpdatedAt => {
+  if (asserts.level.serializedProgressUpdatedAt(value)) return value;
+  return 0;
+};
+
+/* -------------------------------------------------------------------------- */
+
 export const serializedCreatedAt = (value: unknown): Level.SerializedCreatedAt => {
   if (asserts.level.serializedCreatedAt(value)) return value;
   return 0;

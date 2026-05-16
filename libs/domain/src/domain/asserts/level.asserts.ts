@@ -70,6 +70,11 @@ export const dislikesCount = (value: unknown): value is Level.DislikesCount => t
 
 /* -------------------------------------------------------------------------- */
 
+export const serializedProgressUpdatedAt = (value: unknown): value is Level.SerializedProgressUpdatedAt =>
+  typeof value === 'number' && value >= 0;
+
+/* -------------------------------------------------------------------------- */
+
 export const serializedCreatedAt = (value: unknown): value is Level.SerializedCreatedAt =>
   typeof value === 'number' && value >= 0;
 
