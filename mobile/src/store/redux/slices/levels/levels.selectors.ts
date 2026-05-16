@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react';
 
-import { calcArtComplexity, calcGridHeight, calcGridWidth } from '@nono-art/utils';
+import { D } from '@nono-art/domain';
 
 import { useAppSelector } from '../../hooks';
 
@@ -24,9 +24,9 @@ export const useLevelsSelectors = (): LevelsSelectors => {
     () =>
       rawLevelList.map((level) => ({
         ...level,
-        gridWidth: calcGridWidth(level.grid),
-        gridHeight: calcGridHeight(level.grid),
-        complexity: calcArtComplexity(level.grid),
+        gridWidth: D.utils.level.calcGridWidth(level.grid),
+        gridHeight: D.utils.level.calcGridHeight(level.grid),
+        complexity: D.utils.level.calcArtComplexity(level.grid),
       })),
     [rawLevelList],
   );
