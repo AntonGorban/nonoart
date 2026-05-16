@@ -3,3 +3,4 @@ export * from './User.domain';
 export type * as common from './common.domain';
 export * as utils from './utils';
 export * as asserts from './asserts';
+export * as normalizers from './normalizers';
