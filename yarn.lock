@@ -2323,6 +2323,7 @@ __metadata:
   resolution: "@nono-art/domain@workspace:libs/domain"
   dependencies:
     "@eslint/js": "npm:^9.39.4"
+    "@nono-art/utils": "workspace:^"
     eslint: "npm:^9.39.4"
     eslint-config-prettier: "npm:^10.1.8"
     eslint-import-resolver-typescript: "npm:^4.4.4"
