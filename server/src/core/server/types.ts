@@ -18,4 +18,6 @@ export interface ControllerCTXUtils {
   readonly setRefreshTokenCookie: (token: string) => void;
   readonly clearAccessTokenCookie: () => void;
   readonly clearRefreshTokenCookie: () => void;
+  readonly getAccessToken: () => void;
+  readonly getRefreshToken: () => void;
 }

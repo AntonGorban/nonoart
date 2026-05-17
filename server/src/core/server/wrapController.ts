@@ -33,7 +33,7 @@ export const wrapController =
         params,
         query,
         body,
-        utils: generateControllerCTXUtils(res),
+        utils: generateControllerCTXUtils(req, res),
         transaction,
         req,
         res,
