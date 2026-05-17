@@ -1,4 +1,4 @@
-import * as jwt from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 
 import { environment } from '../../../environment';
 import type { TokenPayload } from '../types';
