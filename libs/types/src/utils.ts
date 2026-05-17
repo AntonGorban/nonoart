@@ -21,3 +21,6 @@ export type DeepWritable<T> = T extends object ? { -readonly [K in keyof T]: Dee
 export type ComponentPropsType<T extends (props: any) => any> = Parameters<T>[0];
 
 export type NonNullableFields<T> = { [P in keyof T]: NonNullable<T[P]> };
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type AnyPromiseType = Promise<any>;
