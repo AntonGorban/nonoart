@@ -5,6 +5,7 @@ import Toast from 'react-native-toast-message';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+import { DAL } from '@nono-art/dal';
 import { UI } from '@nono-art/ui-mobile';
 
 import { ScreenHeader } from '@/components';
@@ -26,7 +27,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 /* -------------------------------------------------------------------------- */
 
 export const AppPresentation: React.FC<Props> = () => {
-  // DAL.user.auth.useGet();
+  DAL.user.auth.useDAL();
 
   return (
     <>

@@ -1,8 +1,9 @@
 import React, { useCallback } from 'react';
 
-import { FontAwesome6, MaterialCommunityIcons } from '@expo/vector-icons';
+import { FontAwesome6 } from '@expo/vector-icons';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
+import { DAL } from '@nono-art/dal';
 import { UI } from '@nono-art/ui-mobile';
 
 import { ScreenView } from '@/components';
@@ -10,7 +11,7 @@ import { useSetAppHeader } from '@/hooks';
 
 import type { RootStackParamList } from '../routes';
 
-import { LinksSection } from './components';
+import { LinksSection, SignForm, UserSection } from './components';
 
 /* -------------------------------------------------------------------------- */
 /*                                  COMPONENT                                 */
@@ -19,12 +20,7 @@ import { LinksSection } from './components';
 export const AccountScreen: React.FC<Props> = ({ navigation }) => {
   /* ---------------------------------- data ---------------------------------- */
 
-  // const { isAuth, user, role, login, registration, exitAuth } = DAL.user.auth.useGet();
-
-  // const isAdmin = useMemo(() => role === Role.admin, [role]);
-
-  const isAuth = true;
-  const isAdmin = true;
+  const { user, isAuth, isAdmin, signIn, signUp, signOut } = DAL.user.auth.useDAL();
 
   /* --------------------------------- / data --------------------------------- */
 
@@ -44,13 +40,7 @@ export const AccountScreen: React.FC<Props> = ({ navigation }) => {
 
   useSetAppHeader({
     title: 'Аккаунт',
-    icon: (
-      <>
-        <MaterialCommunityIcons name="alert-circle-outline" size={14} color={UI.color.yellow300} />
-
-        <FontAwesome6 name="user-large" size={18} color={UI.color.white} />
-      </>
-    ),
+    icon: <FontAwesome6 name="user-large" size={18} color={UI.color.white} />,
     actionList: null,
   });
 
@@ -60,13 +50,9 @@ export const AccountScreen: React.FC<Props> = ({ navigation }) => {
 
   return (
     <ScreenView style={{ justifyContent: 'space-between' }}>
-      {/* {!!user ? (
-        <UserSection user={user} exitAuth={exitAuth} />
-      ) : (
-        <SignForm loginRequest={login} registrationRequest={registration} />
-      )} */}
+      {!!user ? <UserSection user={user} signOut={signOut} /> : <SignForm signIn={signIn} signUp={signUp} />}
 
-      <UI.Layout.Divider />
+      <UI.Layout.Divider margin={0} />
 
       <LinksSection
         isAuth={isAuth}
