@@ -1,5 +1,6 @@
 import express from 'express';
 
+import { authUserController } from './auth';
 import { getUserController } from './get';
 import { refreshTokenUserController } from './refreshToken';
 import { signInUserController } from './signIn';
@@ -13,6 +14,10 @@ export const userRouter = express();
 /* -------------------------------------------------------------------------- */
 
 userRouter.get('/', getUserController);
+
+/* -------------------------------------------------------------------------- */
+
+userRouter.get('/auth', authUserController);
 
 /* -------------------------------------------------------------------------- */
 /*                                    / GET                                   */
