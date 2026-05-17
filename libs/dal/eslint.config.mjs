@@ -107,6 +107,7 @@ export default tseslint.config(
       'no-debugger': 'warn',
 
       'no-extra-boolean-cast': 'off',
+      '@typescript-eslint/no-empty-object-type': 'off',
     },
   },
 
