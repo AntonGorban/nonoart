@@ -13,7 +13,7 @@ import { GridEditor, MultilineText } from '../../../components';
 /* -------------------------------------------------------------------------- */
 
 export const CreateLevelForm = React.memo<Props>(({ create }) => {
-  const [isOpenModal, { enable: openModal, disable: closeModal }] = useFlag(true);
+  const [isOpenModal, { enable: openModal, disable: closeModal }] = useFlag(false);
 
   const { isLoading, enableIsLoading, disableIsLoading } = useIsLoadingFlag(false);
   const [error, setError] = useState<ApiError | null>(null);
