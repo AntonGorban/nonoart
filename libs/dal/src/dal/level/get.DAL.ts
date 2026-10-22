@@ -37,9 +37,38 @@ export const useDAL = () => {
 
   /* --------------------------------- / fetch -------------------------------- */
 
+  /* -------------------------------- selectors ------------------------------- */
+
+  const count: number = levels?.length ?? 0;
+
+  /* ------------------------------- / selectors ------------------------------ */
+
+  /* -------------------------------- mutations ------------------------------- */
+
+  const create = useCallback(
+    async (...args: Parameters<typeof api.level.create>) => {
+      const res = await api.level.create(...args);
+      mutate((p) =>
+        !!p
+          ? p.map(({ ...level }) => ({
+              ...level,
+              ...res.data,
+              createdAt: new Date(res.data.createdAt),
+              updatedAt: new Date(res.data.updatedAt),
+              deletedAt: !!res.data.deletedAt ? new Date(res.data.deletedAt) : null,
+            }))
+          : p,
+      ).catch(console.error);
+      return res;
+    },
+    [api, mutate],
+  );
+
+  /* ------------------------------- / mutations ------------------------------ */
+
   /* --------------------------------- RETURN --------------------------------- */
 
-  return { levels, error, isLoading, isValidating, refresh, mutate };
+  return { levels, error, isLoading, isValidating, refresh, mutate, count, create };
 };
 
 /* -------------------------------------------------------------------------- */

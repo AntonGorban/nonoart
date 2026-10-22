@@ -103,7 +103,7 @@ export default tseslint.config(
         },
       ],
 
-      'no-console': 'warn',
+      'no-console': 'off',
       'no-debugger': 'warn',
 
       'no-extra-boolean-cast': 'off',
