@@ -93,6 +93,7 @@ export const CreateLevelForm = React.memo<Props>(({ create }) => {
         title="Создание нового уровня"
         open={isOpenModal}
         centered
+        onCancel={closeModal}
         footer={
           <Flex align="center" justify="flex-end" gap="small">
             <Button onClick={clear} loading={isLoading} block={isLoading} danger>
