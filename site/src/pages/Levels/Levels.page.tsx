@@ -3,12 +3,14 @@ import React from 'react';
 
 import { DAL } from '@nono-art/dal';
 
+import { CreateLevelForm } from './components/CreateLevelForm';
+
 /* -------------------------------------------------------------------------- */
 /*                                  COMPONENT                                 */
 /* -------------------------------------------------------------------------- */
 
 export const LevelsPage: React.FC<Props> = () => {
-  const { error, isLoading, isValidating, levels, count, refresh } = DAL.level.get.useDAL();
+  const { create, error, isLoading, isValidating, levels, count, refresh } = DAL.level.get.useDAL();
 
   return (
     <Flex orientation="vertical" gap="medium">
@@ -18,6 +20,8 @@ export const LevelsPage: React.FC<Props> = () => {
 
       <Flex orientation="horizontal" gap="small" justify="space-evenly" align="center">
         <Statistic title="Кол-во уровней" value={count} loading={isLoading} />
+
+        <CreateLevelForm create={create} />
 
         <Button onClick={refresh} loading={isLoading || isValidating} disabled={isLoading || isValidating}>
           Обновить
