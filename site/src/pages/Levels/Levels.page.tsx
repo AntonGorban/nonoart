@@ -5,7 +5,7 @@ import { DAL } from '@nono-art/dal';
 import { D } from '@nono-art/domain';
 import { f } from '@nono-art/utils';
 
-import { MultilineText } from '../../components';
+import { Guard, MultilineText } from '../../components';
 
 import { CreateLevelForm } from './components/CreateLevelForm';
 import { LevelGridPreview } from './components/LevelGridPreview';
@@ -26,7 +26,9 @@ export const LevelsPage: React.FC<Props> = () => {
       <Flex orientation="horizontal" gap="small" justify="space-evenly" align="center">
         <Statistic title="Кол-во уровней" value={count} loading={isLoading} />
 
-        <CreateLevelForm create={create} />
+        <Guard>
+          <CreateLevelForm create={create} />
+        </Guard>
 
         <Button onClick={refresh} loading={isLoading || isValidating} disabled={isLoading || isValidating}>
           Обновить

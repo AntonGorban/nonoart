@@ -24,7 +24,6 @@ export const routeList: RouteList = [
     label: 'Levels',
     Page: () => <LevelsPage />,
     icon: <ProductOutlined />,
-    access: { isPrivate: true },
   },
   {
     path: 'users',
