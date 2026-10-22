@@ -17,6 +17,8 @@ import { routeList } from './config/routes';
 /* -------------------------------------------------------------------------- */
 
 export const App: React.FC<Props> = () => {
+  DAL.user.auth.useDAL();
+
   return (
     <Layout>
       <Router routeList={routeList} />

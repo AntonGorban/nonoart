@@ -2,6 +2,9 @@ import { Menu as AntdMenu, type MenuProps } from 'antd';
 import React, { useMemo } from 'react';
 import { type NavigateFunction, useLocation, useNavigate } from 'react-router';
 
+import { DAL } from '@nono-art/dal';
+import type { D } from '@nono-art/domain';
+
 import type { RouteItem, RouteList } from '../../../config/routes';
 
 /* -------------------------------------------------------------------------- */
@@ -12,7 +15,12 @@ export const Menu = React.memo<Props>(({ routeList }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const menuItemList = useMemo(() => prepareMenuItemList(routeList, '', navigate), [navigate, routeList]);
+  const { isAuth, userRole } = DAL.user.auth.useDAL();
+
+  const menuItemList = useMemo(
+    () => prepareMenuItemList(filterAccessibleRouteList(routeList, isAuth, userRole), '', navigate),
+    [isAuth, navigate, routeList, userRole],
+  );
 
   const selectedKeys = useMemo<Array<string>>(() => {
     if (location.pathname === '/') return ['/'];
@@ -50,6 +58,15 @@ export const Menu = React.memo<Props>(({ routeList }) => {
 /* -------------------------------------------------------------------------- */
 /*                                    UTILS                                   */
 /* -------------------------------------------------------------------------- */
+
+const filterAccessibleRouteList = (routeList: RouteList, isAuth: boolean, userRole: D.User.Role | null): RouteList =>
+  routeList.filter((route) => isRouteAccessible(route, isAuth, userRole));
+
+const isRouteAccessible = (route: RouteItem, isAuth: boolean, userRole: D.User.Role | null): boolean => {
+  if (!!route.access?.role) return isAuth && userRole === route.access.role;
+  if (!!route.access?.isPrivate) return isAuth;
+  return true;
+};
 
 const prepareMenuItemList = (routeList: RouteList, rootPath: string, navigate: NavigateFunction): MenuItemList =>
   routeList.map(prepareMenuItem(rootPath, navigate));

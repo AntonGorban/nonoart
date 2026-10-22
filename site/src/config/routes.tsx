@@ -1,12 +1,16 @@
 import type React from 'react';
 
-import { HomeOutlined, ProductOutlined, UserOutlined } from '@ant-design/icons';
+import { HomeOutlined, ProductOutlined, TeamOutlined } from '@ant-design/icons';
+
+import { D } from '@nono-art/domain';
 
 import { HomePage, LevelsPage, UsersPage } from '../pages';
 
 /* -------------------------------------------------------------------------- */
 /*                                  CONSTANTS                                 */
 /* -------------------------------------------------------------------------- */
+
+export const signInPath = '/';
 
 export const routeList: RouteList = [
   {
@@ -16,16 +20,18 @@ export const routeList: RouteList = [
     icon: <HomeOutlined />,
   },
   {
-    path: 'users',
-    label: 'Users',
-    Page: () => <UsersPage />,
-    icon: <UserOutlined />,
-  },
-  {
     path: 'levels',
     label: 'Levels',
     Page: () => <LevelsPage />,
     icon: <ProductOutlined />,
+    access: { isPrivate: true },
+  },
+  {
+    path: 'users',
+    label: 'Users',
+    Page: () => <UsersPage />,
+    icon: <TeamOutlined />,
+    access: { isPrivate: true, role: D.User.Role.admin },
   },
 ];
 
@@ -45,6 +51,14 @@ export interface RouteItem {
   readonly Page?: React.FC;
   readonly icon?: React.ReactNode;
   readonly subRouteList?: RouteList;
+  readonly access?: RouteAccess;
+}
+
+export interface RouteAccess {
+  /** страница доступна только аутентифицированным пользователям */
+  readonly isPrivate?: boolean;
+  /** страница дополнительно требует указанную роль (проверка роли после аутентификации) */
+  readonly role?: D.User.Role;
 }
 
 /* -------------------------------------------------------------------------- */

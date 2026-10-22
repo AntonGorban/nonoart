@@ -11,7 +11,7 @@ const MAX_PREVIEW_WIDTH = 120;
 const MAX_PREVIEW_HEIGHT = 96;
 const MIN_CELL_SIZE = 2;
 const MAX_CELL_SIZE = 10;
-const GAP = 1;
+const GAP = 0;
 
 /* -------------------------------------------------------------------------- */
 /*                                  COMPONENT                                 */

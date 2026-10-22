@@ -1,62 +1,29 @@
-import { Typography } from 'antd';
+import { Divider, Flex, Typography } from 'antd';
 import React from 'react';
-import {
-  useAsyncError,
-  useAsyncValue,
-  useFormAction,
-  useInRouterContext,
-  useLocation,
-  useNavigate,
-  useNavigationType,
-  useOutlet,
-  useOutletContext,
-  useParams,
-  useSearchParams,
-} from 'react-router';
+
+import { DAL } from '@nono-art/dal';
+
+import { SignForm, UserSection } from './components';
 
 /* -------------------------------------------------------------------------- */
 /*                                  COMPONENT                                 */
 /* -------------------------------------------------------------------------- */
 
 export const HomePage: React.FC<Props> = () => {
-  const AsyncError = useAsyncError();
-  const AsyncValue = useAsyncValue();
-  const FormAction = useFormAction();
-  const InRouterContext = useInRouterContext();
-  const Location = useLocation();
-  const Navigate = useNavigate();
-  const NavigationType = useNavigationType();
-  const Outlet = useOutlet();
-  const OutletContext = useOutletContext();
-  const Params = useParams();
-  const SearchParams = useSearchParams();
+  const { user, signIn, signUp, signOut } = DAL.user.auth.useDAL();
+
+  /* --------------------------------- / data --------------------------------- */
+
+  /* --------------------------------- RETURN --------------------------------- */
 
   return (
-    <>
-      <Typography.Title>HomePage</Typography.Title>
+    <Flex orientation="vertical" gap="small">
+      <Typography.Title>Домашняя страница</Typography.Title>
 
-      <Typography.Paragraph code>
-        <pre>
-          {JSON.stringify(
-            {
-              AsyncError,
-              AsyncValue,
-              FormAction,
-              InRouterContext,
-              Location,
-              Navigate,
-              NavigationType,
-              Outlet,
-              OutletContext,
-              Params,
-              SearchParams,
-            },
-            null,
-            2,
-          )}
-        </pre>
-      </Typography.Paragraph>
-    </>
+      <Divider size="small" />
+
+      {!!user ? <UserSection user={user} signOut={signOut} /> : <SignForm signIn={signIn} signUp={signUp} />}
+    </Flex>
   );
 };
 
