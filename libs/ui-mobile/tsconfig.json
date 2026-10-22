@@ -15,8 +15,7 @@
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
     "tsBuildInfoFile": "./dist/tsconfig.tsbuildinfo",
-    "lib": ["ESNext"],
-    "types": ["react-native"]
+    "lib": ["ESNext"]
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist", "test"]

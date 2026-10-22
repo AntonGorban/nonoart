@@ -31,7 +31,7 @@ export const AppPresentation: React.FC<Props> = () => {
 
   return (
     <>
-      <StatusBar style="light" backgroundColor={UI.color.black700} translucent={false} />
+      <StatusBar style="light" />
 
       <NavigationContainer>
         <Stack.Navigator
