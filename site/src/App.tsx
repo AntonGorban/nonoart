@@ -18,7 +18,7 @@ import { routeList } from './config/routes';
 
 export const App: React.FC<Props> = () => {
   return (
-    <Layout title="App">
+    <Layout>
       <Router routeList={routeList} />
     </Layout>
   );

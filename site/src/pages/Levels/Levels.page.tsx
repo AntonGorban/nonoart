@@ -1,62 +1,37 @@
-import { Typography } from 'antd';
+import { Alert, Button, Divider, Empty, Flex, Spin, Statistic, Typography } from 'antd';
 import React from 'react';
-import {
-  useAsyncError,
-  useAsyncValue,
-  useFormAction,
-  useInRouterContext,
-  useLocation,
-  useNavigate,
-  useNavigationType,
-  useOutlet,
-  useOutletContext,
-  useParams,
-  useSearchParams,
-} from 'react-router';
+
+import { DAL } from '@nono-art/dal';
 
 /* -------------------------------------------------------------------------- */
 /*                                  COMPONENT                                 */
 /* -------------------------------------------------------------------------- */
 
 export const LevelsPage: React.FC<Props> = () => {
-  const AsyncError = useAsyncError();
-  const AsyncValue = useAsyncValue();
-  const FormAction = useFormAction();
-  const InRouterContext = useInRouterContext();
-  const Location = useLocation();
-  const Navigate = useNavigate();
-  const NavigationType = useNavigationType();
-  const Outlet = useOutlet();
-  const OutletContext = useOutletContext();
-  const Params = useParams();
-  const SearchParams = useSearchParams();
+  const { error, isLoading, isValidating, levels, count, refresh } = DAL.level.get.useDAL();
 
   return (
-    <>
-      <Typography.Title>LevelsPage</Typography.Title>
+    <Flex orientation="vertical" gap="medium">
+      <Typography.Title>Уровни</Typography.Title>
 
-      <Typography.Paragraph code>
-        <pre>
-          {JSON.stringify(
-            {
-              AsyncError,
-              AsyncValue,
-              FormAction,
-              InRouterContext,
-              Location,
-              Navigate,
-              NavigationType,
-              Outlet,
-              OutletContext,
-              Params,
-              SearchParams,
-            },
-            null,
-            2,
-          )}
-        </pre>
-      </Typography.Paragraph>
-    </>
+      <Divider size="small" />
+
+      <Flex orientation="horizontal" gap="small" justify="space-evenly" align="center">
+        <Statistic title="Кол-во уровней" value={count} loading={isLoading} />
+
+        <Button onClick={refresh} loading={isLoading || isValidating} disabled={isLoading || isValidating}>
+          Обновить
+        </Button>
+      </Flex>
+
+      <Divider size="small" />
+
+      {isLoading && <Spin fullscreen size="large" />}
+
+      {!!levels && (levels.length ? <pre>{JSON.stringify(levels, null, 2)}</pre> : <Empty />)}
+
+      {!!error && <Alert title="Ошибка" description={error.message} type="error" showIcon />}
+    </Flex>
   );
 };
 
