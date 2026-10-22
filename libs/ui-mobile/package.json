@@ -26,9 +26,9 @@
     "@nono-art/domain": "workspace:^"
   },
   "peerDependencies": {
-    "expo": "^54.0.0",
-    "react": "19.1.0",
-    "react-native": "0.81.5"
+    "expo": "^57.0.0",
+    "react": "19.2.3",
+    "react-native": "0.86.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",
@@ -44,5 +44,8 @@
     "globals": "^17.4.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.58.0"
+  },
+  "installConfig": {
+    "hoistingLimits": "dependencies"
   }
 }

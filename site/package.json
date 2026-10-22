@@ -25,8 +25,8 @@
     "@nono-art/ui-web": "workspace:^",
     "@nono-art/utils": "workspace:^",
     "antd": "^6.3.6",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
     "react-router": "^7.14.2",
     "swr": "^2.4.1"
   },
