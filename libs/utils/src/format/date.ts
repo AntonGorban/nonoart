@@ -28,3 +28,7 @@ const formatDatePartTime = (date: Date, withMilliseconds?: boolean): string => {
 };
 
 const pad = (n: number, length: number = 2): string => n.toString().padStart(length, '0');
+
+/* -------------------------------------------------------------------------- */
+
+export const dateFormat = new Intl.DateTimeFormat('ru-RU', { dateStyle: 'short', timeStyle: 'short' });
