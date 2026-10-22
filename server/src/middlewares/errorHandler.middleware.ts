@@ -65,7 +65,7 @@ export const errorHandlerMiddleware: express.ErrorRequestHandler = (
                 .map((item) => (typeof item === 'string' ? FIELD_TRANSLATIONS[item] || item : `[${item.toString()}]`))
                 .join('.')}: ${e.message}`,
           )
-          .join(';'),
+          .join(';\n'),
         error,
       );
     }
