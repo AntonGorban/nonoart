@@ -25,7 +25,7 @@ export const description = createZod<D.Level.Description>()(
   z
     .string()
     .transform((val) => val.trim())
-    .pipe(z.string().min(1, { message: 'не может быть пустым' }))
+    // .pipe(z.string().min(1, { message: 'не может быть пустым' }))
     .transform((val) => val.replace(/\s+/g, ' '))
     .pipe(z.string().max(500, { message: 'не может быть длиннее 500 символов' })),
 );
@@ -86,7 +86,10 @@ export const grid = createZod<D.Level.Grid>()(
         }),
     )
     .readonly()
-    .refine((grid) => grid.length > 0, { message: 'Сетка не может быть пустой' }),
+    .refine((grid) => grid.length > 0, { message: 'Сетка не может быть пустой' })
+    .refine((grid) => grid.every((row) => row.length === grid[0]?.length), {
+      message: 'Сетка должна быть матрицей: все строки должны быть одинаковой длины',
+    }),
 );
 
 export type Grid = z.infer<typeof grid>;
