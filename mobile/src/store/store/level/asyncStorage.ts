@@ -22,7 +22,7 @@ export const get = async (id: D.Level.Id): Promise<StoreLevel | null> => {
     const gridWidth = D.utils.level.calcGridWidth(rawLevel.grid);
     const gridHeight = D.utils.level.calcGridHeight(rawLevel.grid);
 
-    if (rawLevel.status === D.Level.Status.new) {
+    if (rawLevel.status === D.LevelProgress.Status.new) {
       rawLevel = { ...rawLevel, progress: rawLevel.grid };
       set(rawLevel.id, deserialize(rawLevel));
     } else {

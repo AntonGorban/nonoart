@@ -13,7 +13,7 @@ export const initialState: State = [
     description: 'Сердечко',
     likesCount: 65,
     dislikesCount: 4,
-    status: D.Level.Status.done,
+    status: D.LevelProgress.Status.done,
     createdAt: 1722684941265,
     colors: ['#000a12', '#ff1744', '#ffab00'],
     grid: [
@@ -35,7 +35,7 @@ export const initialState: State = [
     description: 'Яблочко',
     likesCount: 20,
     dislikesCount: 13,
-    status: D.Level.Status.done,
+    status: D.LevelProgress.Status.done,
     createdAt: 1722771341265,
     colors: ['#fe4445', '#201a1c', '#4e7851'],
     grid: [
@@ -61,7 +61,7 @@ export const initialState: State = [
     description: 'Кошара',
     likesCount: 34,
     dislikesCount: 9,
-    status: D.Level.Status.done,
+    status: D.LevelProgress.Status.done,
     createdAt: 1722771341265,
     colors: ['#a1887f', '#1b1b1b', '#ff9777'],
     grid: [
@@ -83,7 +83,7 @@ export const initialState: State = [
     description: 'Помидорчик',
     likesCount: 33,
     dislikesCount: 12,
-    status: D.Level.Status.done,
+    status: D.LevelProgress.Status.done,
     createdAt: 1722944141265,
     colors: ['#1b1b1b', '#dd2c00', '#2c9846'],
     grid: [
@@ -111,7 +111,7 @@ export const initialState: State = [
     description: 'Лягушка',
     likesCount: 72,
     dislikesCount: 14,
-    status: D.Level.Status.updated,
+    status: D.LevelProgress.Status.updated,
     createdAt: 1729774541265,
     colors: ['#000000', '#009F00', '#F5CE3C'],
     grid: [
@@ -139,7 +139,7 @@ export const initialState: State = [
     description: 'Кактус',
     likesCount: null,
     dislikesCount: null,
-    status: D.Level.Status.new,
+    status: D.LevelProgress.Status.new,
     createdAt: 1731843341265,
     colors: ['#000000', '#FA3F16', '#56AF61'],
     grid: [
@@ -196,7 +196,7 @@ export interface StoreMyLevel {
   readonly id: D.Level.Id;
   readonly name: D.Level.Name;
   readonly description: D.Level.Description;
-  readonly status: D.Level.Status;
+  readonly status: D.LevelProgress.Status;
   readonly colors: D.Level.Colors;
   readonly grid: D.Level.Grid;
   readonly likesCount: D.Level.LikesCount | null;

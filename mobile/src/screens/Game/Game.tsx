@@ -15,9 +15,9 @@ import { type Level } from '@/store';
 /* -------------------------------------------------------------------------- */
 
 export const Game: React.FC<Props> = ({ level }) => {
-  const isDone = useMemo<boolean>(() => level.status === D.Level.Status.done, [level.status]);
+  const isDone = useMemo<boolean>(() => level.status === D.LevelProgress.Status.done, [level.status]);
 
-  const [selectedColor, setSelectedColor] = useEnumFlag<D.Level.SelectedColor>(1);
+  const [selectedColor, setSelectedColor] = useEnumFlag<D.LevelProgress.SelectedColor>(1);
 
   useSetAppHeader({
     title: level.name,

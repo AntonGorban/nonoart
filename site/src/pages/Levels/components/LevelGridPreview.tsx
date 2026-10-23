@@ -53,7 +53,7 @@ export const LevelGridPreview = React.memo<Props>(({ grid, colors }) => {
             style={{
               width: cellSize,
               height: cellSize,
-              background: cell === null ? '#ffffff' : colors[cell as D.Level.SelectedColor],
+              background: cell === null ? '#ffffff' : colors[cell as D.LevelProgress.SelectedColor],
             }}
           />
         )),

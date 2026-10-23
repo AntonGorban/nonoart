@@ -1,5 +1,6 @@
 import * as asserts from '../asserts';
-import { Level } from '../Level.domain';
+import type { Level } from '../Level.domain';
+import { LevelProgress } from '../LevelProgress.domain';
 import type { User } from '../User.domain';
 
 /* -------------------------------------------------------------------------- */
@@ -53,9 +54,9 @@ export const authorName = (value: unknown): User.Login => {
 
 /* -------------------------------------------------------------------------- */
 
-export const status = (value: unknown): Level.Status => {
+export const status = (value: unknown): LevelProgress.Status => {
   if (asserts.level.status(value)) return value;
-  return Level.Status.new;
+  return LevelProgress.Status.new;
 };
 
 /* -------------------------------------------------------------------------- */
@@ -69,13 +70,6 @@ export const likesCount = (value: unknown): Level.LikesCount => {
 
 export const dislikesCount = (value: unknown): Level.DislikesCount => {
   if (asserts.level.dislikesCount(value)) return value;
-  return 0;
-};
-
-/* -------------------------------------------------------------------------- */
-
-export const serializedProgressUpdatedAt = (value: unknown): Level.SerializedProgressUpdatedAt => {
-  if (asserts.level.serializedProgressUpdatedAt(value)) return value;
   return 0;
 };
 

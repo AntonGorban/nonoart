@@ -33,9 +33,9 @@ type ColorButtonPresentationProps = ComponentProps<typeof ColorButtonPresentatio
 /* -------------------------------------------------------------------------- */
 
 interface Props extends Omit<ColorButtonPresentationProps, 'isSelected' | 'onPress'> {
-  readonly colorIdx: D.Level.SelectedColor;
-  readonly selectedColor: D.Level.SelectedColor;
-  readonly setSelectedColor: (color: D.Level.SelectedColor) => void;
+  readonly colorIdx: D.LevelProgress.SelectedColor;
+  readonly selectedColor: D.LevelProgress.SelectedColor;
+  readonly setSelectedColor: (color: D.LevelProgress.SelectedColor) => void;
 }
 
 /* -------------------------------------------------------------------------- */

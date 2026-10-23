@@ -17,7 +17,7 @@ export const useStoreSetters = (
   /* ----------------------------- setProgressCell ---------------------------- */
 
   const setProgressCell = useCallback(
-    (rowIdx: number, colIdx: number, value: D.Level.SelectedColor) => {
+    (rowIdx: number, colIdx: number, value: D.LevelProgress.SelectedColor) => {
       setLevel((p) => ({
         ...p,
         progress:

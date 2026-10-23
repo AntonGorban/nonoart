@@ -13,8 +13,6 @@ export namespace Level {
   export type Cell = 0 | 1 | 2 | null;
   export type GridRow = ReadonlyArray<Cell>;
   export type Grid = ReadonlyArray<GridRow>;
-  export type Progress = Grid;
-  export type SelectedColor = NonNullable<Cell>;
 
   export type Complexity = number;
   export type GridWidth = number;
@@ -33,16 +31,6 @@ export namespace Level {
     approved = 'APPROVED',
     rejected = 'REJECTED',
   }
-
-  export enum Status {
-    new = 'NEW',
-    progress = 'PROGRESS',
-    done = 'DONE',
-    updated = 'UPDATED',
-  }
-
-  export type ProgressUpdatedAt = Date;
-  export type SerializedProgressUpdatedAt = number;
 
   export type CreatedAt = Date;
   export type SerializedCreatedAt = number;

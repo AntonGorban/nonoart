@@ -37,7 +37,7 @@ export const normalize = (raw: unknown): SerializedLevel => {
   const status = D.normalizers.level.status(raw['status']);
   const likesCount = D.normalizers.level.likesCount(raw['likesCount']);
   const dislikesCount = D.normalizers.level.dislikesCount(raw['dislikesCount']);
-  const progressUpdatedAt = D.normalizers.level.serializedProgressUpdatedAt(raw['progressUpdatedAt']);
+  // const progressUpdatedAt = D.normalizers.level.serializedProgressUpdatedAt(raw['progressUpdatedAt']);
   const createdAt = D.normalizers.level.serializedCreatedAt(raw['createdAt']);
   const updatedAt = D.normalizers.level.serializedUpdatedAt(raw['updatedAt']);
 
@@ -53,7 +53,7 @@ export const normalize = (raw: unknown): SerializedLevel => {
     status,
     likesCount,
     dislikesCount,
-    progressUpdatedAt,
+    // progressUpdatedAt,
     createdAt,
     updatedAt,
   };
@@ -64,7 +64,7 @@ export const normalize = (raw: unknown): SerializedLevel => {
 export const deserialize = (level: SerializedLevel): StoreLevel => {
   return {
     ...level,
-    progressUpdatedAt: new Date(level.progressUpdatedAt),
+    // progressUpdatedAt: new Date(level.progressUpdatedAt),
     createdAt: new Date(level.createdAt),
     updatedAt: new Date(level.updatedAt),
   };
@@ -75,7 +75,7 @@ export const deserialize = (level: SerializedLevel): StoreLevel => {
 export const serialize = (level: StoreLevel): SerializedLevel => {
   return {
     ...level,
-    progressUpdatedAt: level.progressUpdatedAt.getTime(),
+    // progressUpdatedAt: level.progressUpdatedAt.getTime(),
     createdAt: level.createdAt.getTime(),
     updatedAt: level.updatedAt.getTime(),
   };

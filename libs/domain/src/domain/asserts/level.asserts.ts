@@ -1,6 +1,7 @@
 import { isEnumValueStrict } from '@nono-art/utils';
 
-import { Level } from '../Level.domain';
+import type { Level } from '../Level.domain';
+import { LevelProgress } from '../LevelProgress.domain';
 import type { User } from '../User.domain';
 
 /* -------------------------------------------------------------------------- */
@@ -58,7 +59,7 @@ export const authorName = (value: unknown): value is User.Login => typeof value 
 
 /* -------------------------------------------------------------------------- */
 
-export const status = (value: unknown): value is Level.Status => isEnumValueStrict(Level.Status, value);
+export const status = (value: unknown): value is LevelProgress.Status => isEnumValueStrict(LevelProgress.Status, value);
 
 /* -------------------------------------------------------------------------- */
 
@@ -67,11 +68,6 @@ export const likesCount = (value: unknown): value is Level.LikesCount => typeof 
 /* -------------------------------------------------------------------------- */
 
 export const dislikesCount = (value: unknown): value is Level.DislikesCount => typeof value === 'number' && value >= 0;
-
-/* -------------------------------------------------------------------------- */
-
-export const serializedProgressUpdatedAt = (value: unknown): value is Level.SerializedProgressUpdatedAt =>
-  typeof value === 'number' && value >= 0;
 
 /* -------------------------------------------------------------------------- */
 

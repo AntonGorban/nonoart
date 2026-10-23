@@ -15,17 +15,19 @@ import { f } from '@nono-art/utils';
 export const LevelHeader = React.memo<Props>(({ name, authorName, createdAt, status }) => (
   <View style={styles.wrap}>
     <View style={styles.nameWrap}>
-      {status === D.Level.Status.new && <MaterialCommunityIcons name="new-box" size={18} color={UI.color.secondary} />}
-
-      {status === D.Level.Status.updated && (
-        <MaterialCommunityIcons name="update" size={18} color={UI.color.yellowA400} />
+      {status === D.LevelProgress.Status.new && (
+        <MaterialCommunityIcons name="new-box" size={18} color={UI.color.secondary} />
       )}
 
-      {status === D.Level.Status.progress && (
+      {/* {status === D.LevelProgress.Status.updated && (
+        <MaterialCommunityIcons name="update" size={18} color={UI.color.yellowA400} />
+      )} */}
+
+      {status === D.LevelProgress.Status.progress && (
         <MaterialCommunityIcons name="progress-question" size={18} color={UI.color.yellowA400} />
       )}
 
-      {status === D.Level.Status.done && (
+      {status === D.LevelProgress.Status.done && (
         <MaterialCommunityIcons name="check-decagram-outline" size={18} color={UI.color.primary} />
       )}
 
@@ -82,7 +84,7 @@ interface Props {
   readonly name: D.Level.Name;
   readonly authorName?: D.Level.AuthorName;
   readonly createdAt?: D.Level.CreatedAt;
-  readonly status: D.Level.Status;
+  readonly status: D.LevelProgress.Status;
 }
 
 /* -------------------------------------------------------------------------- */

@@ -22,10 +22,10 @@ export interface StoreLevel {
   readonly progress: D.Level.Grid;
   readonly authorId: D.Level.AuthorID;
   readonly authorName: D.Level.Name;
-  readonly status: D.Level.Status;
+  readonly status: D.LevelProgress.Status;
   readonly likesCount: D.Level.LikesCount;
   readonly dislikesCount: D.Level.DislikesCount;
-  readonly progressUpdatedAt: D.Level.ProgressUpdatedAt;
+  // readonly progressUpdatedAt: D.Level.ProgressUpdatedAt;
   readonly createdAt: D.Level.CreatedAt;
   readonly updatedAt: D.Level.UpdatedAt;
 }
@@ -35,7 +35,7 @@ export interface StoreLevel {
 export interface SerializedLevel extends ProtoExtends<
   StoreLevel,
   {
-    readonly progressUpdatedAt: D.Level.SerializedProgressUpdatedAt;
+    // readonly progressUpdatedAt: D.Level.SerializedProgressUpdatedAt;
     readonly createdAt: D.Level.SerializedCreatedAt;
     readonly updatedAt: D.Level.SerializedUpdatedAt;
   }

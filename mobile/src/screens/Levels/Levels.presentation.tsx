@@ -24,13 +24,13 @@ export const LevelsPresentation = React.memo<Props>(({ levelList, navToGame, ...
           authorName={level.authorName}
           colors={level.colors}
           status={level.status}
-          grid={level.status === D.Level.Status.new ? level.grid : level.progress}
+          grid={level.status === D.LevelProgress.Status.new ? level.grid : level.progress}
           gridWidth={level.gridWidth}
           gridHeight={level.gridHeight}
           complexity={level.complexity}
           likesCount={level.likesCount}
           dislikesCount={level.dislikesCount}
-          showArtIconPlug={level.status === D.Level.Status.new}
+          showArtIconPlug={level.status === D.LevelProgress.Status.new}
           onPress={navToGame}
         />
       )}

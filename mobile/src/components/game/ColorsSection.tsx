@@ -13,7 +13,7 @@ import { ColorButton } from './ColorButton';
 export const ColorsSection = React.memo<Props>(({ colors, ...props }) => (
   <View style={styles.colorsWrap}>
     {colors.map((color, idx) => (
-      <ColorButton key={idx} {...props} color={color} colorIdx={idx as D.Level.SelectedColor} />
+      <ColorButton key={idx} {...props} color={color} colorIdx={idx as D.LevelProgress.SelectedColor} />
     ))}
   </View>
 ));

@@ -64,7 +64,7 @@ interface Props extends Omit<
 > {
   readonly value: D.Level.Cell;
   readonly colors: D.Level.Colors;
-  readonly selectedColor?: D.Level.SelectedColor;
+  readonly selectedColor?: D.LevelProgress.SelectedColor;
   readonly cellIdx: number;
   readonly onPress?: (cell: number) => void;
 }

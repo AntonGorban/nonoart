@@ -15,7 +15,7 @@ import { type MyLevel } from '@/store';
 /* -------------------------------------------------------------------------- */
 
 export const Designer: React.FC<Props> = ({ myLevel }) => {
-  const [selectedColor, setSelectedColor] = useEnumFlag<D.Level.SelectedColor>(1);
+  const [selectedColor, setSelectedColor] = useEnumFlag<D.LevelProgress.SelectedColor>(1);
 
   useSetAppHeader({
     title: myLevel.name,

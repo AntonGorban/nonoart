@@ -21,7 +21,7 @@ export const slice = createSlice({
           description: '',
           likes: null,
           dislikes: null,
-          status: D.Level.Status.new,
+          status: D.LevelProgress.Status.new,
           createdAt: Date.now(),
           colors: ['#ff0000', '#00ff00', '#0000ff'],
           grid: [
