@@ -34,8 +34,9 @@ export class User extends Model<Attributes, CreationAttributes> implements D.Use
   /*                                   STATIC                                   */
   /* -------------------------------------------------------------------------- */
 
-  public static association = {
+  public static readonly association = {
     levelList: 'levelList' as const,
+    levelsProgressList: 'levelsProgressList' as const,
   };
 
   /* -------------------------------------------------------------------------- */

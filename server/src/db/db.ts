@@ -3,7 +3,7 @@ import { Sequelize } from 'sequelize-typescript';
 import { environment } from '../environment';
 import { context, logger } from '../services';
 
-import { Level, User } from './models';
+import { Level, LevelProgress, User } from './models';
 
 export const db = new Sequelize({
   dialect: 'postgres',
@@ -22,5 +22,5 @@ export const db = new Sequelize({
       type: 'sql',
     });
   },
-  models: [User, Level],
+  models: [User, Level, LevelProgress],
 });

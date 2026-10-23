@@ -1,0 +1,218 @@
+import type { Optional } from 'sequelize';
+import {
+  BelongsTo,
+  Column,
+  CreatedAt,
+  DataType,
+  Default,
+  DeletedAt,
+  ForeignKey,
+  Model,
+  PrimaryKey,
+  Table,
+  UpdatedAt,
+} from 'sequelize-typescript';
+
+import { D } from '@nono-art/domain';
+import { uuidV4 } from '@nono-art/utils';
+
+import { environment } from '../../environment';
+
+import { Level } from './Level.model';
+import { User } from './User.model';
+
+interface Attributes {
+  readonly id: D.LevelProgress.Id;
+  readonly progress: D.LevelProgress.Progress;
+  readonly userId: D.LevelProgress.UserID;
+  readonly levelId: D.LevelProgress.LevelID;
+  readonly status: D.LevelProgress.Status;
+  readonly createdAt: D.LevelProgress.CreatedAt;
+  readonly updatedAt: D.LevelProgress.UpdatedAt;
+}
+
+interface CreationAttributes extends Optional<Attributes, 'id' | 'status' | 'createdAt' | 'updatedAt'> {}
+
+@Table({
+  tableName: 'levels_progress',
+  freezeTableName: true,
+  comment: 'прогресс уровней',
+  timestamps: true,
+})
+export class LevelProgress extends Model<Attributes, CreationAttributes> implements Attributes {
+  /* -------------------------------------------------------------------------- */
+  /*                                   STATIC                                   */
+  /* -------------------------------------------------------------------------- */
+
+  public static readonly association = {
+    user: 'user' as const,
+    level: 'level' as const,
+  };
+
+  /* -------------------------------------------------------------------------- */
+  /*                                  / STATIC                                  */
+  /* -------------------------------------------------------------------------- */
+
+  /* -------------------------------------------------------------------------- */
+  /*                                 ATTRIBUTES                                 */
+  /* -------------------------------------------------------------------------- */
+
+  @PrimaryKey
+  @Default(() => uuidV4())
+  @Column({
+    type: DataType.UUID,
+    allowNull: false,
+  })
+  declare readonly id: D.LevelProgress.Id;
+
+  /* -------------------------------------------------------------------------- */
+
+  @Column({
+    type: DataType.TEXT,
+    allowNull: false,
+    defaultValue: D.LevelProgress.Status.new,
+  })
+  declare readonly status: D.LevelProgress.Status;
+
+  /* -------------------------------------------------------------------------- */
+
+  @Column({
+    type: DataType.JSONB,
+    allowNull: false,
+    validate: {
+      isValidGrid(value: unknown) {
+        // 1. Проверка, что значение — массив
+        if (!Array.isArray(value)) {
+          throw new Error('grid должен быть массивом');
+        }
+
+        const rowCount = value.length;
+
+        // 2. Проверка минимального и максимального количества строк
+        if (rowCount < MIN_ROWS) {
+          throw new Error(`grid должен содержать хотя бы ${MIN_ROWS} строк(у). Сейчас строк: ${rowCount}`);
+        }
+        if (rowCount > MAX_ROWS) {
+          throw new Error(`grid не может содержать более ${MAX_ROWS} строк. Сейчас строк: ${rowCount}`);
+        }
+
+        // 3. Если массив пустой — проверки колонок пропускаем
+        if (rowCount === 0) {
+          return;
+        }
+
+        const firstRow = value[0];
+        if (!Array.isArray(firstRow)) {
+          throw new Error('Каждая строка grid должна быть массивом');
+        }
+
+        const colCount = firstRow.length;
+
+        // 4. Проверка минимального и максимального количества столбцов
+        if (colCount < MIN_COLS) {
+          throw new Error(
+            `Каждая строка должна содержать хотя бы ${MIN_COLS} столбцов(а). Сейчас столбцов: ${colCount}`,
+          );
+        }
+        if (colCount > MAX_COLS) {
+          throw new Error(`Каждая строка не может содержать более ${MAX_COLS} столбцов. Сейчас столбцов: ${colCount}`);
+        }
+
+        // 5. Проверка каждой строки
+        for (let i = 0; i < rowCount; i++) {
+          const row = value[i];
+
+          if (!Array.isArray(row)) {
+            throw new Error(`Строка ${i} в grid должна быть массивом`);
+          }
+
+          // Проверка одинаковой длины строк
+          if (row.length !== colCount) {
+            throw new Error(
+              `Строка ${i} имеет длину ${row.length}, ожидается ${colCount}. ` +
+                `Все строки в grid должны быть одинаковой длины.`,
+            );
+          }
+
+          // Проверка значений ячеек
+          for (let j = 0; j < colCount; j++) {
+            const cell = row[j];
+            if (cell !== null && cell !== 0 && cell !== 1 && cell !== 2) {
+              throw new Error(
+                `Недопустимое значение в ячейке [${i}][${j}]: ${cell}. ` + `Разрешены только 0, 1, 2 или null.`,
+              );
+            }
+          }
+        }
+      },
+    },
+  })
+  declare readonly progress: D.LevelProgress.Progress;
+
+  /* -------------------------------------------------------------------------- */
+
+  @CreatedAt
+  declare readonly createdAt: D.LevelProgress.CreatedAt;
+
+  /* -------------------------------------------------------------------------- */
+
+  @UpdatedAt
+  declare readonly updatedAt: D.LevelProgress.UpdatedAt;
+
+  /* -------------------------------------------------------------------------- */
+  /*                                / ATTRIBUTES                                */
+  /* -------------------------------------------------------------------------- */
+
+  /* -------------------------------------------------------------------------- */
+  /*                                ASSOCIATIONS                                */
+  /* -------------------------------------------------------------------------- */
+
+  @ForeignKey(() => User)
+  @Column({ type: DataType.UUID, allowNull: true })
+  declare readonly userId: D.LevelProgress.UserID;
+
+  @BelongsTo(() => User, { as: LevelProgress.association.user, onDelete: 'CASCADE', onUpdate: 'CASCADE' })
+  declare readonly user?: User;
+
+  /* -------------------------------------------------------------------------- */
+
+  @ForeignKey(() => Level)
+  @Column({ type: DataType.UUID, allowNull: true })
+  declare readonly levelId: D.LevelProgress.LevelID;
+
+  @BelongsTo(() => Level, { as: LevelProgress.association.level, onDelete: 'CASCADE', onUpdate: 'CASCADE' })
+  declare readonly level?: Level;
+
+  /* -------------------------------------------------------------------------- */
+  /*                               / ASSOCIATIONS                               */
+  /* -------------------------------------------------------------------------- */
+
+  /* -------------------------------------------------------------------------- */
+  /*                                   PUBLIC                                   */
+  /* -------------------------------------------------------------------------- */
+
+  /* -------------------------------------------------------------------------- */
+  /*                                  / PUBLIC                                  */
+  /* -------------------------------------------------------------------------- */
+
+  /* -------------------------------------------------------------------------- */
+  /*                                   PRIVATE                                  */
+  /* -------------------------------------------------------------------------- */
+
+  /* -------------------------------------------------------------------------- */
+  /*                                  / PRIVATE                                 */
+  /* -------------------------------------------------------------------------- */
+
+  /* -------------------------------------------------------------------------- */
+  /*                                  PROTECTED                                 */
+  /* -------------------------------------------------------------------------- */
+
+  /* -------------------------------------------------------------------------- */
+  /*                                 / PROTECTED                                */
+  /* -------------------------------------------------------------------------- */
+}
+
+const MAX_ROWS = environment.LEVEL_GRID_ROW_MAX;
+const MIN_ROWS = environment.LEVEL_GRID_ROW_MIN;
+const MAX_COLS = environment.LEVEL_GRID_COL_MAX;
+const MIN_COLS = environment.LEVEL_GRID_COL_MIN;

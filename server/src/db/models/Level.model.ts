@@ -41,6 +41,7 @@ export class Level extends Model<Attributes, CreationAttributes> implements D.Le
 
   public static readonly association = {
     author: 'author' as const,
+    progressList: 'progressList' as const,
   };
 
   /* -------------------------------------------------------------------------- */
