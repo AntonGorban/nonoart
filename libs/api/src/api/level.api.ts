@@ -11,6 +11,11 @@ export const createLevelApiDictionary = (client: AxiosInstance) => ({
     client.get<REST.level.get.R>('level', { params: query }),
 
   /* -------------------------------------------------------------------------- */
+
+  getForGame: (params: REST.level.getForGame.P, query: REST.level.getForGame.Q, body: REST.level.getForGame.B) =>
+    client.get<REST.level.getForGame.R>('level/for-game', { params: query }),
+
+  /* -------------------------------------------------------------------------- */
   /*                                    / GET                                   */
   /* -------------------------------------------------------------------------- */
 

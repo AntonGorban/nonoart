@@ -2,6 +2,7 @@ import express from 'express';
 
 import { createLevelController } from './create.level.controller';
 import { getLevelController } from './get.level.controller';
+import { getForGameLevelController } from './getForGame.level.controller';
 
 export const levelRouter = express();
 
@@ -10,6 +11,10 @@ export const levelRouter = express();
 /* -------------------------------------------------------------------------- */
 
 levelRouter.get('/', getLevelController);
+
+/* -------------------------------------------------------------------------- */
+
+levelRouter.get('/for-game', getForGameLevelController);
 
 /* -------------------------------------------------------------------------- */
 /*                                    / GET                                   */
