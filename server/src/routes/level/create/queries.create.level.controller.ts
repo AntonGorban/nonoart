@@ -9,6 +9,7 @@ export const createLevel = (
     readonly name: D.Level.Name;
     readonly description: D.Level.Description;
     readonly grid: D.Level.Grid;
+    readonly authorId: D.Level.AuthorID;
     readonly color0: D.Level.Color;
     readonly color1: D.Level.Color;
     readonly color2: D.Level.Color;
