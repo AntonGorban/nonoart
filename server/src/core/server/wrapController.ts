@@ -17,14 +17,14 @@ export const wrapController =
     let transaction: Transaction | null = null;
 
     try {
-      const startValidationTime = new Date().getTime();
+      const startValidationTime = Date.now();
       logger.trace(`[VALIDATOR] started`);
       const [params, query, body] = await Promise.all([
         validateWithLog<P>('params')(paramsValidator)(req.params),
         validateWithLog<Q>('query')(queryValidator)(req.query),
         validateWithLog<B>('body')(bodyValidator)(req.body),
       ]);
-      const finishValidationTime = new Date().getTime();
+      const finishValidationTime = Date.now();
       logger.trace(`[VALIDATOR] finished | ${f.number(finishValidationTime - startValidationTime)}ms`);
 
       transaction = await db.transaction();

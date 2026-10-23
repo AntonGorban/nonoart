@@ -22,7 +22,7 @@ export const slice = createSlice({
           likes: null,
           dislikes: null,
           status: D.Level.Status.new,
-          createdAt: new Date().getTime(),
+          createdAt: Date.now(),
           colors: ['#ff0000', '#00ff00', '#0000ff'],
           grid: [
             [null, null, null, null, null, null, null, null, null, null],
