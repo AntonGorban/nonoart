@@ -7,8 +7,8 @@ export const createUserApiDictionary = (client: AxiosInstance) => ({
   /*                                     GET                                    */
   /* -------------------------------------------------------------------------- */
 
-  get: (params: REST.user.get.P, query: REST.user.get.Q, body: REST.user.get.B) =>
-    client.get<REST.user.get.R>('user', { params: query }),
+  getAll: (params: REST.user.getAll.P, query: REST.user.getAll.Q, body: REST.user.getAll.B) =>
+    client.get<REST.user.getAll.R>('user'),
 
   /* -------------------------------------------------------------------------- */
 

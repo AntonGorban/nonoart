@@ -1,5 +1,5 @@
 export * as auth from './auth.user.REST';
-export * as get from './get.user.REST';
+export * as getAll from './getAll.user.REST';
 export * as getCompact from './getCompact.user.REST';
 export * as getVerbose from './getVerbose.user.REST';
 export * as refreshToken from './refreshToken.user.REST';
