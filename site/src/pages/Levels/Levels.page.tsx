@@ -6,6 +6,7 @@ import { D } from '@nono-art/domain';
 import { f } from '@nono-art/utils';
 
 import { Guard, MultilineText } from '../../components';
+import { UserCompact } from '../../components/user/UserCompact';
 
 import { CreateLevelForm } from './components/CreateLevelForm';
 import { LevelGridPreview } from './components/LevelGridPreview';
@@ -119,11 +120,9 @@ export const LevelsPage: React.FC<Props> = () => {
                 width: 130,
                 render: (authorId) =>
                   !!authorId ? (
-                    <Typography.Text code copyable={{ text: authorId }} style={{ fontSize: 12 }}>
-                      {authorId.slice(0, 8)}
-                    </Typography.Text>
+                    <UserCompact id={authorId} showId />
                   ) : (
-                    <Typography.Text type="secondary">—</Typography.Text>
+                    <Typography.Text type="secondary">-</Typography.Text>
                   ),
               },
               {
