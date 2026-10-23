@@ -1,8 +1,13 @@
 import express from 'express';
 
+import { D } from '@nono-art/domain';
+
+import { middleware } from '@/middlewares';
+
 import { authUserController } from './auth';
 import { getUserController } from './get';
 import { getCompactUserController } from './getCompact.user.controller';
+import { getVerboseUserController } from './getVebose.user.controller';
 import { refreshTokenUserController } from './refreshToken';
 import { signInUserController } from './signIn';
 import { signOutUserController } from './signOut';
@@ -23,6 +28,10 @@ userRouter.get('/auth', authUserController);
 /* -------------------------------------------------------------------------- */
 
 userRouter.get('/:id/compact', getCompactUserController);
+
+/* -------------------------------------------------------------------------- */
+
+userRouter.get('/:id/verbose', middleware.guard([D.User.Role.admin, D.User.Role.moderator]), getVerboseUserController);
 
 /* -------------------------------------------------------------------------- */
 /*                                    / GET                                   */

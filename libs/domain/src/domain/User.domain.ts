@@ -15,6 +15,7 @@ export namespace User {
   }
 
   export type LevelList = ReadonlyArray<Level>;
+  export type AuthorLevelsCount = number;
 
   export type CreatedAt = Date;
   export type SerializedCreatedAt = number;
