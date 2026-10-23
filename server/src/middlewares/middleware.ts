@@ -1,5 +1,6 @@
 export { authenticateMiddleware as authenticate } from './authenticate.middleware';
 export { cookieParserMiddleware as cookieParser } from './cookieParser.middleware';
+export { guardMiddleware as guard } from './guard.middleware';
 export { corsMiddleware as cors } from './cors.middleware';
 export { errorHandlerMiddleware as errorHandler } from './errorHandler.middleware';
 export { fixBodyParserMiddleware as fixBodyParser } from './fixBodyParser.middleware';
