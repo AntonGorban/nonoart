@@ -1,0 +1,167 @@
+import { Alert, Button, Divider, Empty, Flex, Spin, Statistic, Table, Typography } from 'antd';
+import React from 'react';
+
+import { DAL } from '@nono-art/dal';
+import { useFlag } from '@nono-art/hooks';
+import { f } from '@nono-art/utils';
+
+import { MultilineText } from '../../components';
+import { UserCompact } from '../../components/user/UserCompact';
+
+/* -------------------------------------------------------------------------- */
+/*                                  COMPONENT                                 */
+/* -------------------------------------------------------------------------- */
+
+export const LevelsPage: React.FC<Props> = () => {
+  const [disableSafetyMode] = useFlag(false);
+
+  const { error, isLoading, isValidating, levels, count, refresh } = DAL.level.getForGame.useDAL(disableSafetyMode);
+
+  return (
+    <Flex orientation="vertical" gap="medium">
+      <Typography.Title>Уровни</Typography.Title>
+
+      <Divider size="small" />
+
+      <Flex orientation="horizontal" gap="small" justify="space-evenly" align="center">
+        <Statistic title="Кол-во уровней" value={count} loading={isLoading} />
+
+        <Button onClick={refresh} loading={isLoading || isValidating} disabled={isLoading || isValidating}>
+          Обновить
+        </Button>
+      </Flex>
+
+      <Divider size="small" />
+
+      {isLoading && <Spin fullscreen size="large" />}
+
+      {!!levels &&
+        (levels.length ? (
+          <Table
+            columns={[
+              // {
+              //   title: 'Превью',
+              //   key: 'preview',
+              //   width: 150,
+              //   render: (_, level) => <LevelGridPreview grid={level.grid} colors={level.colors} />,
+              // },
+              {
+                title: 'Название',
+                dataIndex: 'name',
+                key: 'name',
+                sorter: (a, b) => a.name.localeCompare(b.name, 'ru'),
+                render: (_, level) => (
+                  <Flex orientation="vertical" gap="small">
+                    {!!level.description && (
+                      <Typography.Text type="secondary" style={{ whiteSpace: 'pre-line' }}>
+                        <MultilineText>{level.description}</MultilineText>
+                      </Typography.Text>
+                    )}
+                  </Flex>
+                ),
+              },
+              // {
+              //   title: 'Цвета',
+              //   key: 'colors',
+              //   width: 110,
+              //   render: (_, level) => (
+              //     <Flex orientation="horizontal" gap={4} align="center">
+              //       {level.colors.map((color, index) => (
+              //         <Tooltip key={`${level.id}:${index}`} title={color}>
+              //           <span
+              //             style={{
+              //               width: 16,
+              //               height: 16,
+              //               borderRadius: 4,
+              //               background: color,
+              //               border: '1px solid rgba(5, 5, 5, 0.15)',
+              //               display: 'inline-block',
+              //             }}
+              //           />
+              //         </Tooltip>
+              //       ))}
+              //     </Flex>
+              //   ),
+              // },
+              // {
+              //   title: 'Размер',
+              //   key: 'size',
+              //   width: 90,
+              //   render: (_, level) => (
+              //     <Typography.Text>
+              //       {D.utils.level.calcGridWidth(level.grid)} × {D.utils.level.calcGridHeight(level.grid)}
+              //     </Typography.Text>
+              //   ),
+              // },
+              {
+                title: 'Сложность',
+                key: 'complexity',
+                width: 110,
+                sorter: (a, b) => a.complexity - b.complexity,
+                render: (_, level) => <Typography.Text>{level.complexity}</Typography.Text>,
+              },
+              {
+                title: 'Автор',
+                dataIndex: 'authorId',
+                key: 'authorId',
+                width: 130,
+                render: (authorId) =>
+                  !!authorId ? (
+                    <UserCompact id={authorId} showId />
+                  ) : (
+                    <Typography.Text type="secondary">-</Typography.Text>
+                  ),
+              },
+              {
+                title: 'Создан',
+                dataIndex: 'createdAt',
+                key: 'createdAt',
+                width: 170,
+                defaultSortOrder: 'descend',
+                sorter: (a, b) => a.createdAt.getTime() - b.createdAt.getTime(),
+                render: (_, level) => (
+                  <Flex orientation="vertical" gap="small">
+                    <Typography.Text>{f.dateFormat.format(level.createdAt)}</Typography.Text>
+
+                    <Typography.Text type="secondary" style={{ fontSize: 12 }}>
+                      изменён {f.dateFormat.format(level.updatedAt)}
+                    </Typography.Text>
+                  </Flex>
+                ),
+              },
+            ]}
+            dataSource={levels}
+            rowKey="id"
+            loading={isLoading}
+            size="middle"
+            locale={{ emptyText: 'Уровней пока нет' }}
+            pagination={{
+              hideOnSinglePage: true,
+              pageSize: 10,
+              showSizeChanger: true,
+              showTotal: (total) => `Всего: ${total}`,
+            }}
+            scroll={{ x: 860 }}
+          />
+        ) : (
+          <Empty />
+        ))}
+
+      {!!error && <Alert title="Ошибка" description={error.message} type="error" showIcon />}
+    </Flex>
+  );
+};
+
+/* -------------------------------------------------------------------------- */
+/*                                 / COMPONENT                                */
+/* -------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------- */
+/*                                    TYPES                                   */
+/* -------------------------------------------------------------------------- */
+
+interface Props {}
+
+/* -------------------------------------------------------------------------- */
+/*                                   / TYPES                                  */
+/* -------------------------------------------------------------------------- */

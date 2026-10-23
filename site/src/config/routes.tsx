@@ -4,7 +4,7 @@ import { HomeOutlined, ProductOutlined, TeamOutlined } from '@ant-design/icons';
 
 import { D } from '@nono-art/domain';
 
-import { AllLevelsPage, HomePage, UsersPage } from '../pages';
+import { AllLevelsPage, HomePage, LevelsPage, UsersPage } from '../pages';
 
 /* -------------------------------------------------------------------------- */
 /*                                  CONSTANTS                                 */
@@ -18,6 +18,12 @@ export const routeList: RouteList = [
     label: 'Home',
     Page: () => <HomePage />,
     icon: <HomeOutlined />,
+  },
+  {
+    path: 'levels',
+    label: 'levels',
+    Page: () => <LevelsPage />,
+    icon: <ProductOutlined />,
   },
   {
     path: 'all-levels',
