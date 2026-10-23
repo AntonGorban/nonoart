@@ -1,7 +1,7 @@
 import express from 'express';
 
-import { createLevelController } from './create';
-import { getLevelController } from './get';
+import { createLevelController } from './create.level.controller';
+import { getLevelController } from './get.level.controller';
 
 export const levelRouter = express();
 
