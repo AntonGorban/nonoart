@@ -74,7 +74,7 @@ const paramsValidator: z.ZodType<P> = v.common.strictEmptyObject;
 const queryValidator: z.ZodType<Q> = createZod<Q>()(
   z
     .object({
-      disableSafetyMode: z.boolean().optional().nullable(),
+      disableSafetyMode: v.common.booleanFromQuery().optional().nullable(),
     })
     .readonly(),
 );
