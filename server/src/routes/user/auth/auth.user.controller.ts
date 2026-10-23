@@ -3,8 +3,7 @@ import { tokenService } from '../../../services';
 import { prepareResponse } from './transformers.auth.user.controller';
 import type { Fn } from './types.auth.user.controller';
 
-export const fn: Fn = async ({ utils, req }) => {
-  const { user } = req;
+export const fn: Fn = async ({ utils, user }) => {
   if (!user) return { auth: null };
 
   const newPayload: tokenService.TokenPayload = { userId: user.id, role: user.role };

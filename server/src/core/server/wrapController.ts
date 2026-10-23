@@ -29,12 +29,15 @@ export const wrapController =
 
       transaction = await db.transaction();
 
+      const user = req.user ?? null;
+
       const ctx: ControllerCTX<P, Q, B> = {
         params,
         query,
         body,
         utils: generateControllerCTXUtils(req, res),
         transaction,
+        user,
         req,
         res,
       };

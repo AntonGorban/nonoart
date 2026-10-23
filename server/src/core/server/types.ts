@@ -1,12 +1,15 @@
 import type express from 'express';
 import type { Transaction } from 'sequelize';
 
+import type { models } from '@/db';
+
 export interface ControllerCTX<P, Q, B> {
   readonly params: P;
   readonly query: Q;
   readonly body: B;
   readonly transaction: Transaction;
   readonly utils: ControllerCTXUtils;
+  readonly user: models.User | null;
   readonly req: express.Request;
   readonly res: express.Response;
 }
