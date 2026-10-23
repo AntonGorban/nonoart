@@ -14,7 +14,7 @@ import { ForbiddenPage } from '../../pages/Forbidden';
 export const GuardPage = React.memo<Props>(({ access, children }) => {
   const { isAuth, userRole, isLoading } = DAL.user.auth.useDAL();
 
-  const requiresAuth = !!access?.isPrivate || !!access?.role;
+  const requiresAuth = !!access?.isPrivate || !!access?.roleList;
 
   /* --------------------------------- RETURN --------------------------------- */
 
@@ -28,7 +28,7 @@ export const GuardPage = React.memo<Props>(({ access, children }) => {
 
   if (requiresAuth && !isAuth) return <Navigate to={signInPath} replace />;
 
-  if (!!access?.role && userRole !== access.role) return <ForbiddenPage />;
+  if (!!access?.roleList?.length && (!userRole || !access.roleList.includes(userRole))) return <ForbiddenPage />;
 
   return <>{children}</>;
 });

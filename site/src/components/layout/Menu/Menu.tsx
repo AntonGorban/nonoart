@@ -63,7 +63,7 @@ const filterAccessibleRouteList = (routeList: RouteList, isAuth: boolean, userRo
   routeList.filter((route) => isRouteAccessible(route, isAuth, userRole));
 
 const isRouteAccessible = (route: RouteItem, isAuth: boolean, userRole: D.User.Role | null): boolean => {
-  if (!!route.access?.role) return isAuth && userRole === route.access.role;
+  if (!!route.access?.roleList?.length) return isAuth && !!userRole && route.access.roleList.includes(userRole);
   if (!!route.access?.isPrivate) return isAuth;
   return true;
 };

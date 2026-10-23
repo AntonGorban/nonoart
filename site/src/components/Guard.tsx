@@ -8,7 +8,7 @@ import type { D } from '@nono-art/domain';
 /*                                  COMPONENT                                 */
 /* -------------------------------------------------------------------------- */
 
-export const Guard = React.memo<Props>(({ roles, children }) => {
+export const Guard = React.memo<Props>(({ roleList, children }) => {
   const { isAuth, userRole, isLoading } = DAL.user.auth.useDAL();
 
   /* --------------------------------- RETURN --------------------------------- */
@@ -19,7 +19,7 @@ export const Guard = React.memo<Props>(({ roles, children }) => {
 
   if (!isAuth) return null;
 
-  if (!!roles && !roles.includes(userRole)) return null;
+  if (!!roleList?.length && (!userRole || !roleList.includes(userRole))) return null;
 
   return <>{children}</>;
 });
@@ -33,7 +33,7 @@ export const Guard = React.memo<Props>(({ roles, children }) => {
 /* -------------------------------------------------------------------------- */
 
 interface Props {
-  readonly roles?: ReadonlyArray<D.User.Role | null>;
+  readonly roleList?: ReadonlyArray<D.User.Role>;
   readonly children: React.ReactNode;
 }
 

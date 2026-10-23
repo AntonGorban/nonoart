@@ -30,7 +30,7 @@ export const routeList: RouteList = [
     label: 'Users',
     Page: () => <UsersPage />,
     icon: <TeamOutlined />,
-    access: { isPrivate: true, role: D.User.Role.admin },
+    access: { isPrivate: true, roleList: [D.User.Role.admin] },
   },
 ];
 
@@ -57,7 +57,7 @@ export interface RouteAccess {
   /** страница доступна только аутентифицированным пользователям */
   readonly isPrivate?: boolean;
   /** страница дополнительно требует указанную роль (проверка роли после аутентификации) */
-  readonly role?: D.User.Role;
+  readonly roleList?: ReadonlyArray<D.User.Role>;
 }
 
 /* -------------------------------------------------------------------------- */
