@@ -51,8 +51,7 @@ export const useDAL = (id: D.User.Id) => {
 /* -------------------------------------------------------------------------- */
 
 const prepareResponse = (data: Response): User => ({
-  id: data.id,
-  login: data.login,
+  ...data,
 });
 
 /* -------------------------------------------------------------------------- */

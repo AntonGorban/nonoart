@@ -13,7 +13,7 @@ import { NotFoundHTTPError } from '@/errors';
 /*                                 CONTROLLER                                 */
 /* -------------------------------------------------------------------------- */
 
-export const fn: Fn = async ({ params, transaction }) => {
+const fn: Fn = async ({ params, transaction }) => {
   const user = await getUserById(params.id, transaction);
 
   if (!user) throw new NotFoundHTTPError('пользователь не найден');
@@ -29,7 +29,7 @@ export const fn: Fn = async ({ params, transaction }) => {
 /*                                   QUERIES                                  */
 /* -------------------------------------------------------------------------- */
 
-export const getUserById = (id: D.User.Id, transaction: Transaction) => models.User.findByPk(id, { transaction });
+const getUserById = (id: D.User.Id, transaction: Transaction) => models.User.findByPk(id, { transaction });
 
 /* -------------------------------------------------------------------------- */
 /*                                  / QUERIES                                 */
@@ -39,7 +39,7 @@ export const getUserById = (id: D.User.Id, transaction: Transaction) => models.U
 /*                                TRANSFORMERS                                */
 /* -------------------------------------------------------------------------- */
 
-export const prepareResponse = (user: models.User): R => ({
+const prepareResponse = (user: models.User): R => ({
   id: user.id,
   login: user.login,
 });
@@ -54,7 +54,7 @@ export const prepareResponse = (user: models.User): R => ({
 
 /* --------------------------------- params --------------------------------- */
 
-export const paramsValidator: z.ZodType<P> = createZod<P>()(
+const paramsValidator: z.ZodType<P> = createZod<P>()(
   z
     .object({
       id: v.user.id,
@@ -67,13 +67,13 @@ export const paramsValidator: z.ZodType<P> = createZod<P>()(
 
 /* ---------------------------------- query --------------------------------- */
 
-export const queryValidator: z.ZodType<Q> = v.common.emptyObject;
+const queryValidator: z.ZodType<Q> = v.common.emptyObject;
 
 /* --------------------------------- / query -------------------------------- */
 
 /* ---------------------------------- body ---------------------------------- */
 
-export const bodyValidator: z.ZodType<B> = v.common.strictEmptyObject;
+const bodyValidator: z.ZodType<B> = v.common.strictEmptyObject;
 
 /* --------------------------------- / body --------------------------------- */
 
@@ -85,12 +85,12 @@ export const bodyValidator: z.ZodType<B> = v.common.strictEmptyObject;
 /*                                    TYPES                                   */
 /* -------------------------------------------------------------------------- */
 
-export type P = REST.user.getCompact.P;
-export type Q = REST.user.getCompact.Q;
-export type B = REST.user.getCompact.B;
-export type R = REST.user.getCompact.R;
+type P = REST.user.getCompact.P;
+type Q = REST.user.getCompact.Q;
+type B = REST.user.getCompact.B;
+type R = REST.user.getCompact.R;
 
-export type Fn = ControllerFn<P, Q, B, R>;
+type Fn = ControllerFn<P, Q, B, R>;
 
 /* -------------------------------------------------------------------------- */
 /*                                   / TYPES                                  */
