@@ -28,18 +28,21 @@ export namespace Level {
   export type DislikesCount = number;
 
   export enum Status {
-    'new' = 'NEW',
-    'progress' = 'PROGRESS',
-    'done' = 'DONE',
-    'updated' = 'UPDATED',
+    new = 'NEW',
+    progress = 'PROGRESS',
+    done = 'DONE',
+    updated = 'UPDATED',
   }
 
   export type ProgressUpdatedAt = Date;
   export type SerializedProgressUpdatedAt = number;
+
   export type CreatedAt = Date;
   export type SerializedCreatedAt = number;
+
   export type UpdatedAt = Date;
   export type SerializedUpdatedAt = number;
+
   export type DeletedAt = Date | null;
   export type SerializedDeletedAt = number | null;
 }

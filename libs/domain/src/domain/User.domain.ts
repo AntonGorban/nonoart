@@ -17,8 +17,13 @@ export namespace User {
   export type LevelList = ReadonlyArray<Level>;
 
   export type CreatedAt = Date;
+  export type SerializedCreatedAt = number;
+
   export type UpdatedAt = Date;
+  export type SerializedUpdatedAt = number;
+
   export type DeletedAt = Date | null;
+  export type SerializedDeletedAt = number | null;
 }
 
 export interface User {
