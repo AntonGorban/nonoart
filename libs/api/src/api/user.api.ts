@@ -17,6 +17,11 @@ export const createUserApiDictionary = (client: AxiosInstance) => ({
 
   /* -------------------------------------------------------------------------- */
 
+  getVerbose: ({ id }: REST.user.getVerbose.P, query: REST.user.getVerbose.Q, body: REST.user.getVerbose.B) =>
+    client.get<REST.user.getVerbose.R>(`user/${id}/verbose`),
+
+  /* -------------------------------------------------------------------------- */
+
   getCompact: ({ id }: REST.user.getCompact.P, query: REST.user.getCompact.Q, body: REST.user.getCompact.B) =>
     client.get<REST.user.getCompact.R>(`user/${id}/compact`),
 
