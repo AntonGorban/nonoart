@@ -5,6 +5,8 @@ import { LogoutOutlined } from '@ant-design/icons';
 
 import type { DAL } from '@nono-art/dal';
 
+import { IdTag } from '../../../components/IdTag';
+
 /* -------------------------------------------------------------------------- */
 /*                                  COMPONENT                                 */
 /* -------------------------------------------------------------------------- */
@@ -24,9 +26,7 @@ export const UserSection = React.memo<Props>(({ user, signOut }) => (
     </Flex>
 
     <Flex align="center" gap="small">
-      <Typography.Text code copyable={{ text: user.id }} style={{ fontSize: 12 }}>
-        {user.id.slice(0, 8)}
-      </Typography.Text>
+      <IdTag id={user.id} />
 
       <Tooltip title="Выйти">
         <Button icon={<LogoutOutlined />} onClick={signOut} danger />
