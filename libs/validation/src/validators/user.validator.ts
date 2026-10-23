@@ -4,6 +4,20 @@ import type { D } from '@nono-art/domain';
 
 import { createZod } from '../utils';
 
+/* ----------------------------------- id ----------------------------------- */
+
+export const id = createZod<D.User.Id>()(
+  z
+    .string()
+    .transform((val) => val.trim())
+    .pipe(z.string().min(1, { message: 'не может быть пустым' }))
+    .pipe(z.string().max(100, { message: 'не может быть длиннее 100 символов' })),
+);
+
+export type Id = z.infer<typeof id>;
+
+/* ---------------------------------- / id ---------------------------------- */
+
 /* ---------------------------------- login --------------------------------- */
 
 export const login = createZod<D.User.Login>()(

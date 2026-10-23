@@ -2,6 +2,7 @@ import express from 'express';
 
 import { authUserController } from './auth';
 import { getUserController } from './get';
+import { getCompactUserController } from './getCompact.user.controller';
 import { refreshTokenUserController } from './refreshToken';
 import { signInUserController } from './signIn';
 import { signOutUserController } from './signOut';
@@ -18,6 +19,10 @@ userRouter.get('/', getUserController);
 /* -------------------------------------------------------------------------- */
 
 userRouter.get('/auth', authUserController);
+
+/* -------------------------------------------------------------------------- */
+
+userRouter.get('/:id/compact', getCompactUserController);
 
 /* -------------------------------------------------------------------------- */
 /*                                    / GET                                   */
