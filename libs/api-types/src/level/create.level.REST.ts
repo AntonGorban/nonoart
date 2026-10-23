@@ -43,6 +43,7 @@ export interface R {
   readonly id: D.Level.Id;
   readonly name: D.Level.Name;
   readonly description: D.Level.Description;
+  readonly publishStatus: D.Level.PublishStatus;
   readonly colors: D.Level.Colors;
   readonly grid: D.Level.Grid;
   readonly authorId: D.Level.AuthorID | null;

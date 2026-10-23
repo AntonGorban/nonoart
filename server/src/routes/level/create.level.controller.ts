@@ -77,6 +77,7 @@ const prepareResponse = (level: models.Level): R => ({
   id: level.id,
   name: level.name,
   description: level.description,
+  publishStatus: level.publishStatus,
   colors: level.colors,
   grid: level.grid,
   authorId: level.authorId,

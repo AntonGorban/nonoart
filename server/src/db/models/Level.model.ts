@@ -13,7 +13,7 @@ import {
   UpdatedAt,
 } from 'sequelize-typescript';
 
-import type { D } from '@nono-art/domain';
+import { D } from '@nono-art/domain';
 import { uuidV4 } from '@nono-art/utils';
 
 import { environment } from '../../environment';
@@ -22,7 +22,10 @@ import { User } from './User.model';
 
 interface Attributes extends D.LevelDB {}
 
-interface CreationAttributes extends Optional<Attributes, 'id' | 'createdAt' | 'updatedAt' | 'deletedAt'> {}
+interface CreationAttributes extends Optional<
+  Attributes,
+  'id' | 'publishStatus' | 'createdAt' | 'updatedAt' | 'deletedAt'
+> {}
 
 @Table({
   tableName: 'levels',
@@ -36,7 +39,7 @@ export class Level extends Model<Attributes, CreationAttributes> implements D.Le
   /*                                   STATIC                                   */
   /* -------------------------------------------------------------------------- */
 
-  public static association = {
+  public static readonly association = {
     author: 'author' as const,
   };
 
@@ -71,6 +74,15 @@ export class Level extends Model<Attributes, CreationAttributes> implements D.Le
     allowNull: false,
   })
   declare readonly description: D.Level.Description;
+
+  /* -------------------------------------------------------------------------- */
+
+  @Column({
+    type: DataType.TEXT,
+    allowNull: false,
+    defaultValue: D.Level.PublishStatus.drawing,
+  })
+  declare readonly publishStatus: D.Level.PublishStatus;
 
   /* -------------------------------------------------------------------------- */
 
@@ -220,7 +232,7 @@ export class Level extends Model<Attributes, CreationAttributes> implements D.Le
   declare readonly authorId: D.Level.AuthorID | null;
 
   @BelongsTo(() => User, { as: Level.association.author, onDelete: 'SET NULL', onUpdate: 'CASCADE' })
-  author?: User | null;
+  declare readonly author?: User | null;
 
   /* -------------------------------------------------------------------------- */
   /*                               / ASSOCIATIONS                               */

@@ -41,6 +41,7 @@ const prepareLevel = (level: models.Level): R[number] => ({
   id: level.id,
   name: level.name,
   description: level.description,
+  publishStatus: level.publishStatus,
   colors: level.colors,
   grid: level.grid,
   authorId: level.authorId,

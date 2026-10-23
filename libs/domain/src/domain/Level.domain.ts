@@ -27,6 +27,13 @@ export namespace Level {
   export type LikesCount = number;
   export type DislikesCount = number;
 
+  export enum PublishStatus {
+    drawing = 'DRAWING',
+    review = 'REVIEW',
+    approved = 'APPROVED',
+    rejected = 'REJECTED',
+  }
+
   export enum Status {
     new = 'NEW',
     progress = 'PROGRESS',
@@ -53,6 +60,7 @@ export interface Level {
   readonly id: Level.Id;
   readonly name: Level.Name;
   readonly description: Level.Description;
+  readonly publishStatus: Level.PublishStatus;
   readonly colors: Level.Colors;
   readonly grid: Level.Grid;
   readonly authorId: Level.AuthorID | null;
