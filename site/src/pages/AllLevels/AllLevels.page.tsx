@@ -6,16 +6,16 @@ import { D } from '@nono-art/domain';
 import { f } from '@nono-art/utils';
 
 import { Guard, MultilineText } from '../../components';
+import { LevelGridPreview } from '../../components/LevelGridPreview';
 import { UserCompact } from '../../components/user/UserCompact';
 
 import { CreateLevelForm } from './components/CreateLevelForm';
-import { LevelGridPreview } from './components/LevelGridPreview';
 
 /* -------------------------------------------------------------------------- */
 /*                                  COMPONENT                                 */
 /* -------------------------------------------------------------------------- */
 
-export const LevelsPage: React.FC<Props> = () => {
+export const AllLevelsPage: React.FC<Props> = () => {
   const { create, error, isLoading, isValidating, levels, count, refresh } = DAL.level.get.useDAL();
 
   return (

@@ -1,4 +1,4 @@
 export * from './Forbidden';
 export * from './Home';
-export * from './Levels';
+export * from './AllLevels';
 export * from './Users';
